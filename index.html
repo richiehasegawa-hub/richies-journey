@@ -245,8 +245,9 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
   .column-box { padding: 16px 18px; }
   .column-box h4 { font-size: 17px; }
   .column-box p { font-size: 16px; }
-  .data-table { font-size: 14px; }
+  .data-table { font-size: 14px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .data-table th, .data-table td { padding: 6px 8px; }
+  .data-table td:first-child { white-space: normal; min-width: unset; }
   .ticket-box { grid-template-columns: 1fr; gap: 12px; }
   .ticket-box .ticket-icon { display: none; }
   .box-research { padding: 14px 16px; }
@@ -446,7 +447,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
         <div style="font-size:26px;margin-bottom:8px;">⛪</div>
         <div style="font-size:14px;letter-spacing:2px;color:#c9a84c;font-family:sans-serif;margin-bottom:6px;">THEME ②</div>
         <div style="font-size:19px;color:white;font-weight:400;margin-bottom:12px;line-height:1.4;">ガウディ没後100年<br><span style="font-size:15px;color:#9bcbb0;">2026年という特別な年</span></div>
-        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">ガウディは1926年6月7日に路面電車にはねられ死去。2026年は没後100周年。サグラダ・ファミリアは2026年に「栄光のファサード」完成予定。この旅は、ガウディの世紀と奇跡的に重なる。</p>
+        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">ガウディは1926年6月7日に路面電車にはねられ死去。2026年は没後100周年。2026年2月に「イエスの塔（メインタワー）」の頂部に十字架が設置され、サグラダ・ファミリアは世界一高い教会となった。なお栄光のファサードを含む完成までにはさらに8年ほどかかる予定。</p>
         <div style="margin-top:14px;font-size:14px;color:#9bcbb0;font-family:sans-serif;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">→ EP07 サグラダ・ファミリア ／ EP10 カタルーニャ音楽堂</div>
       </div>
 
@@ -1225,7 +1226,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
         </tr>
         <tr>
           <td class="fg-name">ピンチョ・デ・バカラオ<br><span class="fg-sub">Pintxo de Bacalao</span></td>
-          <td><div class="fg-content"><img class="fg-img" src="https://sprnokchn2.exblog.jp/iv/detail/?s=24122051&i=201602%2F09%2F91%2Fe0351091_312115.jpg" alt="ピンチョ・デ・バカラオ" loading="lazy"><p class="fg-desc">塩ダラ（バカラオ）を使ったピンチョス。オリーブオイル煮・フリット・焼きピーマン添えなど様々なアレンジ。</p></div></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Bunyols_de_bacalla.jpg/330px-Bunyols_de_bacalla.jpg" alt="ピンチョ・デ・バカラオ" loading="lazy"><p class="fg-desc">塩ダラ（バカラオ）を使ったピンチョス。オリーブオイル煮・フリット・焼きピーマン添えなど様々なアレンジ。</p></div></td>
         </tr>
       </table>
 
@@ -1726,8 +1727,8 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
   <circle cx="200" cy="790" r="12" fill="#B7791F"/>
   <rect x="213" y="772" width="560" height="52" rx="6" fill="#FFFAF0" stroke="#B7791F" stroke-width="2"/>
   <text x="190" y="790" text-anchor="end" font-size="18" font-weight="bold" fill="#B7791F">2026年</text>
-  <text x="223" y="790" font-size="18" font-weight="bold" fill="#B7791F">没後100周年 — サグラダ・ファミリア完成</text>
-  <text x="223" y="810" font-size="15" fill="#B7791F">1883年着工から143年。全ファサードがついに完結する</text>
+  <text x="223" y="790" font-size="18" font-weight="bold" fill="#B7791F">没後100周年 — イエスの塔に十字架設置</text>
+  <text x="223" y="810" font-size="15" fill="#B7791F">2026年2月、頂部十字架が完成し世界一高い教会となる</text>
 
   <!-- Legend -->
   <rect x="40" y="852" width="720" height="52" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
@@ -1796,7 +1797,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
 
 <div class="infographic-block" style="text-align:center;margin:20px 0;">
   <img src="Vault/04_Resources/画像素材/Web取得/Sagrada_Familia_01.jpg" alt="サグラダ・ファミリア（2026年）" style="max-width:900px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
-  <p class="infographic-caption">⛪ サグラダ・ファミリア — 2026年ガウディ没後100周年に完成を迎える143年の大聖堂。ナシオナル通りから見た降誕のファサード側</p>
+  <p class="infographic-caption">⛪ サグラダ・ファミリア — 2026年2月、イエスの塔（172.5m）頂部に十字架が設置され世界一高い教会となった。着工1882年から143年の大聖堂。ナシオナル通りから見た降誕のファサード側</p>
 </div>
 <figure style="margin:20px 0;text-align:center;">
   <img src="https://www.arukikata.co.jp/wp-content/uploads/20092910405785879_.jpg" alt="サグラダ・ファミリア内部 — 枝分かれする柱と天井からの彩光" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
@@ -1809,7 +1810,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
       <h4>逆さ吊り模型 — 重力が設計した建築</h4>
       <p>ガウディは曲線を計算ではなく「重力」で求めた。糸と砂袋で作った逆さ吊り模型——糸を重力に従って垂らすと、自然にカテナリー曲線（懸垂線）が形成される。これを逆さにすれば、最も構造的に安定したアーチが得られる。「神が設計した曲線」をそのまま建築に転写する手法だ。サグラダ・ファミリアの地下にはこの模型が保存されている。コンピューターのない時代に、ガウディは重力を相棒にして設計した。</p>
       <h4 style="margin-top:16px;">「直線は人間に属する、曲線は神に属する」</h4>
-      <p>ガウディが残した最も有名な言葉。彼は自然界に直線が存在しないことに着目した。木の幹は微妙に曲がり、骨は弧を描き、波も山も直線を持たない。「自然は神の創造物であり、自然の中に美の原理がある」——だからガウディの建築に直線はない。サグラダ・ファミリアの柱は木が枝分かれするように広がり、グエル公園のベンチは人体の曲線に沿って波打つ。2026年の没後100周年に、すべてのファサードが完成する。</p>
+      <p>ガウディが残した最も有名な言葉。彼は自然界に直線が存在しないことに着目した。木の幹は微妙に曲がり、骨は弧を描き、波も山も直線を持たない。「自然は神の創造物であり、自然の中に美の原理がある」——だからガウディの建築に直線はない。サグラダ・ファミリアの柱は木が枝分かれするように広がり、グエル公園のベンチは人体の曲線に沿って波打つ。2026年の没後100周年には、イエスの塔（172.5m）頂部に十字架が設置され世界一高い教会となった。全体の完成（栄光のファサードを含む）にはさらに8年ほどかかる見込みだ。</p>
     </div>
     <div class="column-box">
       <div class="col-label">🏛 歴史コラム</div>
