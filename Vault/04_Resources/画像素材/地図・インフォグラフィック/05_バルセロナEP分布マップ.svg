@@ -1,0 +1,144 @@
+<svg viewBox="0 0 1100 760" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1100" height="760" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">バルセロナ　EP分布マップ</text>
+  <text x="550" y="60" text-anchor="middle" font-size="13" fill="#718096">EP01〜EP10　主要スポット（6月18日〜25日）</text>
+
+  <!-- === MAP BACKGROUND (simplified Barcelona geography) === -->
+  <!-- Sea (Mediterranean) -->
+  <rect x="620" y="140" width="420" height="520" rx="0" fill="#BEE3F8" opacity="0.4"/>
+  <text x="830" y="420" text-anchor="middle" font-size="16" fill="#2C5282" opacity="0.5">地中海</text>
+
+  <!-- Coastline -->
+  <path d="M620 140 Q640 200 650 300 Q660 400 655 500 Q650 580 645 660" stroke="#2B6CB0" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- City area (simplified rectangle) -->
+  <rect x="80" y="140" width="540" height="520" rx="8" fill="#E8F4F8" opacity="0.6" stroke="#CBD5E0" stroke-width="1"/>
+
+  <!-- Tibidabo / Serra de Collserola (mountains, NW) -->
+  <path d="M80 220 Q120 160 200 150 Q280 142 340 155 Q380 165 400 200 L400 240 L80 240 Z" fill="#68D391" opacity="0.4"/>
+  <text x="200" y="195" text-anchor="middle" font-size="11" fill="#276749" opacity="0.8">コルセロラ山地</text>
+  <text x="145" y="210" text-anchor="middle" font-size="10" fill="#276749" opacity="0.8">チビダボ丘（512m）</text>
+
+  <!-- Montjuïc (hill, SW) -->
+  <path d="M80 580 Q120 530 180 520 Q230 515 260 540 Q280 560 270 600 L200 640 L80 640 Z" fill="#68D391" opacity="0.4"/>
+  <text x="170" y="555" text-anchor="middle" font-size="11" fill="#276749" opacity="0.8">モンジュイックの丘</text>
+
+  <!-- Main streets (simplified grid) -->
+  <!-- Diagonal -->
+  <line x1="80" y1="460" x2="620" y2="200" stroke="#A0AEC0" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,3"/>
+  <text x="500" y="220" font-size="10" fill="#718096" transform="rotate(-25,500,220)">対角線大通り</text>
+  <!-- Gran Via -->
+  <line x1="80" y1="490" x2="620" y2="490" stroke="#A0AEC0" stroke-width="1" opacity="0.4"/>
+  <!-- Passeig de Gracia (vertical) -->
+  <line x1="390" y1="140" x2="390" y2="660" stroke="#A0AEC0" stroke-width="1.5" opacity="0.5" stroke-dasharray="3,2"/>
+  <text x="392" y="660" font-size="9" fill="#718096">グラシア通り</text>
+  <!-- La Rambla -->
+  <line x1="340" y1="400" x2="360" y2="640" stroke="#A0AEC0" stroke-width="1.5" opacity="0.4" stroke-dasharray="3,2"/>
+  <text x="365" y="640" font-size="9" fill="#718096">ランブラス</text>
+
+  <!-- Port area -->
+  <rect x="280" y="620" width="360" height="60" rx="4" fill="#BEE3F8" opacity="0.5"/>
+  <text x="460" y="660" text-anchor="middle" font-size="11" fill="#2C5282" opacity="0.7">バルセロネータ・港湾地区</text>
+
+  <!-- Barceloneta beach -->
+  <rect x="600" y="580" width="25" height="80" rx="4" fill="#F6E05E" opacity="0.6"/>
+  <text x="612" y="670" text-anchor="middle" font-size="9" fill="#744210">海水浴場</text>
+
+  <!-- === EP SPOTS === -->
+
+  <!-- EP01: 空港到着 → ホテル（Eixample地区） -->
+  <circle cx="390" cy="400" r="16" fill="#C53030" opacity="0.9"/>
+  <text x="390" y="405" text-anchor="middle" font-size="11" font-weight="bold" fill="white">01</text>
+  <rect x="408" y="388" width="100" height="28" rx="4" fill="white" stroke="#C53030" stroke-width="1" opacity="0.95"/>
+  <text x="458" y="407" text-anchor="middle" font-size="10" fill="#C53030">到着・ホテル</text>
+
+  <!-- EP02: Ninot市場（Eixample） -->
+  <circle cx="355" cy="450" r="16" fill="#C53030" opacity="0.9"/>
+  <text x="355" y="455" text-anchor="middle" font-size="11" font-weight="bold" fill="white">02</text>
+  <rect x="222" y="437" width="120" height="28" rx="4" fill="white" stroke="#C53030" stroke-width="1" opacity="0.95"/>
+  <text x="282" y="456" text-anchor="middle" font-size="10" fill="#C53030">Ninot市場</text>
+
+  <!-- EP03: モンセラート（地図外・北西方向アイコン） -->
+  <circle cx="140" cy="175" r="16" fill="#C53030" opacity="0.9"/>
+  <text x="140" y="180" text-anchor="middle" font-size="11" font-weight="bold" fill="white">03</text>
+  <rect x="158" y="163" width="130" height="28" rx="4" fill="white" stroke="#C53030" stroke-width="1" opacity="0.95"/>
+  <text x="223" y="182" text-anchor="middle" font-size="10" fill="#C53030">モンセラート（50km北西）</text>
+
+  <!-- EP04: フィゲラス・ダリ美術館（地図外・北方向） -->
+  <circle cx="500" cy="158" r="16" fill="#C53030" opacity="0.9"/>
+  <text x="500" y="163" text-anchor="middle" font-size="11" font-weight="bold" fill="white">04</text>
+  <rect x="518" y="147" width="145" height="28" rx="4" fill="white" stroke="#C53030" stroke-width="1" opacity="0.95"/>
+  <text x="590" y="166" text-anchor="middle" font-size="10" fill="#C53030">フィゲラス・ダリ（140km北）</text>
+
+  <!-- EP05: チビダボハイキング（北西山地） -->
+  <circle cx="155" cy="235" r="16" fill="#276749" opacity="0.9"/>
+  <text x="155" y="240" text-anchor="middle" font-size="11" font-weight="bold" fill="white">05</text>
+  <rect x="173" y="223" width="130" height="28" rx="4" fill="white" stroke="#276749" stroke-width="1" opacity="0.95"/>
+  <text x="238" y="242" text-anchor="middle" font-size="10" fill="#276749">チビダボハイキング</text>
+
+  <!-- EP06: e-bikeツアー（ゴシック地区〜海岸） -->
+  <circle cx="360" cy="530" r="16" fill="#B7791F" opacity="0.9"/>
+  <text x="360" y="535" text-anchor="middle" font-size="11" font-weight="bold" fill="white">06</text>
+  <rect x="220" y="517" width="125" height="28" rx="4" fill="white" stroke="#B7791F" stroke-width="1" opacity="0.95"/>
+  <text x="282" y="536" text-anchor="middle" font-size="10" fill="#B7791F">e-bikeツアー</text>
+
+  <!-- EP07: サグラダ・ファミリア（Eixample北東） -->
+  <circle cx="460" cy="340" r="18" fill="#C53030" opacity="0.95"/>
+  <text x="460" y="345" text-anchor="middle" font-size="12" font-weight="bold" fill="white">07</text>
+  <rect x="478" y="328" width="130" height="28" rx="4" fill="white" stroke="#C53030" stroke-width="1.5" opacity="0.95"/>
+  <text x="543" y="347" text-anchor="middle" font-size="10" fill="#C53030">サグラダ・ファミリア ★</text>
+
+  <!-- EP07 also: Casa Batllo, Casa Mila (along Passeig de Gracia) -->
+  <circle cx="390" cy="370" r="12" fill="#C53030" opacity="0.8"/>
+  <text x="390" y="375" text-anchor="middle" font-size="9" font-weight="bold" fill="white">07</text>
+  <text x="408" y="373" font-size="9" fill="#C53030">カサ・バトリョ/ミラ</text>
+
+  <!-- EP08: グエル公園（北部丘陵） -->
+  <circle cx="420" cy="270" r="16" fill="#276749" opacity="0.9"/>
+  <text x="420" y="275" text-anchor="middle" font-size="11" font-weight="bold" fill="white">08</text>
+  <rect x="438" y="258" width="100" height="28" rx="4" fill="white" stroke="#276749" stroke-width="1" opacity="0.95"/>
+  <text x="488" y="277" text-anchor="middle" font-size="10" fill="#276749">グエル公園</text>
+
+  <!-- EP08 also: Montjuic -->
+  <circle cx="185" cy="555" r="14" fill="#276749" opacity="0.9"/>
+  <text x="185" y="560" text-anchor="middle" font-size="10" font-weight="bold" fill="white">08</text>
+  <rect x="200" y="547" width="100" height="26" rx="4" fill="white" stroke="#276749" stroke-width="1" opacity="0.95"/>
+  <text x="250" y="564" text-anchor="middle" font-size="9" fill="#276749">モンジュイック</text>
+
+  <!-- EP09: ピレネー・ヌリア（地図外・北方向） -->
+  <circle cx="260" cy="158" r="16" fill="#276749" opacity="0.9"/>
+  <text x="260" y="163" text-anchor="middle" font-size="11" font-weight="bold" fill="white">09</text>
+  <rect x="278" y="147" width="145" height="28" rx="4" fill="white" stroke="#276749" stroke-width="1" opacity="0.95"/>
+  <text x="350" y="166" text-anchor="middle" font-size="10" fill="#276749">ピレネー・ヌリア渓谷（120km北）</text>
+
+  <!-- EP10: カタルーニャ音楽堂（ゴシック地区） -->
+  <circle cx="400" cy="490" r="16" fill="#6B46C1" opacity="0.9"/>
+  <text x="400" y="495" text-anchor="middle" font-size="11" font-weight="bold" fill="white">10</text>
+  <rect x="418" y="478" width="120" height="28" rx="4" fill="white" stroke="#6B46C1" stroke-width="1" opacity="0.95"/>
+  <text x="478" y="497" text-anchor="middle" font-size="10" fill="#6B46C1">カタルーニャ音楽堂</text>
+
+  <!-- Compass -->
+  <circle cx="1050" cy="180" r="24" fill="white" stroke="#CBD5E0" stroke-width="1.5"/>
+  <text x="1050" y="168" text-anchor="middle" font-size="14" fill="#4A5568">N</text>
+  <line x1="1050" y1="173" x2="1050" y2="197" stroke="#E53E3E" stroke-width="2"/>
+  <polygon points="1050,158 1046,172 1054,172" fill="#E53E3E"/>
+
+  <!-- Area labels -->
+  <text x="390" y="310" text-anchor="middle" font-size="11" fill="#4A5568" opacity="0.6" font-style="italic">エイシャンプラ地区</text>
+  <text x="350" y="510" text-anchor="middle" font-size="11" fill="#4A5568" opacity="0.6" font-style="italic">ゴシック地区</text>
+
+  <!-- Legend -->
+  <rect x="80" y="690" width="940" height="56" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <circle cx="110" cy="718" r="8" fill="#C53030"/>
+  <text x="125" y="722" font-size="11" fill="#C53030">主要観光スポット</text>
+  <circle cx="260" cy="718" r="8" fill="#276749"/>
+  <text x="275" y="722" font-size="11" fill="#276749">ハイキング・公園</text>
+  <circle cx="400" cy="718" r="8" fill="#B7791F"/>
+  <text x="415" y="722" font-size="11" fill="#B7791F">e-bikeツアー</text>
+  <circle cx="520" cy="718" r="8" fill="#6B46C1"/>
+  <text x="535" y="722" font-size="11" fill="#6B46C1">音楽・文化</text>
+  <text x="650" y="718" font-size="11" fill="#718096">※モンセラート・フィゲラス・ピレネーは日帰りバスツアー（地図外）</text>
+  <text x="110" y="738" font-size="11" fill="#718096">ホテル：エイシャンプラ地区（グラシア通り沿い）　バルセロナ滞在：6月18日〜25日（7泊）</text>
+</svg>

@@ -1,0 +1,119 @@
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="600" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">ドロミテ　地質形成の概念図</text>
+  <text x="600" y="60" text-anchor="middle" font-size="13" fill="#718096">約2億5000万年前〜現在　珊瑚礁から生まれた奇岩の山々</text>
+
+  <!-- === TIME PROGRESSION (left to right) === -->
+  <!-- Era labels at top -->
+  <rect x="80" y="80" width="220" height="34" rx="5" fill="#B7791F" opacity="0.8"/>
+  <text x="190" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="white">約2.5億年前（三畳紀）</text>
+  <text x="190" y="108" text-anchor="middle" font-size="10" fill="#FEFCBF">熱帯海に珊瑚礁が形成</text>
+
+  <rect x="360" y="80" width="200" height="34" rx="5" fill="#2B6CB0" opacity="0.8"/>
+  <text x="460" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="white">約1.5億年前（ジュラ紀）</text>
+  <text x="460" y="108" text-anchor="middle" font-size="10" fill="#BEE3F8">海底に石灰岩が堆積</text>
+
+  <rect x="620" y="80" width="200" height="34" rx="5" fill="#276749" opacity="0.8"/>
+  <text x="720" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="white">約3000万年前（漸新世）</text>
+  <text x="720" y="108" text-anchor="middle" font-size="10" fill="#C6F6D5">アルプス造山運動で隆起</text>
+
+  <rect x="890" y="80" width="220" height="34" rx="5" fill="#4A5568" opacity="0.85"/>
+  <text x="1000" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="white">現在（180万年前〜）</text>
+  <text x="1000" y="108" text-anchor="middle" font-size="10" fill="#E2E8F0">氷河が削り現在の岩峰群へ</text>
+
+  <!-- Arrows between eras -->
+  <text x="320" y="100" text-anchor="middle" font-size="18" fill="#CBD5E0">→</text>
+  <text x="580" y="100" text-anchor="middle" font-size="18" fill="#CBD5E0">→</text>
+  <text x="852" y="100" text-anchor="middle" font-size="18" fill="#CBD5E0">→</text>
+
+  <!-- === CROSS SECTION DIAGRAM === -->
+  <!-- Ground/ocean base -->
+  <rect x="80" y="400" width="1040" height="80" rx="0" fill="#EDF2F7"/>
+  <line x1="80" y1="400" x2="1120" y2="400" stroke="#CBD5E0" stroke-width="1.5"/>
+
+  <!-- === PHASE 1: Tropical sea with coral reefs (era 1) === -->
+  <!-- Sea water -->
+  <rect x="80" y="280" width="220" height="120" rx="4" fill="#BEE3F8" opacity="0.6"/>
+  <!-- Sea surface waves -->
+  <path d="M80 280 Q120 272 160 280 Q200 288 240 280 Q280 272 300 280" stroke="#2B6CB0" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- Coral structures -->
+  <path d="M110 400 Q115 365 125 355 Q130 365 135 400" fill="#FC8181" opacity="0.7"/>
+  <path d="M140 400 Q145 355 160 345 Q170 355 175 400" fill="#FC8181" opacity="0.7"/>
+  <path d="M185 400 Q188 370 195 362 Q200 370 205 400" fill="#FC8181" opacity="0.7"/>
+  <path d="M215 400 Q220 360 230 350 Q238 360 242 400" fill="#FC8181" opacity="0.7"/>
+  <path d="M255 400 Q258 372 266 363 Q272 372 276 400" fill="#FC8181" opacity="0.7"/>
+  <!-- Fish silhouettes -->
+  <ellipse cx="150" cy="310" rx="15" ry="6" fill="#4A5568" opacity="0.2"/>
+  <ellipse cx="220" cy="295" rx="12" ry="5" fill="#4A5568" opacity="0.2"/>
+  <!-- Label -->
+  <text x="190" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#2B6CB0">熱帯浅海</text>
+  <text x="190" y="282" text-anchor="middle" font-size="10" fill="#4A5568">珊瑚礁（ドロマイト石灰岩形成）</text>
+  <!-- Sea label -->
+  <text x="190" y="340" text-anchor="middle" font-size="11" fill="#2B6CB0" opacity="0.7" font-style="italic">テチス海</text>
+
+  <!-- === PHASE 2: Sediment layers accumulation === -->
+  <!-- Layer stack visualization -->
+  <rect x="360" y="310" width="200" height="20" rx="3" fill="#F6E05E" opacity="0.7"/>
+  <rect x="360" y="330" width="200" height="20" rx="3" fill="#ECC94B" opacity="0.7"/>
+  <rect x="360" y="350" width="200" height="20" rx="3" fill="#D69E2E" opacity="0.7"/>
+  <rect x="360" y="370" width="200" height="20" rx="3" fill="#B7791F" opacity="0.7"/>
+  <rect x="360" y="390" width="200" height="20" rx="3" fill="#975A16" opacity="0.6"/>
+  <!-- Thickness annotation -->
+  <line x1="568" y1="310" x2="568" y2="400" stroke="#4A5568" stroke-width="1.5"/>
+  <line x1="563" y1="310" x2="573" y2="310" stroke="#4A5568" stroke-width="1.5"/>
+  <line x1="563" y1="400" x2="573" y2="400" stroke="#4A5568" stroke-width="1.5"/>
+  <text x="590" y="355" font-size="10" fill="#4A5568">厚さ</text>
+  <text x="590" y="368" font-size="10" fill="#4A5568">〜600m</text>
+  <!-- Label -->
+  <text x="460" y="298" text-anchor="middle" font-size="12" font-weight="bold" fill="#B7791F">堆積層</text>
+  <text x="460" y="312" text-anchor="middle" font-size="10" fill="#4A5568">石灰岩・泥灰岩が何千万年もかけて堆積</text>
+  <!-- Layer type labels -->
+  <text x="348" y="323" text-anchor="end" font-size="9" fill="#718096">白亜紀</text>
+  <text x="348" y="343" text-anchor="end" font-size="9" fill="#718096">ジュラ紀</text>
+  <text x="348" y="363" text-anchor="end" font-size="9" fill="#718096">三畳紀</text>
+  <text x="348" y="383" text-anchor="end" font-size="9" fill="#718096">石炭紀</text>
+  <text x="348" y="403" text-anchor="end" font-size="9" fill="#718096">基盤岩</text>
+
+  <!-- === PHASE 3: Tectonic uplift === -->
+  <!-- Folded/uplifted rock -->
+  <path d="M620 400 Q640 380 660 355 Q680 330 700 310 Q720 295 740 310 Q760 330 780 355 Q800 380 820 400" fill="#A0AEC0" opacity="0.7" stroke="#718096" stroke-width="1"/>
+  <path d="M630 400 Q648 382 665 360 Q682 338 700 320 Q718 305 736 320 Q754 338 771 360 Q788 382 806 400" fill="#CBD5E0" opacity="0.5"/>
+  <!-- Tectonic force arrows -->
+  <text x="590" y="360" text-anchor="end" font-size="16" fill="#C53030">→</text>
+  <text x="854" y="360" font-size="16" fill="#C53030">←</text>
+  <text x="640" y="375" font-size="9" fill="#C53030">地殻圧縮力</text>
+  <text x="800" y="375" font-size="9" fill="#C53030">地殻圧縮力</text>
+  <!-- Uplift arrows -->
+  <text x="715" y="285" text-anchor="middle" font-size="18" fill="#276749">↑</text>
+  <text x="715" y="280" text-anchor="middle" font-size="10" fill="#276749">隆起</text>
+  <!-- Label -->
+  <text x="720" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#276749">造山運動</text>
+  <text x="720" y="282" text-anchor="middle" font-size="10" fill="#4A5568">アルプス造山でドロミテが隆起</text>
+
+  <!-- === PHASE 4: Glacier erosion → current peaks === -->
+  <!-- Iconic dolomite peak profile -->
+  <!-- Tre Cime silhouette style -->
+  <polygon points="900,280 925,230 940,280" fill="#718096"/>
+  <polygon points="935,280 960,210 985,280" fill="#4A5568"/>
+  <polygon points="975,280 1000,225 1025,280" fill="#718096"/>
+  <!-- Snow -->
+  <polygon points="955,218 960,210 965,218" fill="white" opacity="0.9"/>
+  <!-- Glacier remnants below -->
+  <path d="M890 350 Q920 340 950 335 Q980 330 1010 340 Q1030 348 1040 360" fill="#BEE3F8" opacity="0.5" stroke="#2B6CB0" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Erosion arrows -->
+  <text x="885" y="330" font-size="12" fill="#2B6CB0">↓</text>
+  <text x="1035" y="330" font-size="12" fill="#2B6CB0">↓</text>
+  <!-- Label -->
+  <text x="965" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A5568">現在のドロミテ</text>
+  <text x="965" y="282" text-anchor="middle" font-size="10" fill="#4A5568">氷河侵食で垂直の岩壁が誕生</text>
+
+  <!-- === Bottom info panel === -->
+  <rect x="80" y="490" width="1040" height="96" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="511" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A5568">ドロミテ（白雲岩）について</text>
+  <text x="100" y="530" font-size="11" fill="#718096">◆ 名称の由来：フランス人地質学者デオダ・ド・ドロミュー（18世紀）が珊瑚礁由来の炭酸塩岩（CaMg(CO₃)₂）を発見し命名</text>
+  <text x="100" y="548" font-size="11" fill="#718096">◆ 特徴：夕刻に岩峰がピンク〜オレンジ〜赤に染まる「エンロッサドゥーラ（薔薇色の炎）」現象　→ 絶好の撮影タイム</text>
+  <text x="100" y="566" font-size="11" fill="#718096">◆ 世界遺産：2009年ユネスコ自然遺産登録　9つの山群・141,903ha　「地球上で最も美しい山岳風景」</text>
+  <text x="100" y="582" font-size="11" fill="#718096">◆ 標高：最高峰マルモラーダ 3343m　トレ・チーメ 2999m　チンクエ・トッリ（チーマ・グランデ）2361m</text>
+</svg>

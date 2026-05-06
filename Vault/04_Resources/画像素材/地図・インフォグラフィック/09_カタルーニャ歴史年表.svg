@@ -1,0 +1,122 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="580" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">カタルーニャ　歴史年表</text>
+  <text x="600" y="62" text-anchor="middle" font-size="13" fill="#718096">ローマ時代〜1992年オリンピック　独自の文化と言語を持つ民族の歴史</text>
+
+  <!-- Timeline axis -->
+  <line x1="80" y1="220" x2="1120" y2="220" stroke="#CBD5E0" stroke-width="2.5"/>
+
+  <!-- Era bars below axis -->
+  <!-- Roman era (218BC-415AD) -->
+  <rect x="80" y="220" width="90" height="16" rx="3" fill="#718096" opacity="0.7"/>
+  <text x="125" y="247" text-anchor="middle" font-size="9" fill="#718096">ローマ</text>
+  <!-- Visigoth/Islam (415-801) -->
+  <rect x="170" y="220" width="70" height="16" rx="3" fill="#B7791F" opacity="0.6"/>
+  <text x="205" y="247" text-anchor="middle" font-size="9" fill="#B7791F">イスラム</text>
+  <!-- Carolingian / County of Barcelona (801-1137) -->
+  <rect x="240" y="220" width="110" height="16" rx="3" fill="#6B46C1" opacity="0.7"/>
+  <text x="295" y="247" text-anchor="middle" font-size="9" fill="#6B46C1">バルセロナ伯国</text>
+  <!-- Crown of Aragon (1137-1469) -->
+  <rect x="350" y="220" width="160" height="16" rx="3" fill="#C53030" opacity="0.7"/>
+  <text x="430" y="247" text-anchor="middle" font-size="9" fill="#C53030">アラゴン連合王国</text>
+  <!-- Castile/Spain (1469-1714) -->
+  <rect x="510" y="220" width="120" height="16" rx="3" fill="#4A5568" opacity="0.7"/>
+  <text x="570" y="247" text-anchor="middle" font-size="9" fill="#4A5568">スペイン統合</text>
+  <!-- Bourbon / Modern (1714-1992) -->
+  <rect x="630" y="220" width="490" height="16" rx="3" fill="#2B6CB0" opacity="0.6"/>
+  <text x="875" y="247" text-anchor="middle" font-size="9" fill="#2B6CB0">近代〜現代（ブルボン朝〜民主化）</text>
+
+  <!-- === EVENTS ABOVE LINE === -->
+
+  <!-- 218 BC: Romans arrive (Barcino) -->
+  <line x1="80" y1="220" x2="80" y2="130" stroke="#718096" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="30" y="92" width="100" height="42" rx="5" fill="#718096"/>
+  <text x="80" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="white">紀元前218年</text>
+  <text x="80" y="121" text-anchor="middle" font-size="9" fill="#E2E8F0">ローマ人上陸</text>
+  <text x="80" y="132" text-anchor="middle" font-size="8" fill="#CBD5E0">Barcino建設</text>
+
+  <!-- 985: Barcelona independence from Franks -->
+  <line x1="282" y1="220" x2="282" y2="130" stroke="#6B46C1" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="228" y="95" width="108" height="38" rx="5" fill="#6B46C1"/>
+  <text x="282" y="111" text-anchor="middle" font-size="10" font-weight="bold" fill="white">985年</text>
+  <text x="282" y="125" text-anchor="middle" font-size="9" fill="#E9D8FD">フランク王国から</text>
+  <text x="282" y="137" text-anchor="middle" font-size="9" fill="#E9D8FD">事実上独立</text>
+
+  <!-- 1137: Union with Aragon -->
+  <line x1="350" y1="220" x2="350" y2="80" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="296" y="48" width="108" height="38" rx="5" fill="#C53030"/>
+  <text x="350" y="64" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1137年</text>
+  <text x="350" y="78" text-anchor="middle" font-size="9" fill="#FED7D7">アラゴン連合王国</text>
+
+  <!-- 1492: Columbus, but also Spain unification -->
+  <line x1="560" y1="220" x2="560" y2="80" stroke="#4A5568" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="506" y="48" width="108" height="38" rx="5" fill="#4A5568"/>
+  <text x="560" y="64" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1492年</text>
+  <text x="560" y="78" text-anchor="middle" font-size="9" fill="#E2E8F0">コロンブス新大陸</text>
+
+  <!-- 1714: Fall of Barcelona, Bourbon -->
+  <line x1="630" y1="220" x2="630" y2="130" stroke="#E53E3E" stroke-width="2" stroke-dasharray="3,2"/>
+  <rect x="576" y="95" width="108" height="38" rx="5" fill="#E53E3E"/>
+  <text x="630" y="111" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1714年</text>
+  <text x="630" y="125" text-anchor="middle" font-size="9" fill="#FED7D7">バルセロナ陥落</text>
+  <text x="630" y="137" text-anchor="middle" font-size="8" fill="#FED7D7">カタルーニャ語禁止</text>
+
+  <!-- 1850s-1880s: Renaixença -->
+  <line x1="760" y1="220" x2="760" y2="80" stroke="#276749" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="706" y="48" width="108" height="38" rx="5" fill="#276749"/>
+  <text x="760" y="64" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1850〜80年代</text>
+  <text x="760" y="78" text-anchor="middle" font-size="9" fill="#C6F6D5">ルネサンス運動</text>
+
+  <!-- 1992: Barcelona Olympics -->
+  <line x1="1120" y1="220" x2="1120" y2="80" stroke="#B7791F" stroke-width="2" stroke-dasharray="4,2"/>
+  <rect x="1060" y="48" width="120" height="38" rx="5" fill="#B7791F"/>
+  <text x="1120" y="64" text-anchor="middle" font-size="11" font-weight="bold" fill="white">1992年</text>
+  <text x="1120" y="78" text-anchor="middle" font-size="9" fill="#FEFCBF">バルセロナ五輪</text>
+
+  <!-- === EVENTS BELOW LINE === -->
+
+  <!-- 1869-83: Eixample construction (Cerdà plan) -->
+  <line x1="740" y1="236" x2="740" y2="310" stroke="#2B6CB0" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="688" y="308" width="104" height="42" rx="5" fill="#2B6CB0"/>
+  <text x="740" y="324" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1859年〜</text>
+  <text x="740" y="337" text-anchor="middle" font-size="9" fill="#BEE3F8">エイシャンプラ計画</text>
+  <text x="740" y="349" text-anchor="middle" font-size="8" fill="#BEE3F8">（セルダ設計）</text>
+
+  <!-- 1882: Sagrada starts -->
+  <line x1="788" y1="236" x2="788" y2="310" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="735" y="310" width="106" height="42" rx="5" fill="#C53030"/>
+  <text x="788" y="326" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1882年</text>
+  <text x="788" y="339" text-anchor="middle" font-size="9" fill="#FED7D7">サグラダ・ファミリア</text>
+  <text x="788" y="351" text-anchor="middle" font-size="8" fill="#FED7D7">着工</text>
+
+  <!-- 1888: World Expo Barcelona -->
+  <line x1="830" y1="236" x2="830" y2="390" stroke="#276749" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="776" y="388" width="108" height="42" rx="5" fill="#276749"/>
+  <text x="830" y="404" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1888年</text>
+  <text x="830" y="417" text-anchor="middle" font-size="9" fill="#C6F6D5">万博開催</text>
+  <text x="830" y="429" text-anchor="middle" font-size="8" fill="#C6F6D5">モデルニスモ全盛</text>
+
+  <!-- 1936-1939: Civil War -->
+  <line x1="920" y1="236" x2="920" y2="310" stroke="#E53E3E" stroke-width="2" stroke-dasharray="3,2"/>
+  <rect x="866" y="308" width="108" height="42" rx="5" fill="#E53E3E"/>
+  <text x="920" y="324" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1936〜39年</text>
+  <text x="920" y="337" text-anchor="middle" font-size="9" fill="#FED7D7">スペイン内戦</text>
+  <text x="920" y="349" text-anchor="middle" font-size="8" fill="#FED7D7">フランコ独裁開始</text>
+
+  <!-- 1975: Franco dies, democracy -->
+  <line x1="1040" y1="236" x2="1040" y2="310" stroke="#2B6CB0" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="986" y="308" width="108" height="42" rx="5" fill="#2B6CB0"/>
+  <text x="1040" y="324" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1975年〜</text>
+  <text x="1040" y="337" text-anchor="middle" font-size="9" fill="#BEE3F8">フランコ死去</text>
+  <text x="1040" y="349" text-anchor="middle" font-size="8" fill="#BEE3F8">民主化・自治権回復</text>
+
+  <!-- Cultural notes strip -->
+  <rect x="80" y="455" width="1040" height="110" rx="10" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="476" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A5568">カタルーニャ文化の特徴</text>
+  <text x="100" y="497" font-size="11" fill="#718096">🗣 言語：カタルーニャ語（スペイン語とは別の言語）　フランコ独裁期（1939-75）に禁止されるも現在は公用語</text>
+  <text x="100" y="516" font-size="11" fill="#718096">🏗 建築：モデルニスモ（アール・ヌーボー）の中心地　ガウディ・ドメネク・プッチ・カダファルクら世界的建築家を輩出</text>
+  <text x="100" y="535" font-size="11" fill="#718096">🎭 文化：カスティリェルス（人間の塔）・サルダーナ（円舞）・サン・ジョルディの日（4/23 本と花を贈り合う）</text>
+  <text x="100" y="554" font-size="11" fill="#718096">⚽ スポーツ：FCバルセロナ（1899年創設）は「単なるクラブ以上のもの（Més que un club）」カタルーニャ独立の象徴</text>
+</svg>

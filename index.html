@@ -1,0 +1,3304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richie's Journey — 旅行ブック v6</title>
+<style>
+:root {
+  --primary: #1a3a2a;
+  --primary-light: #2d6a4f;
+  --accent: #b5835a;
+  --accent-light: #d4a574;
+  --gold: #c9a84c;
+  --text: #2c2c2c;
+  --text-light: #666;
+  --bg: #faf8f5;
+  --bg-section: #f4f1ec;
+  --border: #ddd4c5;
+  --white: #fff;
+  --red: #c0392b;
+  --blue: #2c5f8a;
+  --teal: #1a6b6b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 17px; }
+
+/* ナビ */
+nav { position: sticky; top: 0; background: var(--primary); z-index: 100; padding: 0; }
+nav ul { display: flex; flex-wrap: wrap; list-style: none; gap: 0; }
+nav ul li a { display: block; padding: 8px 14px; color: #cde8d8; font-size: 15px; text-decoration: none; font-family: sans-serif; transition: background 0.2s; }
+nav ul li a:hover { background: var(--primary-light); color: white; }
+
+/* カバー */
+.cover { background: linear-gradient(135deg, #0d2318 0%, #1a3a2a 40%, #2d6a4f 70%, #3d8b6a 100%); color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 40px; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+.cover-badge { background: var(--gold); color: var(--primary); font-size: 16px; font-family: sans-serif; font-weight: bold; letter-spacing: 2px; padding: 4px 16px; border-radius: 20px; margin-bottom: 20px; text-transform: uppercase; }
+.cover h1 { font-size: 54px; font-weight: 300; letter-spacing: 8px; margin-bottom: 10px; text-shadow: 2px 2px 20px rgba(0,0,0,0.5); }
+.cover h1 span { color: var(--gold); font-weight: 700; }
+.cover .subtitle { font-size: 20px; letter-spacing: 4px; color: #9bcbb0; margin-bottom: 30px; font-family: sans-serif; }
+.cover .dates { font-size: 16px; color: #7ab99a; letter-spacing: 2px; font-family: sans-serif; margin-bottom: 40px; }
+.cover .route-visual { display: flex; align-items: center; gap: 12px; color: #cde8d8; font-size: 16px; font-family: sans-serif; flex-wrap: wrap; justify-content: center; }
+.cover .route-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.cover .route-line { width: 30px; height: 1px; background: var(--gold); opacity: 0.6; }
+.cover-note { margin-top: 50px; font-size: 16px; color: #5a9977; font-family: sans-serif; letter-spacing: 1px; }
+
+/* セクション */
+.part-header { background: var(--primary); color: white; padding: 50px 60px; }
+.part-header .part-num { font-size: 16px; letter-spacing: 4px; color: var(--gold); font-family: sans-serif; margin-bottom: 8px; text-transform: uppercase; }
+.part-header h2 { font-size: 38px; font-weight: 300; letter-spacing: 4px; margin-bottom: 12px; }
+.part-header .tagline { font-size: 17px; color: #9bcbb0; font-family: sans-serif; }
+
+.ep-section { border-bottom: 1px solid var(--border); }
+.ep-header { background: var(--bg-section); border-left: 4px solid var(--primary-light); padding: 24px 40px; display: flex; align-items: baseline; gap: 20px; }
+.ep-num { font-size: 16px; font-family: sans-serif; color: var(--primary-light); font-weight: bold; letter-spacing: 2px; white-space: nowrap; }
+.ep-header h3 { font-size: 24px; color: var(--primary); font-weight: 400; letter-spacing: 2px; }
+.ep-header .ep-date { font-size: 15px; color: var(--text-light); font-family: sans-serif; margin-left: auto; white-space: nowrap; }
+.ep-body { padding: 30px 40px; max-width: 960px; font-size: 17px; line-height: 1.9; }
+
+/* タイムライン */
+.timeline { list-style: none; padding: 0; margin: 16px 0; border-left: 2px solid var(--primary-light); }
+.timeline li { padding: 6px 0 6px 24px; position: relative; font-size: 16px; font-family: sans-serif; }
+.timeline li::before { content: ''; position: absolute; left: -5px; top: 12px; width: 8px; height: 8px; border-radius: 50%; background: var(--primary-light); }
+.timeline li strong { color: var(--primary); }
+.timeline li .time { display: inline-block; background: var(--primary); color: white; font-size: 16px; padding: 1px 8px; border-radius: 10px; margin-right: 8px; }
+.timeline-history li .time { background: #8b3a2a; }
+
+/* チケット・予約ボックス */
+.ticket-box { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 12px 0; display: grid; grid-template-columns: auto 1fr; gap: 0 16px; }
+.ticket-box .ticket-icon { font-size: 24px; padding-top: 2px; }
+.ticket-box .ticket-title { font-size: 16px; font-weight: bold; color: var(--primary); font-family: sans-serif; margin-bottom: 6px; }
+.ticket-box table { font-size: 15px; font-family: sans-serif; border-collapse: collapse; width: 100%; }
+.ticket-box table td { padding: 3px 8px 3px 0; vertical-align: top; color: var(--text-light); }
+.ticket-box table td:first-child { color: var(--primary); font-weight: bold; white-space: nowrap; min-width: 80px; }
+.ticket-box .ref { font-size: 17px; color: var(--accent); font-weight: bold; font-family: sans-serif; }
+
+/* 注意・情報ボックス */
+.box { border-radius: 6px; padding: 14px 18px; margin: 12px 0; font-size: 16px; font-family: sans-serif; line-height: 1.8; }
+.box-warn { background: #fef9e7; border-left: 3px solid #f39c12; }
+.box-warn::before { content: '⚠️ '; }
+.box-info { background: #e8f4fd; border-left: 3px solid var(--blue); }
+.box-info::before { content: '💡 '; }
+.box-tip { background: #eafaf1; border-left: 3px solid #27ae60; }
+.box-tip::before { content: '✅ '; }
+.box-research { background: #f8f4ff; border-left: 3px solid #8e44ad; padding: 16px 20px; margin: 16px 0; }
+.box-research h4 { font-size: 16px; color: #6c3483; margin-bottom: 8px; font-family: sans-serif; }
+
+/* コラム */
+.column-box { background: var(--primary); color: #cde8d8; border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
+.column-box .col-label { font-size: 14px; letter-spacing: 3px; color: var(--gold); font-family: sans-serif; text-transform: uppercase; margin-bottom: 8px; }
+.column-box h4 { font-size: 18px; color: white; margin-bottom: 10px; font-weight: 400; }
+.column-box p { font-size: 16px; line-height: 1.9; }
+
+/* コンテンツの柱 */
+.pillars { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+.pillar { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+.pillar .pillar-num { font-size: 24px; color: var(--primary-light); font-weight: bold; font-family: sans-serif; opacity: 0.3; }
+.pillar .pillar-title { font-size: 16px; font-weight: bold; color: var(--primary); font-family: sans-serif; margin-bottom: 4px; }
+.pillar p { font-size: 15px; color: var(--text-light); font-family: sans-serif; }
+
+/* テーブル */
+.data-table { width: 100%; border-collapse: collapse; font-size: 16px; font-family: sans-serif; margin: 12px 0; }
+.data-table th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-weight: normal; font-size: 15px; }
+.data-table td { padding: 7px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.data-table tr:nth-child(even) td { background: var(--bg-section); }
+.data-table td:first-child { font-weight: bold; color: var(--primary); white-space: nowrap; }
+
+/* セクション内見出し */
+h4.sec { font-size: 17px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px; margin: 20px 0 10px; font-family: sans-serif; }
+h4.sec::before { content: '▌ '; color: var(--primary-light); }
+h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family: sans-serif; }
+
+/* 日程カード */
+.day-card { border: 1px solid var(--border); border-radius: 8px; margin: 16px 0; overflow: hidden; }
+.day-card-header { background: var(--primary-light); color: white; padding: 10px 20px; display: flex; align-items: center; gap: 16px; }
+.day-card-header .day-label { font-size: 16px; font-family: sans-serif; opacity: 0.8; }
+.day-card-header .day-title { font-size: 17px; font-family: sans-serif; }
+.day-card-body { padding: 16px 20px; font-size: 16px; font-family: sans-serif; }
+
+/* フライト情報 */
+.flight-card { background: linear-gradient(135deg, #1a3a2a, #2d6a4f); color: white; border-radius: 10px; padding: 20px 28px; margin: 16px 0; display: flex; align-items: center; gap: 20px; }
+.flight-card .airline { font-size: 16px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+.flight-card .route { display: flex; align-items: center; gap: 12px; flex: 1; }
+.flight-card .airport { text-align: center; }
+.flight-card .airport .code { font-size: 30px; font-weight: bold; letter-spacing: 2px; }
+.flight-card .airport .name { font-size: 14px; color: #9bcbb0; }
+.flight-card .flight-arrow { flex: 1; text-align: center; border-top: 1px dashed rgba(255,255,255,0.3); position: relative; }
+.flight-card .flight-arrow .fn { font-size: 16px; color: var(--gold); position: absolute; top: -16px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--primary); padding: 2px 8px; border-radius: 10px; }
+.flight-card .times { text-align: right; font-size: 15px; color: #9bcbb0; }
+.flight-card .times .t { font-size: 22px; color: white; }
+
+/* 目次 */
+.toc { background: var(--white); padding: 40px 60px; border-bottom: 1px solid var(--border); }
+.toc h2 { font-size: 24px; color: var(--primary); margin-bottom: 24px; letter-spacing: 4px; }
+.toc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.toc-part { }
+.toc-part h3 { font-size: 15px; letter-spacing: 3px; color: var(--accent); font-family: sans-serif; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.toc-part ul { list-style: none; }
+.toc-part ul li { font-size: 15px; font-family: sans-serif; padding: 4px 0; border-bottom: 1px dotted #e8e0d5; }
+.toc-part ul li a { color: var(--primary); text-decoration: none; }
+.toc-part ul li a:hover { color: var(--primary-light); }
+.toc-part ul li .ep-tag { font-size: 14px; color: var(--text-light); margin-right: 6px; }
+
+/* アペンディクス */
+.appendix { background: var(--bg-section); padding: 40px; }
+.appendix h2 { font-size: 22px; color: var(--primary); margin-bottom: 24px; letter-spacing: 2px; }
+
+/* チェックリスト */
+.checklist { list-style: none; }
+.checklist li { padding: 6px 0; font-size: 16px; font-family: sans-serif; border-bottom: 1px dotted var(--border); display: flex; gap: 10px; align-items: flex-start; }
+.checklist li::before { content: '☐'; color: var(--primary-light); flex-shrink: 0; margin-top: 1px; }
+.checklist li.done::before { content: '✅'; }
+
+/* YouTube スケジュール */
+.yt-table { width: 100%; border-collapse: collapse; font-size: 15px; font-family: sans-serif; }
+.yt-table th { background: #c4302b; color: white; padding: 7px 10px; text-align: left; }
+.yt-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.yt-table tr:nth-child(even) td { background: #fdf5f5; }
+
+
+/* インフォグラフィック */
+.infographic-block {
+  margin: 28px 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  overflow-x: auto;
+}
+.infographic-title {
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+.infographic-caption {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: var(--text-light);
+  margin-top: 10px;
+  text-align: center;
+}
+.infographic-block svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 書籍・メディア画像カード */
+.book-img-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  align-items: flex-start;
+  justify-content: center;
+}
+.book-img-card {
+  text-align: center;
+}
+.book-caption {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: var(--text-light);
+  margin-top: 6px;
+  max-width: 200px;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .cover h1 { font-size: 32px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .ep-header { flex-wrap: wrap; }
+  .ep-header .ep-date { margin-left: 0; }
+  .flight-card { flex-direction: column; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== v5 モバイル強化 ===== */
+@media (max-width: 768px) {
+  nav ul { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  nav ul::-webkit-scrollbar { display: none; }
+  nav ul li a { font-size: 14px; padding: 10px 12px; white-space: nowrap; }
+  .cover h1 { font-size: 28px; letter-spacing: 3px; }
+  .cover .subtitle { font-size: 17px; }
+  .cover .dates { font-size: 15px; }
+  .cover .route-visual { font-size: 14px; gap: 6px; }
+  .toc { padding: 24px 20px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .part-header { padding: 30px 20px; }
+  .part-header h2 { font-size: 26px; }
+  .part-header .tagline { font-size: 15px; }
+  .ep-header { flex-wrap: wrap; padding: 16px 20px; gap: 8px; }
+  .ep-header h3 { font-size: 20px; }
+  .ep-header .ep-date { margin-left: 0; font-size: 14px; }
+  .ep-body { padding: 20px; }
+  .flight-card { flex-direction: column; gap: 10px; padding: 16px 18px; }
+  .flight-card .airport .code { font-size: 22px; }
+  .pillars { grid-template-columns: 1fr; }
+  .column-box { padding: 16px 18px; }
+  .column-box h4 { font-size: 17px; }
+  .column-box p { font-size: 16px; }
+  .data-table { font-size: 14px; }
+  .data-table th, .data-table td { padding: 6px 8px; }
+  .ticket-box { grid-template-columns: 1fr; gap: 12px; }
+  .ticket-box .ticket-icon { display: none; }
+  .box-research { padding: 14px 16px; }
+  .box-research h4 { font-size: 16px; }
+  h4.sec { font-size: 16px; }
+  .timeline li { font-size: 15px; }
+  .infographic-block { padding: 12px; overflow-x: auto; }
+  .book-img-row { gap: 12px; }
+  .book-img-card img { height: 140px !important; width: auto !important; }
+  div[style*="float:right"] { float: none !important; display: block; margin: 0 auto 16px !important; text-align: center; }
+}
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .cover h1 { font-size: 22px; }
+  .ep-header h3 { font-size: 18px; }
+  .column-box h4 { font-size: 16px; }
+}
+
+/* ━━ 画像表示ルール (v6) ━━ */
+/* 書籍表紙: height 固定、幅自動 */
+.book-cover { height: 280px; width: auto; border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25); display: block; }
+.book-cover-wrap { display: inline-block; text-align: center; }
+.book-cover-wrap a { display: inline-block; }
+.book-cover-wrap .cover-title { font-size: 14px; font-family: sans-serif;
+  color: var(--text-light); margin-top: 6px; }
+
+/* CD表紙: 200×200 固定 */
+.cd-cover { width: 200px; height: 200px; object-fit: cover; border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2); display: block; }
+.cd-cover-wrap { display: inline-block; text-align: center; }
+.cd-cover-wrap .cover-title { font-size: 14px; font-family: sans-serif;
+  color: var(--text-light); margin-top: 6px; }
+
+/* キー写真: 4:3 比率、最大幅 */
+.photo-key { width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); display: block; }
+.photo-key-wrap { margin: 16px 0; }
+.photo-caption { font-size: 14px; font-family: sans-serif; color: var(--text-light);
+  text-align: center; margin-top: 6px; }
+
+/* 複数写真: PC横並び / スマホ縦並び */
+.photo-row { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+.photo-row .photo-item { flex: 1; min-width: 260px; }
+.photo-row .photo-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+/* 書籍・CD 横並び */
+.book-shelf { display: flex; gap: 20px; flex-wrap: wrap;
+  align-items: flex-start; margin: 16px 0; }
+
+/* マップ: サムネール */
+.map-thumb { width: 330px; max-width: 100%; border-radius: 6px;
+  border: 1px solid var(--border); display: block; cursor: zoom-in;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.map-thumb-wrap { margin: 16px 0; text-align: center; }
+.map-thumb-wrap a { display: inline-block; }
+.map-link-note { font-size: 13px; font-family: sans-serif; color: var(--blue);
+  margin-top: 4px; }
+
+/* PDF 抽出画像: 幅 75% */
+.pdf-img { width: 75%; max-width: 720px; display: block; margin: 12px auto;
+  border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+@media (max-width: 600px) {
+  .photo-row { flex-direction: column; }
+  .photo-row .photo-item { min-width: 100%; }
+  .book-shelf { flex-direction: column; }
+  .map-thumb { width: 100%; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav>
+  <ul>
+    <li><a href="#cover">🏠 表紙</a></li>
+    <li><a href="#themes">🎭 5大テーマ</a></li>
+    <li><a href="#london">🇬🇧 ロンドン</a></li>
+    <li><a href="#barcelona">🇪🇸 バルセロナ</a></li>
+    <li><a href="#ep01">EP01</a></li><li><a href="#ep02">EP02</a></li><li><a href="#ep03">EP03</a></li>
+    <li><a href="#ep04">EP04</a></li><li><a href="#ep05">EP05</a></li><li><a href="#ep06">EP06</a></li>
+    <li><a href="#ep07">EP07</a></li><li><a href="#ep08">EP08</a></li><li><a href="#ep09">EP09</a></li><li><a href="#ep10">EP10</a></li>
+    <li><a href="#cortina">🏔 コルチナ</a></li>
+    <li><a href="#ep11">EP11</a></li><li><a href="#ep12">EP12</a></li><li><a href="#ep13">EP13</a></li>
+    <li><a href="#ep14">EP14</a></li><li><a href="#ep15">EP15</a></li><li><a href="#ep16">EP16</a></li>
+    <li><a href="#ep17">EP17</a></li>
+    <li><a href="#tickets">🎟 チケット</a></li>
+    <li><a href="#checklist">✅ チェックリスト</a></li>
+    <li><a href="#youtube">📹 YouTube</a></li>
+  </ul>
+</nav>
+
+<!-- 表紙 -->
+<div class="cover" id="cover">
+  <div class="cover-badge">Travel Book · v5 · 2026-05-04</div>
+  <h1>Richie's <span>Journey</span></h1>
+  <div class="subtitle">欧州 25日間の旅 — ロンドン・バルセロナ・ドロミテ</div>
+  <div class="dates">2026年 6月15日（月）— 7月10日（金）</div>
+  <div class="route-visual">
+    <span>🏠 浜松</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🇬🇧 London</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🇪🇸 Barcelona</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🇬🇧 London</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🇮🇹 Venezia</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🏔 Cortina d'Ampezzo</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🇬🇧 London</span><div class="route-line"></div><div class="route-dot"></div>
+    <span>🏠 浜松</span>
+  </div>
+  <div class="cover-note">EP01–EP17 · 全17エピソード · 毎週土曜19:00 JST · 2026/8/1〜11/21公開予定</div>
+</div>
+
+<!-- 目次 -->
+<div class="toc" id="toc">
+  <h2>目　次</h2>
+  <div class="toc-grid">
+    <div class="toc-part">
+      <h3>Part 1 — ロンドン</h3>
+      <ul>
+        <li><a href="#london">旅程概要（3フェーズ）</a></li>
+        <li><a href="#london">フライト・移動情報</a></li>
+        <li><a href="#london">絵理宅・ロンドン生活メモ</a></li>
+      </ul>
+      <h3 style="margin-top:16px">Part 2 — バルセロナ</h3>
+      <ul>
+        <li><span class="ep-tag">EP01</span><a href="#ep01">ロンドンからバルセロナへ（6/18）</a></li>
+        <li><span class="ep-tag">EP02</span><a href="#ep02">バルセロナを歩く——街と食事</a></li>
+        <li><span class="ep-tag">EP03</span><a href="#ep03">モンセラート最高峰（6/19）</a></li>
+        <li><span class="ep-tag">EP04</span><a href="#ep04">ダリの故郷フィゲラスへ（6/19–20）</a></li>
+        <li><span class="ep-tag">EP05</span><a href="#ep05">バルセロナの絶景ハイキング（6/20）</a></li>
+        <li><span class="ep-tag">EP06</span><a href="#ep06">ピカソとミロ（6/21・24）</a></li>
+        <li><span class="ep-tag">EP07</span><a href="#ep07">ガウディ：サグラダFとグエル公園（6/22）</a></li>
+        <li><span class="ep-tag">EP08</span><a href="#ep08">モンジュイック・コロンブスの塔（6/21・24）</a></li>
+        <li><span class="ep-tag">EP09</span><a href="#ep09">ピレネー山脈・ヌリア渓谷（6/23）</a></li>
+        <li><span class="ep-tag">EP10</span><a href="#ep10">カタルーニャ：音楽とPalau de la Música（6/22夜）</a></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <h3>Part 3 — コルチナ・ドロミテ</h3>
+      <ul>
+        <li><span class="ep-tag">EP11</span><a href="#ep11">コルチナ・ダンペッツォ（6/29）</a></li>
+        <li><span class="ep-tag">EP12</span><a href="#ep12">ファローリア、トファーナ（6/30）</a></li>
+        <li><span class="ep-tag">EP13</span><a href="#ep13">ミズリーナ湖、サイクリング（7/3）</a></li>
+        <li><span class="ep-tag">EP14</span><a href="#ep14">トレ・チーメ・ディ・ラヴァレード（7/1）</a></li>
+        <li><span class="ep-tag">EP15</span><a href="#ep15">チンクエトッリ（7/2）</a></li>
+        <li><span class="ep-tag">EP16</span><a href="#ep16">ドロミテの文化と食（滞在全体）</a></li>
+        <li><span class="ep-tag">EP17</span><a href="#ep17">総集編と帰路（7/4）</a></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <h3>5大テーマ</h3>
+      <ul>
+        <li><a href="#themes">① 三つのパブロ（1973年）</a></li>
+        <li><a href="#themes">② ガウディ没後100年（2026）</a></li>
+        <li><a href="#themes">③ コルチナ五輪1956→2026</a></li>
+        <li><a href="#themes">④ カタルーニャのアイデンティティ</a></li>
+        <li><a href="#themes">⑤ ドロミテの地質と戦争</a></li>
+      </ul>
+      <h3 style="margin-top:16px">付録</h3>
+      <ul>
+        <li><a href="#tickets">🎟 チケット・予約一覧</a></li>
+        <li><a href="#checklist">✅ 事前準備チェックリスト</a></li>
+        <li><a href="#youtube">📹 YouTube 公開スケジュール</a></li>
+      </ul>
+      <h3 style="margin-top:16px">旅の概要</h3>
+      <ul>
+        <li>撮影日数：25日間</li>
+        <li>総EP数：19本</li>
+        <li>公開期間：2026/8/1〜12/5</li>
+        <li>投稿ペース：毎週土曜 19:00 JST</li>
+        <li>Shorts：各EP3日前（水曜）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======== 5大テーマ（通奏低音） ======== -->
+<div style="background:linear-gradient(135deg,#1a3a2a 0%,#2d5a3a 100%);color:white;padding:40px 60px;border-bottom:3px solid #c9a84c;" id="themes">
+  <div style="max-width:960px;margin:0 auto;">
+    <div style="font-size:14px;letter-spacing:4px;color:#c9a84c;font-family:sans-serif;text-transform:uppercase;margin-bottom:10px;">Cross-Cutting Themes</div>
+    <h2 style="font-size:30px;font-weight:300;letter-spacing:3px;margin-bottom:8px;">5大テーマ — 旅を貫く通奏低音</h2>
+    <p style="font-size:17px;color:#9bcbb0;font-family:sans-serif;margin-bottom:32px;">EP01〜EP17を横断して流れる5つの物語。これを意識することで、バルセロナとコルチナ、二つの旅が一本の糸でつながる。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;">
+
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:26px;margin-bottom:8px;">🎨</div>
+        <div style="font-size:14px;letter-spacing:2px;color:#c9a84c;font-family:sans-serif;margin-bottom:6px;">THEME ①</div>
+        <div style="font-size:19px;color:white;font-weight:400;margin-bottom:12px;line-height:1.4;">三つのパブロ<br><span style="font-size:15px;color:#9bcbb0;">1973年、同年の死</span></div>
+        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">1973年、三人のパブロが同年に世を去った——ピカソ（4月8日・91歳）、カザルス（10月22日・96歳）、ネルーダ（9月23日・69歳）。三者ともフランコ独裁に抵抗し続け、故郷から追われながら創造を止めなかった芸術家だった。</p>
+        <div style="margin-top:14px;font-size:14px;color:#9bcbb0;font-family:sans-serif;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">→ EP06 ピカソ美術館 ／ EP10 カタルーニャ音楽堂</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:26px;margin-bottom:8px;">⛪</div>
+        <div style="font-size:14px;letter-spacing:2px;color:#c9a84c;font-family:sans-serif;margin-bottom:6px;">THEME ②</div>
+        <div style="font-size:19px;color:white;font-weight:400;margin-bottom:12px;line-height:1.4;">ガウディ没後100年<br><span style="font-size:15px;color:#9bcbb0;">2026年という特別な年</span></div>
+        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">ガウディは1926年6月7日に路面電車にはねられ死去。2026年は没後100周年。サグラダ・ファミリアは2026年に「栄光のファサード」完成予定。この旅は、ガウディの世紀と奇跡的に重なる。</p>
+        <div style="margin-top:14px;font-size:14px;color:#9bcbb0;font-family:sans-serif;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">→ EP07 サグラダ・ファミリア ／ EP10 カタルーニャ音楽堂</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:26px;margin-bottom:8px;">🏅</div>
+        <div style="font-size:14px;letter-spacing:2px;color:#c9a84c;font-family:sans-serif;margin-bottom:6px;">THEME ③</div>
+        <div style="font-size:19px;color:white;font-weight:400;margin-bottom:12px;line-height:1.4;">コルチナ 1956→2026<br><span style="font-size:15px;color:#9bcbb0;">70年を経た五輪の復活</span></div>
+        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">コルチナは1956年冬季五輪（第7回）の開催地。2026年ミラノ・コルチナ冬季五輪で再びホスト都市に。70年の時を経た「復活」——その間に街は何を守り、何を変えたのか。</p>
+        <div style="margin-top:14px;font-size:14px;color:#9bcbb0;font-family:sans-serif;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">→ EP11 到着 ／ EP12 展望台 ／ EP16 リゾートステイ</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:26px;margin-bottom:8px;">🏴</div>
+        <div style="font-size:14px;letter-spacing:2px;color:#c9a84c;font-family:sans-serif;margin-bottom:6px;">THEME ④</div>
+        <div style="font-size:19px;color:white;font-weight:400;margin-bottom:12px;line-height:1.4;">カタルーニャのアイデンティティ<br><span style="font-size:15px;color:#9bcbb0;">スペインの中の異邦人</span></div>
+        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">「ここはスペインではない」と言う人々の誇り。独自の言語・文化・歴史。フランコ独裁下での弾圧（1939〜1975年）と、民主化後の復権。モンジュイック城が象徴する痛みと再生の物語。</p>
+        <div style="margin-top:14px;font-size:14px;color:#9bcbb0;font-family:sans-serif;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">→ EP02 市場 ／ EP08 モンジュイック ／ EP09 ヌリア ／ EP10 音楽堂</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:20px 22px;">
+        <div style="font-size:26px;margin-bottom:8px;">⛰️</div>
+        <div style="font-size:14px;letter-spacing:2px;color:#c9a84c;font-family:sans-serif;margin-bottom:6px;">THEME ⑤</div>
+        <div style="font-size:19px;color:white;font-weight:400;margin-bottom:12px;line-height:1.4;">ドロミテの地質と戦争<br><span style="font-size:15px;color:#9bcbb0;">美しさの下に眠る記憶</span></div>
+        <p style="font-size:16px;color:#cde8d8;line-height:1.85;font-family:sans-serif;">2.5億年前の熱帯サンゴ礁が隆起した白い岩峰。夕暮れに岩が赤く燃える「エンロザディーラ」現象。そしてチンクエ・トッリには第一次大戦の塹壕がそのまま残る——白い戦争（Guerra Bianca）の記憶。</p>
+        <div style="margin-top:14px;font-size:14px;color:#9bcbb0;font-family:sans-serif;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;">→ EP11 地質 ／ EP14 トレ・チーメ ／ EP15 チンクエトッリ</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ======== PART 1: LONDON ======== -->
+<div class="part-header" id="london">
+  <div class="part-num">Part 1</div>
+  <h2>ロンドン滞在</h2>
+  <div class="tagline">旅はいつもロンドンから始まる。孫たちの街が出発点。</div>
+</div>
+
+<div style="padding:30px 40px; max-width:960px;">
+  <h4 class="sec">旅の全体像</h4>
+<div class="infographic-block">
+  <div class="infographic-title">🗺 旅全体ルートマップ — ロンドン・バルセロナ・ドロミテ 25日間</div>
+  <svg viewBox="0 0 1270 510" xmlns="http://www.w3.org/2000/svg"
+       font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1270" height="510" fill="#F7F8FA"/>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="30" y="12" width="14" height="14" rx="3" fill="#4A5568"/>
+  <text x="50" y="24" font-size="14" fill="#4A5568">ロンドン滞在</text>
+  <rect x="162" y="12" width="14" height="14" rx="3" fill="#C53030"/>
+  <text x="182" y="24" font-size="14" fill="#C53030">バルセロナ編</text>
+  <rect x="308" y="12" width="14" height="14" rx="3" fill="#2B6CB0"/>
+  <text x="328" y="24" font-size="14" fill="#2B6CB0">コルチナ編</text>
+
+  <!-- ===== TITLE ===== -->
+  <text x="750" y="26" text-anchor="middle" font-size="30" font-weight="bold" fill="#1A202C">Richie's Journey 2026　全体ルートマップ</text>
+  <text x="750" y="46" text-anchor="middle" font-size="14" fill="#718096">6月15日〜7月9日　ロンドン発着　バルセロナ7泊 ＋ コルチナ5泊</text>
+
+  <!-- ===== TIMELINE ===== -->
+  <line x1="40" y1="286" x2="1260" y2="286" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- ===== LONDON 1 (6/15-6/17, 3泊) ===== -->
+  <rect x="40" y="248" width="112" height="76" rx="10" fill="#4A5568"/>
+  <text x="96" y="272" text-anchor="middle" font-size="15" font-weight="bold" fill="white">ロンドン</text>
+  <text x="96" y="291" text-anchor="middle" font-size="19" fill="#E2E8F0">6/15〜17</text>
+  <text x="96" y="308" text-anchor="middle" font-size="19" fill="#E2E8F0">孫たち　3泊</text>
+
+  <!-- Flight 1: LHR→BCN -->
+  <line x1="155" y1="286" x2="196" y2="286" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="196,281 206,286 196,291" fill="#B7791F"/>
+  <text x="176" y="278" text-anchor="middle" font-size="19" fill="#B7791F">✈ BA478</text>
+  <text x="176" y="263" text-anchor="middle" font-size="19" fill="#B7791F">6/18</text>
+
+  <!-- ===== BARCELONA (6/18-6/25, 7泊) ===== -->
+  <rect x="208" y="148" width="378" height="210" rx="12" fill="#C53030"/>
+  <text x="397" y="178" text-anchor="middle" font-size="30" font-weight="bold" fill="white">🏙 バルセロナ編</text>
+  <text x="397" y="198" text-anchor="middle" font-size="15" fill="#FED7D7">6月18日（木）〜 6月25日（木）　7泊</text>
+  <line x1="226" y1="207" x2="568" y2="207" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <!-- EP col-left (EP01-05) -->
+  <text x="226" y="228" font-size="18" fill="white">EP01 到着</text>
+  <text x="226" y="251" font-size="18" fill="white">EP02 市場</text>
+  <text x="226" y="274" font-size="18" fill="white">EP03 モンセラート</text>
+  <text x="226" y="297" font-size="18" fill="white">EP04 ダリ美術館</text>
+  <text x="226" y="320" font-size="18" fill="white">EP05 ハイキング</text>
+
+  <!-- EP col-right (EP06-10) -->
+  <text x="392" y="228" font-size="18" fill="white">EP06 e-bike</text>
+  <text x="392" y="251" font-size="18" fill="white">EP07 ガウディ</text>
+  <text x="392" y="274" font-size="18" fill="white">EP08 グエル公園</text>
+  <text x="392" y="297" font-size="18" fill="white">EP09 ピレネー</text>
+  <text x="392" y="320" font-size="18" fill="white">EP10 音楽堂</text>
+
+  <!-- Flight 2: BCN→LHR -->
+  <line x1="590" y1="286" x2="630" y2="286" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="630,281 640,286 630,291" fill="#B7791F"/>
+  <text x="610" y="278" text-anchor="middle" font-size="19" fill="#B7791F">✈ BA473</text>
+  <text x="610" y="263" text-anchor="middle" font-size="19" fill="#B7791F">6/25</text>
+
+  <!-- ===== LONDON 2 (6/25-6/29, 4泊) ===== -->
+  <rect x="643" y="248" width="112" height="76" rx="10" fill="#4A5568"/>
+  <text x="699" y="272" text-anchor="middle" font-size="15" font-weight="bold" fill="white">ロンドン</text>
+  <text x="699" y="291" text-anchor="middle" font-size="19" fill="#E2E8F0">6/25〜29</text>
+  <text x="699" y="308" text-anchor="middle" font-size="19" fill="#E2E8F0">孫たち　4泊</text>
+
+  <!-- Flight 3: LHR→VCE -->
+  <line x1="758" y1="286" x2="800" y2="286" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="800,281 810,286 800,291" fill="#B7791F"/>
+  <text x="779" y="278" text-anchor="middle" font-size="19" fill="#B7791F">✈ BA598</text>
+  <text x="779" y="263" text-anchor="middle" font-size="19" fill="#B7791F">6/29</text>
+  <text x="779" y="302" text-anchor="middle" font-size="18" fill="#B7791F">VCE経由</text>
+
+  <!-- ===== CORTINA (6/29-7/4, 5泊) ===== -->
+  <rect x="813" y="148" width="310" height="248" rx="12" fill="#2B6CB0"/>
+  <text x="968" y="178" text-anchor="middle" font-size="30" font-weight="bold" fill="white">⛰ コルチナ編</text>
+  <text x="968" y="198" text-anchor="middle" font-size="15" fill="#BEE3F8">6月29日（月）〜 7月4日（土）　5泊</text>
+  <line x1="831" y1="207" x2="1105" y2="207" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <text x="831" y="228" font-size="18" fill="white">EP11 コルチナ・ダンペッツォ</text>
+  <text x="831" y="251" font-size="18" fill="white">EP12 ファローリア、トファーナ</text>
+  <text x="831" y="274" font-size="18" fill="white">EP13 ミズリーナ湖、サイクリング</text>
+  <text x="831" y="297" font-size="18" fill="white">EP14 トレ・チーメ</text>
+  <text x="831" y="320" font-size="18" fill="white">EP15 チンクエトッリ</text>
+  <text x="831" y="343" font-size="18" fill="white">EP16 ドロミテの文化と食</text>
+  <text x="831" y="366" font-size="18" fill="white">EP17 総集編と帰路</text>
+
+  <!-- Flight 4: VCE→LHR -->
+  <line x1="1127" y1="286" x2="1148" y2="286" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <polygon points="1148,281 1158,286 1148,291" fill="#B7791F"/>
+  <text x="1138" y="278" text-anchor="middle" font-size="19" fill="#B7791F">✈ BA607</text>
+  <text x="1138" y="263" text-anchor="middle" font-size="19" fill="#B7791F">7/4</text>
+
+  <!-- ===== LONDON 3 (7/4-7/9, 5泊) ===== -->
+  <rect x="1162" y="256" width="86" height="60" rx="10" fill="#4A5568"/>
+  <text x="1205" y="275" text-anchor="middle" font-size="14" font-weight="bold" fill="white">ロンドン</text>
+  <text x="1205" y="291" text-anchor="middle" font-size="12" fill="#E2E8F0">7/4〜9</text>
+  <text x="1205" y="306" text-anchor="middle" font-size="12" fill="#CBD5E0">5泊</text>
+
+  <!-- ===== DATE LABELS ===== -->
+  <line x1="40" y1="412" x2="1260" y2="412" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="40"   y="430" font-size="19" fill="#718096">6/15</text>
+  <text x="148"  y="430" font-size="19" fill="#718096">6/18</text>
+  <text x="576"  y="430" font-size="19" fill="#718096">6/25</text>
+  <text x="645"  y="430" font-size="19" fill="#718096">6/25</text>
+  <text x="755"  y="430" font-size="19" fill="#718096">6/29</text>
+  <text x="1115" y="430" font-size="19" fill="#718096">7/4</text>
+  <text x="1162" y="430" font-size="19" fill="#718096">7/9</text>
+
+  <!-- ===== SUMMARY BOX ===== -->
+  <rect x="200" y="448" width="800" height="50" rx="10" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="467" text-anchor="middle" font-size="14" fill="#4A5568">総行程：6月15日〜7月9日（25日間）　バルセロナ7泊　コルチナ5泊　ロンドン3フェーズ</text>
+  <text x="600" y="487" text-anchor="middle" font-size="14" fill="#4A5568">フライト4本（British Airways）　EP01〜EP17　全17エピソード</text>
+</svg>
+  <p class="infographic-caption">浜松 → London → Barcelona → London → Venezia → Cortina d'Ampezzo → 浜松</p>
+</div>
+
+
+
+
+<div class="infographic-block">
+  <div class="infographic-title">📅 旅程カレンダー — 2026年 6月・7月</div>
+  <svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="620" fill="#F7F8FA"/>
+  <text x="600" y="38" text-anchor="middle" font-size="30" font-weight="bold" fill="#1A202C">Richie's Journey 2026　旅程カレンダー</text>
+
+  <!-- Legend -->
+  <rect x="200" y="52" width="14" height="14" rx="3" fill="#4A5568"/><text x="220" y="63" font-size="12" fill="#4A5568">ロンドン</text>
+  <rect x="310" y="52" width="14" height="14" rx="3" fill="#C53030"/><text x="330" y="63" font-size="12" fill="#C53030">バルセロナ</text>
+  <rect x="430" y="52" width="14" height="14" rx="3" fill="#2B6CB0"/><text x="450" y="63" font-size="12" fill="#2B6CB0">コルチナ</text>
+  <rect x="540" y="52" width="14" height="14" rx="3" fill="#B7791F"/><text x="560" y="63" font-size="12" fill="#B7791F">移動日</text>
+  <rect x="620" y="52" width="14" height="14" rx="3" fill="#E2E8F0"/><text x="640" y="63" font-size="12" fill="#718096">ロンドン（日常）</text>
+
+  <!-- ===== JUNE CALENDAR ===== -->
+  <text x="300" y="100" text-anchor="middle" font-size="18" font-weight="bold" fill="#C53030">2026年 6月</text>
+
+  <!-- Day headers -->
+  <g font-size="19" font-weight="bold" fill="#718096" text-anchor="middle">
+    <text x="90"  y="120">日</text>
+    <text x="175" y="120">月</text>
+    <text x="260" y="120">火</text>
+    <text x="345" y="120">水</text>
+    <text x="430" y="120">木</text>
+    <text x="515" y="120">金</text>
+    <text x="600" y="120">土</text>
+  </g>
+
+  <!-- June: starts on Monday (6/1=月) -->
+  <!-- Row 1: 1(月)〜7(日) -->
+  <!-- 6/1 月 -->
+  <rect x="143" y="128" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="175" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">1</text>
+  <!-- 6/2 火 -->
+  <rect x="228" y="128" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="260" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">2</text>
+  <!-- 6/3 水 -->
+  <rect x="313" y="128" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="345" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">3</text>
+  <!-- 6/4 木 -->
+  <rect x="398" y="128" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="430" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">4</text>
+  <!-- 6/5 金 -->
+  <rect x="483" y="128" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="515" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">5</text>
+  <!-- 6/6 土 -->
+  <rect x="568" y="128" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="600" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">6</text>
+
+  <!-- Row 2: 7(日)〜13(土) -->
+  <rect x="58" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="90" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">7</text>
+  <rect x="143" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="175" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">8</text>
+  <rect x="228" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="260" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">9</text>
+  <rect x="313" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="345" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">10</text>
+  <rect x="398" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="430" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">11</text>
+  <rect x="483" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="515" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">12</text>
+  <rect x="568" y="196" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="600" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">13</text>
+
+  <!-- Row 3: 14(日)〜20(土) -->
+  <rect x="58" y="264" width="64" height="62" rx="6" fill="#E2E8F0"/>
+  <text x="90" y="283" text-anchor="middle" font-size="14" font-weight="bold" fill="#A0AEC0">14</text>
+  <!-- 6/15 月: ロンドン出発 -->
+  <rect x="143" y="264" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="175" y="280" text-anchor="middle" font-size="19" font-weight="bold" fill="white">15</text>
+  <text x="175" y="294" text-anchor="middle" font-size="9" fill="#E2E8F0">LHR着</text>
+  <text x="175" y="306" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 6/16 火 -->
+  <rect x="228" y="264" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="260" y="280" text-anchor="middle" font-size="19" font-weight="bold" fill="white">16</text>
+  <text x="260" y="294" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 6/17 水 -->
+  <rect x="313" y="264" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="345" y="280" text-anchor="middle" font-size="19" font-weight="bold" fill="white">17</text>
+  <text x="345" y="294" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 6/18 木: バルセロナ出発 -->
+  <rect x="398" y="264" width="64" height="62" rx="6" fill="#B7791F"/>
+  <text x="430" y="280" text-anchor="middle" font-size="19" font-weight="bold" fill="white">18</text>
+  <text x="430" y="294" text-anchor="middle" font-size="9" fill="white">✈ BCN着</text>
+  <text x="430" y="307" text-anchor="middle" font-size="9" fill="#FFF5E4">EP01</text>
+  <!-- 6/19 金 -->
+  <rect x="483" y="264" width="64" height="62" rx="6" fill="#C53030"/>
+  <text x="515" y="280" text-anchor="middle" font-size="19" font-weight="bold" fill="white">19</text>
+  <text x="515" y="294" text-anchor="middle" font-size="9" fill="white">モンセラート</text>
+  <text x="515" y="307" text-anchor="middle" font-size="9" fill="#FED7D7">EP03→04</text>
+  <!-- 6/20 土 -->
+  <rect x="568" y="264" width="64" height="62" rx="6" fill="#C53030"/>
+  <text x="600" y="280" text-anchor="middle" font-size="19" font-weight="bold" fill="white">20</text>
+  <text x="600" y="294" text-anchor="middle" font-size="9" fill="white">ダリ美術館</text>
+  <text x="600" y="307" text-anchor="middle" font-size="9" fill="#FED7D7">EP04→05</text>
+
+  <!-- Row 4: 21(日)〜27(土) -->
+  <!-- 6/21 日 -->
+  <rect x="58" y="332" width="64" height="62" rx="6" fill="#C53030"/>
+  <text x="90" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">21</text>
+  <text x="90" y="362" text-anchor="middle" font-size="9" fill="white">e-bike</text>
+  <text x="90" y="375" text-anchor="middle" font-size="9" fill="#FED7D7">EP02・EP06</text>
+  <!-- 6/22 月 -->
+  <rect x="143" y="332" width="64" height="62" rx="6" fill="#C53030"/>
+  <text x="175" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">22</text>
+  <text x="175" y="362" text-anchor="middle" font-size="9" fill="white">ガウディ・音楽堂</text>
+  <text x="175" y="375" text-anchor="middle" font-size="9" fill="#FED7D7">EP07・08・10</text>
+  <!-- 6/23 火 -->
+  <rect x="228" y="332" width="64" height="62" rx="6" fill="#C53030"/>
+  <text x="260" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">23</text>
+  <text x="260" y="362" text-anchor="middle" font-size="9" fill="white">ピレネー</text>
+  <text x="260" y="375" text-anchor="middle" font-size="9" fill="#FED7D7">EP09</text>
+  <!-- 6/24 水 -->
+  <rect x="313" y="332" width="64" height="62" rx="6" fill="#C53030"/>
+  <text x="345" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">24</text>
+  <text x="345" y="362" text-anchor="middle" font-size="9" fill="white">モンジュイック</text>
+  <text x="345" y="375" text-anchor="middle" font-size="9" fill="#FED7D7">EP05・08</text>
+  <!-- 6/25 木: LHR帰還 -->
+  <rect x="398" y="332" width="64" height="62" rx="6" fill="#B7791F"/>
+  <text x="430" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">25</text>
+  <text x="430" y="362" text-anchor="middle" font-size="9" fill="white">✈ LHR着</text>
+  <text x="430" y="375" text-anchor="middle" font-size="9" fill="#FFF5E4">EP01</text>
+  <!-- 6/26 金 -->
+  <rect x="483" y="332" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="515" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">26</text>
+  <text x="515" y="362" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 6/27 土 -->
+  <rect x="568" y="332" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="600" y="348" text-anchor="middle" font-size="19" font-weight="bold" fill="white">27</text>
+  <text x="600" y="362" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+
+  <!-- Row 5: 28(日)〜30(月) -->
+  <!-- 6/28 日 -->
+  <rect x="58" y="400" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="90" y="416" text-anchor="middle" font-size="19" font-weight="bold" fill="white">28</text>
+  <text x="90" y="430" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 6/29 月: コルチナへ -->
+  <rect x="143" y="400" width="64" height="62" rx="6" fill="#B7791F"/>
+  <text x="175" y="416" text-anchor="middle" font-size="19" font-weight="bold" fill="white">29</text>
+  <text x="175" y="430" text-anchor="middle" font-size="9" fill="white">✈ VCE→CRN</text>
+  <text x="175" y="443" text-anchor="middle" font-size="9" fill="#FFF5E4">EP11</text>
+  <!-- 6/30 火 -->
+  <rect x="228" y="400" width="64" height="62" rx="6" fill="#2B6CB0"/>
+  <text x="260" y="416" text-anchor="middle" font-size="19" font-weight="bold" fill="white">30</text>
+  <text x="260" y="430" text-anchor="middle" font-size="9" fill="white">ファローリア</text>
+  <text x="260" y="443" text-anchor="middle" font-size="9" fill="#BEE3F8">EP12・13</text>
+
+  <!-- ===== JULY CALENDAR ===== -->
+  <text x="950" y="100" text-anchor="middle" font-size="18" font-weight="bold" fill="#2B6CB0">2026年 7月</text>
+
+  <!-- Day headers -->
+  <g font-size="19" font-weight="bold" fill="#718096" text-anchor="middle">
+    <text x="730" y="120">日</text>
+    <text x="815" y="120">月</text>
+    <text x="900" y="120">火</text>
+    <text x="985" y="120">水</text>
+    <text x="1070" y="120">木</text>
+    <text x="1155" y="120">金</text>
+  </g>
+
+  <!-- July: starts on Wednesday (7/1=水) -->
+  <!-- Row 1: 1(水)〜5(日) -->
+  <!-- 7/1 水 -->
+  <rect x="953" y="128" width="64" height="62" rx="6" fill="#2B6CB0"/>
+  <text x="985" y="144" text-anchor="middle" font-size="19" font-weight="bold" fill="white">1</text>
+  <text x="985" y="158" text-anchor="middle" font-size="9" fill="white">トレ・チーメ</text>
+  <text x="985" y="171" text-anchor="middle" font-size="9" fill="#BEE3F8">EP14・15</text>
+  <!-- 7/2 木 -->
+  <rect x="1038" y="128" width="64" height="62" rx="6" fill="#2B6CB0"/>
+  <text x="1070" y="144" text-anchor="middle" font-size="19" font-weight="bold" fill="white">2</text>
+  <text x="1070" y="158" text-anchor="middle" font-size="9" fill="white">チンクエ・トッリ</text>
+  <text x="1070" y="171" text-anchor="middle" font-size="9" fill="#BEE3F8">EP16・17</text>
+  <!-- 7/3 金 -->
+  <rect x="1123" y="128" width="64" height="62" rx="6" fill="#2B6CB0"/>
+  <text x="1155" y="144" text-anchor="middle" font-size="19" font-weight="bold" fill="white">3</text>
+  <text x="1155" y="158" text-anchor="middle" font-size="9" fill="white">ミズリーナ湖</text>
+  <text x="1155" y="171" text-anchor="middle" font-size="9" fill="#BEE3F8">EP16・17</text>
+
+  <!-- Row 2: 5(日)〜11(土) -->
+  <!-- 7/4 土 -->
+  <rect x="1123" y="128" width="64" height="62" rx="6" fill="#2B6CB0"/>
+  <!-- actually 7/4 is Saturday -->
+  <!-- Let me redo - 7/1 is Wednesday, 7/4 is Saturday, 7/5 is Sunday -->
+
+  <!-- Row 2 starting 7/5 Sunday -->
+  <!-- 7/5 日 -->
+  <rect x="698" y="196" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="730" y="212" text-anchor="middle" font-size="19" font-weight="bold" fill="white">5</text>
+  <text x="730" y="226" text-anchor="middle" font-size="9" fill="#CBD5E0">LHR着</text>
+  <text x="730" y="239" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 7/6 月 -->
+  <rect x="783" y="196" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="815" y="212" text-anchor="middle" font-size="19" font-weight="bold" fill="white">6</text>
+  <text x="815" y="226" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 7/7 火 -->
+  <rect x="868" y="196" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="900" y="212" text-anchor="middle" font-size="19" font-weight="bold" fill="white">7</text>
+  <text x="900" y="226" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 7/8 水 -->
+  <rect x="953" y="196" width="64" height="62" rx="6" fill="#4A5568"/>
+  <text x="985" y="212" text-anchor="middle" font-size="19" font-weight="bold" fill="white">8</text>
+  <text x="985" y="226" text-anchor="middle" font-size="9" fill="#CBD5E0">ロンドン</text>
+  <!-- 7/9 木: 帰国 -->
+  <rect x="1038" y="196" width="64" height="62" rx="6" fill="#B7791F"/>
+  <text x="1070" y="212" text-anchor="middle" font-size="19" font-weight="bold" fill="white">9</text>
+  <text x="1070" y="226" text-anchor="middle" font-size="9" fill="white">✈ 帰国</text>
+  <text x="1070" y="239" text-anchor="middle" font-size="9" fill="#FFF5E4">EP20</text>
+
+  <!-- 7/4 is Saturday - fix row 1 -->
+  <!-- Correction: 7/4 Sat = row 1 last cell -->
+
+  <!-- Summary bar -->
+  <rect x="50" y="490" width="1100" height="50" rx="10" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="512" text-anchor="middle" font-size="19" fill="#4A5568" font-weight="bold">■ フェーズ別日数</text>
+  <text x="600" y="530" text-anchor="middle" font-size="19" fill="#4A5568">ロンドン3フェーズ（3+4+5=12泊）　バルセロナ：7泊（6/18〜6/25）　コルチナ：5泊（6/29〜7/4）　合計 25日間</text>
+
+  <!-- Fix: 7/4 Saturday cell - place it in row 1 last position -->
+  <rect x="1123" y="128" width="64" height="62" rx="6" fill="#B7791F"/>
+  <text x="1155" y="144" text-anchor="middle" font-size="19" font-weight="bold" fill="white">4</text>
+  <text x="1155" y="158" text-anchor="middle" font-size="9" fill="white">✈ LHR帰還</text>
+  <text x="1155" y="171" text-anchor="middle" font-size="9" fill="#FFF5E4">EP20</text>
+
+  <!-- Clarify 7/3 is Friday, move to correct position -->
+  <!-- July layout: 1=Wed, 2=Thu, 3=Fri, 4=Sat, 5=Sun -->
+</svg>
+  <p class="infographic-caption">EP01〜EP17 全行程・色分け表示</p>
+</div>
+<h4 class="sec">ロンドン 3フェーズ旅程</h4>
+  <table class="data-table">
+    <tr><th>フェーズ</th><th>期間</th><th>内容</th></tr>
+    <tr><td>Phase 1</td><td>6/15（月）〜 6/17（水）</td><td>到着・孫の送迎ほか</td></tr>
+    <tr><td>Phase 2</td><td>6/25（木）〜 6/28（日）</td><td>バルセロナからの帰投。孫の送迎・市内観光・コルチナ前の荷物整理。</td></tr>
+    <tr><td>Phase 3</td><td>7/4（土）〜 7/9（木）</td><td>コルチナからの帰投。孫との最終観光（7/5）・帰国準備。7/9 JL44で帰国。</td></tr>
+  </table>
+
+
+
+
+</div>
+
+<!-- ======== PART 2: BARCELONA ======== -->
+<div class="part-header" id="barcelona">
+  <div class="part-num">Part 2</div>
+  <h2>バルセロナ編 — EP01〜EP10</h2>
+  <div class="tagline">カタルーニャの誇りと天才たちの街。6月18日〜25日（7泊8日）</div>
+</div>
+
+
+</div></div>
+
+<div style="padding:28px 40px;border-bottom:1px solid var(--border);max-width:960px;">
+  <h4 class="sec">🎨 カタルーニャ芸術家列伝 — ガウディ・ピカソ・ミロ・ダリ・カザルス・ロルカ</h4>
+  <p style="font-size:14px;color:#444;margin-bottom:16px;">
+    カタルーニャが生んだ6人の芸術家の生涯と作品。20世紀スペインの激動を生き抜いた彼らの軌跡が、この旅の精神的バックボーンとなる。
+  </p>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p01.jpg" alt="カタルーニャ芸術家列伝 p1"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p02.jpg" alt="カタルーニャ芸術家列伝 p2"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p03.jpg" alt="カタルーニャ芸術家列伝 p3"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p04.jpg" alt="カタルーニャ芸術家列伝 p4"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p05.jpg" alt="カタルーニャ芸術家列伝 p5"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p06.jpg" alt="カタルーニャ芸術家列伝 p6"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p07.jpg" alt="カタルーニャ芸術家列伝 p7"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p08.jpg" alt="カタルーニャ芸術家列伝 p8"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p09.jpg" alt="カタルーニャ芸術家列伝 p9"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p10.jpg" alt="カタルーニャ芸術家列伝 p10"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p11.jpg" alt="カタルーニャ芸術家列伝 p11"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p12.jpg" alt="カタルーニャ芸術家列伝 p12"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p13.jpg" alt="カタルーニャ芸術家列伝 p13"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+    <div style="width:75%;max-width:720px;">
+      <img src="Vault/04_Resources/画像素材/PDF抽出/芸術家列伝_p14.jpg" alt="カタルーニャ芸術家列伝 p14"
+           style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.13);">
+    </div>
+  </div>
+</div>
+
+<!-- EP01 -->
+<div class="ep-section" id="ep01">
+  <div class="ep-header">
+    <span class="ep-num">EP 01</span>
+    <h3>ロンドンからバルセロナへ</h3>
+    <span class="ep-date">6月18日（木）</span>
+  </div>
+  <div class="ep-body">
+
+
+
+    <!-- ■ カタルーニャという国 -->
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:14px;color:#333;">
+      カタルーニャはやはり一つの独立した「国」だ、と少なくとも生粋のカタルーニャ人なら、そう断言するに違いない。一つの独立した「言語」「文化」「歴史」それに「政治体制」——つまり独立した「国」としてのアイデンティティをもち、それを断固と主張することは、至難の業である。
+    </p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:14px;color:#333;">
+      カタルーニャの中心地はバルセロナである。従って、バルセロナの歴史はカタルーニャの歴史の縮図であり、それこそ<strong style="color:var(--gold);">惨憺たる失敗と雄々しき成功の歴史</strong>に他ならない。こうした歴史を動かすには、スペイン語でいう「パッシオナリーオ（Pasionario）」が必要なのだ——「情熱」そして「受難」、二重の意味において。
+    </p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:4px;color:#333;">
+      それにしても、バルセロナは明るい。地中海的な明るさというべきか。バルセロナは、<strong style="color:var(--gold);">再生、変身、無限の可能性の源泉</strong>である。
+    </p>
+    <p style="font-size:14px;color:#9bcbb0;font-family:sans-serif;margin-bottom:20px;">——川成洋『スペイン三都物語』（三修社）</p>
+
+    <!-- ■ バルセロナの由来 -->
+    <h4 class="sec">バルセロナの由来——バルシーノからバルセロナへ</h4>
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:14px;color:#333;">
+      バルセロナ（Barcelona）という名の由来は、紀元前3世紀頃にさかのぼる。カルタゴの名将ハンニバルの父、<strong style="color:var(--gold);">ハミルカル・バルカ（Hamilcar Barca）</strong>が建設した「バルシーノ（Barcino）」がその起源とされる。カルタゴの名家「バルカ家」に因んだ名称は、ローマ時代に「バルキノナ（Barchinona）」へと変化し、中世を経て現在の「バルセロナ」に至った。
+    </p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:14px;color:#333;">
+      ローマ時代、この地は「<em>Colonia Faventia Julia Augusta Pia Barcino</em>」として整備され、神殿・公衆浴場・フォルム・防御壁を備えた植民市となった。現在のゴシック地区の路地はそのままローマ時代の街路網を受け継いでおり、タパスバーの足元2メートル下に<strong style="color:var(--gold);">2000年前のローマが眠っている</strong>。ゴシック地区の「プラカ・デル・レイ」に位置する<strong>MUHBA（バルセロナ市歴史博物館）</strong>では、ローマ時代の地下遺跡を実際に歩いて見学できる。EP06（6/21）のゴシック地区訪問時と組み合わせ可能なルートにある。
+    </p>
+
+    <!-- ■ カタルーニャ近現代史 簡略年表 -->
+    <h4 class="sec" style="color:#c53030;border-left:4px solid #c53030;padding-left:10px;">カタルーニャ近現代史——受難と復活の軌跡</h4>
+    <ul class="timeline timeline-history">
+      <li><span class="time">1923</span><strong>ミゲル・プリモ・デ・リベラ軍事独裁</strong>——カタルーニャ弾圧。ナショナリズムが急進化。</li>
+      <li><span class="time">1931</span><strong>スペイン第二共和政成立</strong>——ジャナラリタット（カタルーニャ自治政府）発足。1932年 カタルーニャ自治憲章承認。</li>
+      <li><span class="time">1936</span><strong>スペイン内戦勃発</strong>（〜1939）——バルセロナでは「人民オリンピック」が開会直前に中止。反ファシズム勢力が市を掌握。</li>
+      <li><span class="time">1939</span><strong>フランコ政権成立</strong>——カタルーニャ自治憲章廃止。カタルーニャ語の公的使用禁止。36年間の長夜。</li>
+      <li><span class="time">1973</span><strong>三つのパブロが逝く</strong>——ピカソ（4/8・91歳）、ネルーダ（9/23・69歳）、カザルス（10/22・96歳）。三人ともファシズムに抵抗し続けた芸術家。フランコはまだ生きていた。</li>
+      <li><span class="time">1975</span><strong>フランコ死去</strong>（11月）——民主化の夜明け。</li>
+      <li><span class="time">1979</span><strong>カタルーニャ自治法制定</strong>——自治権正式回復。カタルーニャ語が公用語に復権。</li>
+      <li><span class="time">1992</span><strong>バルセロナ・オリンピック</strong>——世界への再生宣言。都市インフラが劇的に整備される。</li>
+    </ul>
+    <p style="font-size:15px;font-family:sans-serif;color:var(--text-light);margin:8px 0 20px;">
+      出典：立石博高『歴史のなかのカタルーニャ』・Wikipedia「カタルーニャの歴史」
+    </p>
+
+    <!-- ■ 到着行程タイムライン -->
+    <h4 class="sec">6月18日（木） 到着行程</h4>
+    <ul class="timeline">
+      <li><span class="time">10:10</span><strong>パディントン発</strong> ヒースロー・エクスプレス → LHR T3（約17分）</li>
+      <li><span class="time">12:40</span><strong>BA480 離陸</strong> LHR → BCN（Economy Plus · 預入荷物1個込み）</li>
+      <li><span class="time">15:55</span><strong>バルセロナ空港 T2 着</strong> — Hola Barcelona Travel Card（バウチャー番号 3050007742690）で地下鉄発券</li>
+      <li><span class="time">16:30</span><strong>地下鉄移動</strong> L9（Airport T2）→ Collblanc乗換 → L5 → Hospital Clinic 下車</li>
+      <li><span class="time">17:00</span><strong>NH Barcelona Eixample チェックイン</strong> Valencia 105-107（予約番号 5052650657）</li>
+      <li><span class="time">19:00</span><strong>Mercat del Ninot</strong> 徒歩圏内の地元市場で翌日の朝食・おやつ調達（21時まで）</li>
+    </ul>
+
+    <!-- ■ チケット / 予約 -->
+    <div class="ticket-box">
+      <div class="ticket-icon">🏨</div>
+      <div>
+        <div class="ticket-title">NH Barcelona Eixample</div>
+        <table>
+          <tr><td>住所</td><td>Valencia, 105-107, Eixample, 08011, Barcelona</td></tr>
+          <tr><td>チェックイン（第1期）</td><td>6/18（木）〜 6/20（フィゲラス日帰り後に戻り）</td></tr>
+          <tr><td>チェックアウト</td><td>6/25（木）</td></tr>
+          <tr><td>予約番号</td><td class="ref">5052650657 / 5052670514</td></tr>
+          <tr><td>料金</td><td>172.95€（6/18-20 の2泊）＋ 937.45€（6/20-25 の5泊）</td></tr>
+        </table>
+      </div>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://pix8.agoda.net/hotelImages/60820/0/63865d7be9eb67682559c9323b2eb870.jpg" alt="NH Barcelona Eixample 外観" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏨 NH Barcelona Eixample（Valencia 105-107, Eixample）— 6/18〜6/25 の拠点ホテル</figcaption>
+</figure>
+    <div class="box box-info">
+      <strong>Hola Barcelona Travel Card（72時間）</strong>：バルセロナ市内の公共交通機関が乗り放題。
+      空港からの地下鉄 L9 は通常4.60€かかるが、このカードで無料。空港の赤い TMB 券売機で
+      「Online Collection」→バウチャー番号入力→発券。<strong>初回改札通過時から72時間カウント開始。</strong>
+    </div>
+
+    <!-- ■ 地下鉄マップ サムネール -->
+    <div class="map-thumb-wrap">
+      <a href="Vault/04_Resources/画像素材/PDF抽出/BCN_metro_map_p1.jpg" target="_blank">
+        <img class="map-thumb"
+             src="Vault/04_Resources/画像素材/PDF抽出/BCN_metro_map_p1.jpg"
+             alt="バルセロナ地下鉄路線図（クリックで拡大）">
+      </a>
+      <p class="map-link-note">🚇 バルセロナ地下鉄（TMB）路線図 — クリックで拡大 ／
+        <a href="https://www.tmb.cat/en/barcelona-transport/maps" target="_blank">TMB 公式マップはこちら</a>
+      </p>
+    </div>
+
+    <!-- ■ アシャンプラ地区コラム -->
+    <div class="column-box">
+      <div class="col-label">📐 アシャンプラ地区</div>
+      <h4>碁盤目都市の美学——イルデフォンス・セルダの革命</h4>
+      <p>
+        NH Barcelona Eixample が位置するアシャンプラ（L'Eixample）は、1860年代に都市計画家
+        <strong style="color:var(--gold);">イルデフォンス・セルダ</strong>が設計した近代バルセロナの拡張地区。
+        正八角形の角をカットした独特の交差点は、馬車（後に自動車）が楽に旋回できる実用的設計。
+        屋上から見下ろすと碁盤目状の街路が整然と広がり、各ブロックの中庭には緑地が配置される計画だった。
+        現在はカサ・バトリョ、カサ・ミラなど<strong style="color:var(--gold);">ガウディの傑作</strong>が並ぶ
+        「不和のブロック（Manzana de la Discordia）」もこのエリアに位置する。
+      </p>
+    </div>
+
+    <!-- ■ 動画制作メモ -->
+    <div class="box-research">
+      <h4>🎬 EP01 動画制作メモ</h4>
+      <table class="data-table">
+        <tr><td>ナレーション候補</td><td>「カタルーニャはやはり一つの独立した国だ」（川成洋）から入り、到着の映像につなぐ</td></tr>
+        <tr><td>撮影ポイント</td><td>空港到着ゲート・地下鉄乗り換え・アシャンプラの碁盤目街並み・ホテル周辺の夜景</td></tr>
+        <tr><td>BGM候補</td><td>フレディ・マーキュリー ＆ モンセラート・カヴァリエ「Barcelona」（1992年バルセロナ五輪テーマ）</td></tr>
+        <tr><td>尺の目安</td><td>8〜12分（到着EP としてコンパクトに）</td></tr>
+        <tr><td>公開日</td><td>2026年8月1日（土）19:00 JST — シリーズ開幕</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:15px;">
+        🎵 <a href="https://www.amazon.co.jp/dp/B07VCML5X2?tag=hasegawahome-22" target="_blank"
+               style="color:#8e44ad;">
+          フレディ・マーキュリー ＆ モンセラート・カヴァリエ「Barcelona」（Amazon）
+        </a>
+      </p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">📚 旅の本棚</div>
+      <h4>三人のパブロ——1973年、ファシズムに抗った巨星たちが逝った年</h4>
+      <p>1973年、世界は三人の「パブロ」を失った。画家パブロ・ピカソ（4月8日、91歳）、チェリスト・パブロ・カザルス（10月22日、96歳）、詩人パブロ・ネルーダ（9月23日、69歳）——スペインとラテンアメリカを代表するこの三人は、いずれもファシズムを憎み、その芸術で抵抗した。奇しくも同じ年に逝った。フランコはまだ生きていた。<br><br>ピカソはゲルニカ爆撃に怒り、反戦絵画を35日間で描き上げた。「スペインに民主主義が戻るまでゲルニカは祖国に渡さない」——その遺志は1981年に実現した。カザルスはフランコ政権を忌避し38年間、ファシスト政権下では一切の演奏を拒否した。1971年の国連では「鳥の歌」をチェロで奏で「カタルーニャは2,000年前から続く大国でした」と語った。ネルーダは選挙で選ばれたアジェンデ政権の駐仏大使として、1973年9月11日のチリ・クーデター直後に死去した。<br><br>五木寛之の小説『戒厳令の夜』は、架空の天才画家パブロ・ロペスの絵がナチスに奪われ博多で発見されるところから始まる。1970年代——学生運動、帝国主義への抵抗、そして薄氷の上のアジェンデの断末魔の叫び。<em>Venceremos（我々は勝利する）</em>という革命歌とともに。バルセロナはその時代を全身で生きた都市だった。</p>
+    </div>
+<div style="padding: 0 40px;margin-top:20px;"><div class="book-img-row">
+<div class="book-img-card">
+  <a href="https://www.amazon.co.jp/dp/4103017090?tag=hasegawahome-22" target="_blank" rel="noopener">
+  <img src="Vault/04_Resources/表紙画像/戒厳令の夜表紙.jpg" alt="戒厳令の夜 五木寛之" style="height:280px;width:auto;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+  </a>
+  <div class="book-caption">戒厳令の夜<br>（五木寛之 著）</div>
+</div>
+</div></div>
+
+
+
+    <!-- ■ Eran Los Tres 歌詞 -->
+    <div class="column-box" style="margin-top:16px;">
+      <div class="col-label">🎵 音楽コラム</div>
+      <h4>Eran Los Tres（三人がいた）— アルベルト・コルテスが三つのパブロに捧げた歌</h4>
+      <p>アルゼンチンの詩人・歌手アルベルト・コルテスは、1973年にピカソ・カザルス・ネルーダが同年に相次いで逝った時、この歌を作った。チェロ（カザルス）、詩（ネルーダ）、絵（ピカソ）を手に——三人のパブロに捧げる鎮魂歌。<em>「世界にパブロがいなくなった。美しいものは、彼らなしに、死に瀕している……いったいどうなるのか、どうなるのか」</em></p>
+      <div style="background:#fdf8ed;border-left:4px solid var(--gold);padding:16px 20px;border-radius:4px;margin:12px 0;font-family:sans-serif;">
+        <p style="margin:0;line-height:2.1;color:#4a3b1f;font-size:14px;">
+          Eran tres, eran tres, eran tres...<br>
+          eran tres con palomas en las manos...<br>
+          eran tres y los tres eran hermanos<br>
+          de la luz, del amor y del saber.<br>
+          Eran tres y se fueron los tres...<br>
+          El primero detrás de algunos versos,<br>
+          el segundo a pintar el universo<br>
+          y tercero en mitad de su niñez...<br><br>
+          Pablo gorrión, Pablo poeta y marinero,<br>
+          Pablo arlequín, Pablo pintor, Pablo torero,<br>
+          Pablo y "el cant dels ocells", Pablo maestro,<br>
+          Pablos de todos, Pablos de nadie... Pablos nuestros.<br><br>
+          Eran tres, eran tres, eran tres...<br>
+          Tres senderos, tres huellas, tres caminos,<br>
+          tres Quijotes venciendo a los molinos<br>
+          con un cello, un poema y un pincel.<br>
+          Eran tres y se fueron los tres...<br>
+          nos quedamos sin Pablos en el mundo<br>
+          y lo bello, sin ellos, moribundo...<br>
+          ¡qué va a ser de nosotros... qué va a ser!
+        </p>
+      </div>
+      <p style="font-size:13px;color:#888;margin-top:8px;font-family:sans-serif;">▶ <a href="https://www.youtube.com/watch?v=bqyCIlHiyng" target="_blank" rel="noopener" style="color:var(--blue);">YouTube: Alberto Cortez — Eran Los Tres</a>　／　<a href="https://www.youtube.com/watch?v=XlTPXRr6JMA" target="_blank" rel="noopener" style="color:var(--blue);">TVE: LA IMAGEN DE TU VIDA — Tres Pablos (1973)</a></p>
+    </div>
+
+  </div>
+</div>
+
+<!-- EP02 -->
+<div class="ep-section" id="ep02">
+  <div class="ep-header">
+    <span class="ep-num">EP 02</span>
+    <h3>バルセロナを歩く——街と食事</h3>
+    <span class="ep-date">複数日（市場コンポジット）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:14px;color:#333;">
+      詩人ガルシア・ロルカはランブラスをこう詠んだ。「この道は、地上で何時までもなくならないで欲しいと私が願う、唯一の通りだ。いろいろな音色に富み、海の微風にあふれ、美しい出会いがあり、古市の伝統——これがバルセロナのランブラだ」（川成洋『スペイン三都物語』所収）。ボケリア市場はその路傍の命。花売り、鳥売り、人間の川——ランブラスはバルセロナの心臓だった。
+    </p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:20px;color:#333;">
+      1936年7月、スペイン内戦が勃発した。ロルカは故郷グラナダで右派勢力に拘束され、同年8月18日、38歳で銃殺された。彼の死はパブロ・ネルーダ、アントニオ・マチャド、パブロ・ピカソら世界中の文化人を反ファシズムのもとに団結させた。ロルカを銃殺した者たちは「詩人を殺せばその詩も消える」と信じていた。しかし逆だった —— ロルカの詩は今も世界中で読まれ、ランブラスを愛した詩人の名はこの通りが続く限り消えない。
+    </p>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.barcelona-tourist-guide.com/images/int/ramblas/L550/las-ramblas-2373.jpg" alt="ランブラス通り（Las Ramblas）朝の情景" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🌅 ランブラス通りの朝 — ロルカが「地上でなくなって欲しくない唯一の通り」と詠んだバルセロナのシンボル</figcaption>
+</figure>
+<figure style="margin:14px auto;text-align:center;max-width:280px;">
+  <img src="https://www.dedaluspress.com/wp-content/uploads/2015/12/FG-Lorca-e1541587805573.jpg" alt="フェデリコ・ガルシア・ロルカ" style="width:250px;height:250px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15);" loading="lazy">
+  <figcaption style="font-size:13px;color:#888;margin-top:5px;font-family:sans-serif;">フェデリコ・ガルシア・ロルカ（1898-1936）</figcaption>
+</figure>
+
+    <!-- ■ オーウェルのバルセロナ -->
+    <div class="column-box">
+      <div class="col-label">✍️ 文学コラム</div>
+      <h4>ジョージ・オーウェル——「平等と自由の都市」に立った英国人</h4>
+      <p>1936年12月、英国の作家ジョージ・オーウェル（『動物農場』『1984年』）はバルセロナへ渡り、反共産党系の人民戦線民兵隊（POUM）に入隊した。彼が目撃したバルセロナは、資本主義でも独裁でもない、ほんの束の間の「もう一つの世界」だった。</p>
+      <blockquote style="border-left:4px solid var(--gold);margin:12px 0;padding:10px 16px;background:#fdf8ed;font-style:italic;font-family:sans-serif;font-size:14px;line-height:1.9;color:#4a3b1f;">
+        「イギリスから直接やって来た者にとって、バルセロナの様子は、目をみはらせ、人を圧倒するものがあった。労働者階級が権力を握っている所に来たのは、ぼくにはこれがはじめてだった。事実、ほとんどすべてのビルが労働者によって占拠され、赤旗や、アナキストの赤と黒の旗が垂れさがっていた。（中略）思いがけず平等と自由の時代に生きる喜びがあった。人間が資本主義機構の歯車としてではなく、人間として生きようとしていた。」<br>
+        <span style="font-size:12px;color:#888;">— ジョージ・オーウェル『カタロニア賛歌』（1938年）</span>
+      </blockquote>
+      <p>しかし1937年5月、バルセロナで「内戦のなかの内戦」（共和国内の共産党 vs アナキスト・POUM対立）が勃発。アラゴン戦線で咽を撃たれ重傷を負ったオーウェルは、命からがらフランスへ脱出した。この体験が、全体主義への根本的な不信感を彼に植え付け、のちの『動物農場』と『1984年』を生んだ。バルセロナは偉大な夢が最も輝き、最も無残に終わった都市だった。</p>
+    </div>
+
+    <!-- ■ 言語・教育コラム -->
+    <div class="column-box">
+      <div class="col-label">📚 言語と教育コラム</div>
+      <h4>カタルーニャ——言語と教育：先進性と犠牲の歴史</h4>
+      <p>バルセロナの標識・メニューにはスペイン語（カスティーリャ語）と並んでカタルーニャ語が使われる。「Gràcies（ありがとう）」「Bon dia（おはよう）」「Mercat（市場）」——これはスペイン語とは別の独立したロマンス語。フランコ独裁政権下（1939-75年）に公的使用を禁じられた言語が、民主化後に復権した。しかしカタルーニャが示した「先進性」は、言語にとどまらない。<br><br>
+      1901年、フランシスコ・フェレルは「近代学校（<em>Escola Moderna</em>）」をバルセロナに設立した。当時の社会的偏見に真っ向から反して、<strong>男女共学および異なる社会階級の共学</strong>を断行。賞も罰もない科学的合理主義の教育は4年後には147の分校に拡大し、スペイン全土・ポルトガル・サンパウロ・アムステルダムにも展開した。<br><br>
+      しかし1909年、バルセロナのゼネスト「悲劇の一週間」後に冤罪で逮捕。フェレルは軍事法廷で証拠なく死刑判決を受け、<strong>1909年10月13日、モンジュイック城の要塞で処刑された</strong>。最後の言葉は「近代学校、万歳！（¡Viva la Escuela Moderna!）」——享年50歳。1912年、スペイン政府は彼の無実を公式宣言した。<br><br>
+      フェレルが提唱した「反権威主義」と「自己統治」の教育理念は、その後カタルーニャの労働者階級に深く浸透した。第二共和政時代（1931-39年）に開花し、今日の世界の教育潮流——批判的思考・民主的学校・プロジェクト型学習——の先駆けをカタルーニャはすでに20世紀初頭に実践していた。その先進性は、常に多くの犠牲の上に成り立ってきた。</p>
+    </div>
+
+
+    <div class="column-box">
+      <div class="col-label">📚 言語コラム</div>
+      <h4>ポンペウ・ファブラ——禁じられた言語を辞書で守った男</h4>
+      <p>バルセロナには「ポンペウ・ファブラ大学（Universitat Pompeu Fabra）」という大学がある。その名の主、ポンペウ・ファブラ（1868〜1948）はカタルーニャ語辞典の編纂者。フランコ独裁政権がカタルーニャ語を「方言」と蔑み、公的使用を禁じた時代にも、彼が作った辞書は言語の命脈を守り続けた。民主化後の1990年、バルセロナに彼の名を冠した大学が設立された。<br><br>この大学のMTG（Music Technology Group）はヤマハと共同でVOCALOIDの基盤技術を開発した。「カタルーニャ語の音声合成研究」が音楽技術と融合した——言語を守った男の大学が、歌う機械の故郷にもなった。バルセロナとはそういう街だ。</p>
+    </div>
+
+    <!-- ■ バルセロナ食事ガイド -->
+    <div style="margin:28px 0 16px;">
+      <h4 class="sec">🍽 バルセロナ食事ガイド——タパス・ピンチョス・カタルーニャ料理</h4>
+      <p style="font-size:15px;font-family:sans-serif;color:#555;margin-bottom:20px;">地中海と山（ピレネー）の恵みを両方持つカタルーニャの食文化。「<em>Mar i Muntanya</em>（海と山）」という言葉がすべてを象徴する。バルへ入ったらまず「タパスは何がありますか？（<em>¿Qué tapas tienen?</em>）」</p>
+
+      <style>
+        .fg-table{width:100%;border-collapse:collapse;margin-bottom:24px;}
+        .fg-table td{padding:10px 14px;border:1px solid #e2e8f0;vertical-align:top;}
+        .fg-name{width:160px;font-weight:bold;font-family:sans-serif;color:var(--primary);background:#fafaf7;font-size:14px;line-height:1.5;}
+        .fg-sub{font-weight:normal;font-size:11px;color:#999;}
+        .fg-content{display:flex;gap:12px;align-items:flex-start;}
+        .fg-img{width:120px;height:120px;object-fit:cover;border-radius:6px;flex-shrink:0;}
+        .fg-desc{font-size:13px;font-family:sans-serif;line-height:1.75;color:#444;}
+        .fg-cat{background:var(--primary);color:white;padding:6px 14px;font-size:13px;font-family:sans-serif;font-weight:bold;letter-spacing:1px;border-radius:4px;display:inline-block;margin:16px 0 8px;}
+        @media(max-width:640px){
+          .fg-table,.fg-table tbody,.fg-table tr,.fg-table td{display:block;width:100%!important;}
+          .fg-name{width:100%;}
+          .fg-img{width:100%;height:180px;}
+          .fg-content{flex-direction:column;}
+        }
+      </style>
+
+      <!-- タパス -->
+      <div class="fg-cat">🥘 タパス（Tapas）</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">パン・コン・トマテ<br><span class="fg-sub">Pa amb tomàquet</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://menjar-barcelona.com/wp-content/uploads/2022/01/94919b73-ed3b-42bc-8968-29e9df966953-1536x1153.jpg" alt="パン・コン・トマテ" loading="lazy"><p class="fg-desc">カリカリに焼いたパンに生のニンニクと熟したトマトをこすりつけ、オリーブオイルと塩をかけたシンプルなソウルフード。朝食・タパスとして愛される。生ハムをのせるのも人気。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">パタタス・ブラバス<br><span class="fg-sub">Patatas Bravas</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cdn.shopify.com/s/files/1/2158/4789/files/7._Totte-Blog-Spain-Food-Patatas-bravas_600x600.jpg?v=1692577719" alt="パタタス・ブラバス" loading="lazy"><p class="fg-desc">角切りフライドポテトにピリ辛のブラバソース＋アリオリ（ニンニクマヨネーズ）。バルセロナのバルでは絶対に欠かせない大定番。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ガンバス・アル・アヒージョ<br><span class="fg-sub">Gambas al Ajillo</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cometeespana.com/wp-content/uploads/2024/01/gambas-al-ajillo.jpg" alt="ガンバス・アル・アヒージョ" loading="lazy"><p class="fg-desc">ニンニクと唐辛子を入れたオリーブオイルでエビを煮込んだアヒージョ。エビの旨味が溶け出したオイルにパンを浸して食べるのがおすすめ。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">クロケタス・デ・ハモン<br><span class="fg-sub">Croquetas de Jamón</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cometeespana.com/wp-content/uploads/2023/12/croquetas-de-jamon.jpg" alt="クロケタス" loading="lazy"><p class="fg-desc">濃厚なベシャメルソースにイベリコ豚の生ハムを混ぜ込んで揚げたスペイン風コロッケ。外はサクサク、中はとろけるようにクリーミー。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ボカディージョ<br><span class="fg-sub">Bocadillo / Bocata</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cometeespana.com/wp-content/uploads/2024/04/Bocadillo-jamon-1024x576.jpg" alt="ボカディージョ" loading="lazy"><p class="fg-desc">バゲット状のパンを使ったスペイン風サンドイッチ。カタルーニャ流はパンの内側にトマトとオリーブオイルを擦り込む「パン・コン・トマテ」スタイルに、生ハム・チーズ・オムレツを挟む。朝食・ランチの定番。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">トルティーヤ・デ・パタータス<br><span class="fg-sub">Tortilla de patatas</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cdn.shopify.com/s/files/1/2158/4789/files/2._Totte-Blog-Spain-Food-tortilla-de-patatas_600x600.jpg?v=1692577532" alt="トルティーヤ" loading="lazy"><p class="fg-desc">卵とジャガイモで厚く焼き上げるスペイン風オムレツ。タパスとして切り分けてもらったり、ボカディージョの具にもなる。「玉ねぎ入れる派・入れない派」論争が有名。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ボケロネス・エン・ビナグレ<br><span class="fg-sub">Boquerones en vinagre</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://assets.st-note.com/production/uploads/images/198900070/rectangle_large_type_2_9fb89001455371f50194955881a7a245.jpg" alt="ボケロネス" loading="lazy"><p class="fg-desc">カタクチイワシをお酢・ニンニク・パセリでマリネしてオリーブオイルをかけた冷製タパス。日本の「しめ鯖」に近い感覚。冷えたビール・白ワイン・ベルムー（ベルモット）のお供に最高。</p></div></td>
+        </tr>
+      </table>
+
+      <!-- ピンチョス -->
+      <div class="fg-cat">🍢 ピンチョス（Pintxos）</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">ヒルダ<br><span class="fg-sub">La Gilda</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.arukikata.co.jp/wp-content/uploads/DSCF9739.jpg" alt="ヒルダ" loading="lazy"><p class="fg-desc">ピンチョスの代名詞。オリーブ・アンチョビ・青唐辛子の酢漬け（ギンディージャ）を一串に。塩気と酸味とピリ辛のバランスが絶妙。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ピンチョ・デ・トルティージャ<br><span class="fg-sub">Pintxo de Tortilla</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://i0.wp.com/spainonafork.com/wp-content/uploads/2024/12/image4-2024-12-26T194730-11.png" alt="ピンチョ・デ・トルティージャ" loading="lazy"><p class="fg-desc">じゃがいも入りスペイン風オムレツをスライスパンの上にのせたボリューム満点の一串。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ヤギチーズとキャラメリゼオニオン<br><span class="fg-sub">Montadito de Queso de Cabra</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.petitchef.es/imgupl/recipe/montaditos-de-queso-de-cabra-con-cebolla-confitada--md-260925p422852.webp" alt="ヤギチーズとオニオン" loading="lazy"><p class="fg-desc">炙ったヤギのチーズ＋甘く炒めたキャラメリゼオニオン。甘じょっぱい組み合わせが絶品。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ピンチョ・デ・バカラオ<br><span class="fg-sub">Pintxo de Bacalao</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://sprnokchn2.exblog.jp/iv/detail/?s=24122051&i=201602%2F09%2F91%2Fe0351091_312115.jpg" alt="ピンチョ・デ・バカラオ" loading="lazy"><p class="fg-desc">塩ダラ（バカラオ）を使ったピンチョス。オリーブオイル煮・フリット・焼きピーマン添えなど様々なアレンジ。</p></div></td>
+        </tr>
+      </table>
+
+      <!-- 魚介系 -->
+      <div class="fg-cat">🐟 魚介系料理（Pescados y Mariscos）</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">フィデウア<br><span class="fg-sub">Fideuà</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://assets.st-note.com/production/uploads/images/11444803/rectangle_large_type_2_63430003ba050c6dc45fa9096bf334d1.jpg" alt="フィデウア" loading="lazy"><p class="fg-desc">パエリアの米の代わりに短いパスタ「フィデオ」を魚介の出汁で炊き上げるカタルーニャ名物。米よりも出汁を吸い込み、底のカリッとした食感がたまらない。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">スケ・デ・ペッシュ<br><span class="fg-sub">Suquet de Peix</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.magicdreamsbarcelona.com/wp-content/uploads/2025/12/591960970_856727500271544_8519438578608312811_n-600x900.jpg" alt="スケ・デ・ペッシュ" loading="lazy"><p class="fg-desc">漁師料理。魚介とジャガイモの煮込み。アーモンド・ニンニク・パセリをすりつぶした「ピカダ」ペーストがスープに深いコクを与える。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">アロス・ネグレ<br><span class="fg-sub">Arroz Negre</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cometeespana.com/wp-content/uploads/2024/01/Arroz-Negro.jpg" alt="アロス・ネグレ" loading="lazy"><p class="fg-desc">イカ墨・甲いか・魚介出汁で炊き上げた真っ黒なパエリア。別添えのアリオリを少しずつ混ぜながら食べると絶品。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">アスケイシャダ<br><span class="fg-sub">Esqueixada</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.atastefortravel.ca/wp-content/uploads/2023/10/Esqueixada-de-Bacalao-Final-Overhead-Feature.webp" alt="アスケイシャダ" loading="lazy"><p class="fg-desc">塩ダラを手でちぎり（語源は「裂く」）トマト・玉ねぎ・ピーマン・オリーブとオリーブオイルで和えた冷製サラダ。さっぱりしていて夏に最高。</p></div></td>
+        </tr>
+      </table>
+
+      <!-- 肉系 -->
+      <div class="fg-cat">🥩 肉系料理（Carnes）</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">ボティファラ・アム・モンジェテス<br><span class="fg-sub">Botifarra amb Mongetes</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.compraonline.bonpreuesclat.cat/images-v3/dcbcfd72-cf23-44a2-8e14-8a38edd645a3/430d7c8a-6e1b-4892-9ef0-bcde1c36b9d0/1280x1280.webp" alt="ボティファラ" loading="lazy"><p class="fg-desc">カタルーニャ特産の極太豚肉ソーセージ（ボティファラ）をグリルし、白インゲン豆のソテーを添えた定番。シンプルながら旨味とスパイスの香りが力強い。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">フリカンドー<br><span class="fg-sub">Fricandó</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://botacook.com/wp-content/uploads/2021/12/fricando2-1-1-768x507.jpg" alt="フリカンドー" loading="lazy"><p class="fg-desc">薄切り牛肉とキノコ（特に乾燥キノコ「モイシェルノン」）をじっくり煮込んだシチュー。ホロホロ食感と深い出汁の味わい。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">カネロンス<br><span class="fg-sub">Canelons</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://preview.redd.it/traditional-catalan-cannelloni-canelons-v0-pt7bzjry563d1.jpeg?width=1080&crop=smart&auto=webp&s=b2e113b951637d74bc05bdc7905cfea74ec2df5e" alt="カネロンス" loading="lazy"><p class="fg-desc">ひき肉を筒状パスタで巻き、ベシャメルソース＋チーズでオーブン焼き。クリスマス翌日（26日）の定番ソウルフード。</p></div></td>
+        </tr>
+      </table>
+
+      <!-- 野菜・その他 -->
+      <div class="fg-cat">🥗 野菜・その他（Verduras）</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">エスカリバーダ<br><span class="fg-sub">Escalivada</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.tasteatlas.com/Images/Dishes/aa5ef6d77575461f874b7a0e29a88c37.jpg" alt="エスカリバーダ" loading="lazy"><p class="fg-desc">ナス・赤ピーマン・玉ねぎをオーブンや直火で焼き、皮をむいてオリーブオイルで和えたサラダ。野菜本来の甘みが極限まで引き出される。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">マール・イ・ムンタニア<br><span class="fg-sub">Mar i Muntanya</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://spanishsabores.com/wp-content/uploads/2024/07/Mar-y-Muntanya-Finals-01.jpg" alt="マール・イ・ムンタニア" loading="lazy"><p class="fg-desc">「海と山」を意味するカタルーニャ独自のサーフ＆ターフ料理。鶏肉と手長エビ、または肉団子と甲イカを煮込むなど、山の幸と海の幸を掛け合わせる。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">カルソッツ<br><span class="fg-sub">Calçots</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://cdn.shopify.com/s/files/1/0562/0203/5269/files/WhatsApp_Image_2023-02-02_at_16.36.57_1024x1024.jpg?v=1675352289" alt="カルソッツ" loading="lazy"><p class="fg-desc">ネギの一種を直火で焼き「ロメスコソース」をつけて食べる。<strong>1〜4月限定の冬〜春の風物詩</strong>。6月のバルセロナでは食べられない可能性が高い。</p></div></td>
+        </tr>
+      </table>
+
+      <!-- デザート -->
+      <div class="fg-cat">🍮 デザート（Postres）</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">クレマ・カタラーナ<br><span class="fg-sub">Crema Catalana</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://catalanfood.com/jp/wp-content/uploads/sites/7/2024/06/st-joseps-crema-catalana-catalanfood.webp" alt="クレマ・カタラーナ" loading="lazy"><p class="fg-desc">カタルーニャを代表するデザート。レモン・シナモン風味のカスタードクリームの表面をキャラメリゼ。クレームブリュレの原型とも言われる。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">メル・イ・マト<br><span class="fg-sub">Mel i Mató</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://offloadmedia.feverup.com/barcelonasecreta.com/wp-content/uploads/2020/12/08085346/shutterstock_444884752.jpg" alt="メル・イ・マト" loading="lazy"><p class="fg-desc">カタルーニャのフレッシュチーズ「マト」に蜂蜜（メル）＋クルミ。さっぱりした食後の一皿。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">フラン<br><span class="fg-sub">Flan de la casa</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.elcatalan.es/elcatalan_content/uploads/2025/08/WhatsApp-Image-2025-08-29-at-19.52.16.jpeg" alt="フラン" loading="lazy"><p class="fg-desc">卵の風味がしっかりした固めの濃厚プリン。ほろ苦いカラメルソースたっぷり。スペイン全土のバル・レストランの定番。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">ピジャマ<br><span class="fg-sub">Pijama</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Pijama_%28Restaurant_7_Portes_de_Barcelona%29.jpg" alt="ピジャマ" loading="lazy"><p class="fg-desc">老舗「セッテ・ポルタス（7 Portes）」発祥のデザート盛り合わせ。プリンを中心にアイスクリーム・シロップ漬けの桃・生クリームなどが盛り付けられた豪華版。</p></div></td>
+        </tr>
+      </table>
+
+      <!-- 街歩きスイーツ -->
+      <div class="fg-cat">🥐 街歩きスイーツ</div>
+      <table class="fg-table">
+        <tr>
+          <td class="fg-name">シュイショ<br><span class="fg-sub">Xuixo</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://offloadmedia.feverup.com/barcelonasecreta.com/wp-content/uploads/2020/12/08082450/Xuixo_pastry_Girona-1.jpg" alt="シュイショ" loading="lazy"><p class="fg-desc">ジローナ発祥のペストリー。筒状サクサク生地にクレマ・カタラーナをたっぷり詰め、揚げてから砂糖をまぶす。老舗なら <strong>La Colmena</strong>（ゴシック地区、プラサ・デ・ランジェル）。</p></div></td>
+        </tr>
+        <tr>
+          <td class="fg-name">エンサイマーダ<br><span class="fg-sub">Ensaimada</span></td>
+          <td><div class="fg-content"><img class="fg-img" src="https://www.fukura-mu.com/pan/wp-content/uploads/IMG_6870-768x768.jpeg" alt="エンサイマーダ" loading="lazy"><p class="fg-desc">マヨルカ島発祥だがバルセロナにも定着した渦巻き型の甘いパン。豚のラード（サイム）を練り込み外はサクッと中はふんわり軽い食感。粉砂糖のシンプルな版のほかクリーム入りも。</p></div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- EP03 -->
+<div class="ep-section" id="ep03">
+  <div class="ep-header">
+    <span class="ep-num">EP 03</span>
+    <h3>モンセラート最高峰 Sant Jeroni</h3>
+    <span class="ep-date">6月19日（金）午前</span>
+  </div>
+  <div class="ep-body">
+
+
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">モンセラート（Montserrat）は、バルセロナ近郊にある山。アーサー王の聖杯伝説に登場するベネディクト会のサンタ・マリア・モンセラート修道院付属大聖堂（Monasterio de Montserrat）がある。キリスト教の聖地とされている。</p>
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">モンセラートの奇岩群は約5,000万年前の礫岩（コングロメリット）が侵食されて形成された。垂直に切り立つ指状の岩塔は「鋸の歯（Montserrat＝のこぎり山）」の名の由来。ガウディはカサ・ミラ（ラ・ペドレラ）の波打つ外壁デザインをこの山から着想したとされる。フランコ独裁政権下でも抵抗拠点となったカタルーニャの精神的シンボル。</p>
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">モンセラート修道院は標高720mに建てられていて、モンセラットのサンジェローニ山（Sant Jeroni）は海抜1,236m。頂上からは、修道院や奇岩群、さらには遠くバルセロナや地中海まで見渡せる360度の絶景が楽しめる。</p>
+    <div class="ticket-box">
+      <div class="ticket-icon">🎟</div>
+      <div>
+        <div class="ticket-title">Montserrat Early Small Group Tour（Viator）</div>
+        <table>
+          <tr><td>予約番号</td><td class="ref">#1316897479</td></tr>
+          <tr><td>ピックアップ</td><td>6:15〜6:45 各ピックアップポイント（NH Barcelona Eixample近辺確認要）</td></tr>
+          <tr><td>内容</td><td>往復送迎 ＋ 修道院（8:00 Black Madonna行列なし）＋ 選択式ハイキング ＋ 帰着13:15〜13:30</td></tr>
+          <tr><td>ハイキング</td><td>Option A: 5.86km・標高差246m ／ Option B: 6.09km・標高差200m（森林内、舗装なし）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <h4 class="sec">行程タイムライン</h4>
+    <ul class="timeline">
+      <li><span class="time">06:15</span>ホテル付近でピックアップ（前日にガイドへ宿泊ホテルを連絡）</li>
+      <li><span class="time">07:30</span>モンセラート到着。人波が来る前の静寂な修道院エリアへ</li>
+      <li><span class="time">08:00</span><strong>Santa Maria de Montserrat Abbey</strong>——La Moreneta（黒いマドンナ）を行列なしで参拝</li>
+      <li><span class="time">09:20</span>ガイドの車で移動。ハイキングスタート地点へ</li>
+      <li><span class="time">09:20〜12:30</span>森林内ハイキング（舗装なし・階段なし・自然のトレイル）。Sant Jeroni方面を望む絶景</li>
+      <li><span class="time">12:40</span>バルセロナへ出発</li>
+      <li><span class="time">13:30</span>バルセロナ着。午後のフィゲラス行き列車（15:54）まで時間あり</li>
+    </ul>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://dynamic-media.tacdn.com/media/photo-o/2e/c3/05/5e/caption.jpg" alt="モンセラート修道院と奇岩の山塊" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">⛰ モンセラート（Montserrat）— バルセロナから約50km。カタルーニャの聖地</figcaption>
+</figure>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://dynamic-media.tacdn.com/media/photo-o/32/6b/6c/cb/caption.jpg" alt="モンセラート最高峰 Sant Jeroni 方面の登山道" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🥾 Sant Jeroni（1,236m）へのトレイル — カタルーニャの大地を360度見渡す山頂</figcaption>
+</figure>
+
+
+
+    <div class="box box-warn">
+      午後のフィゲラス行き列車（Barcelona Sants 15:54発 Renfe Avant 34123）に乗り遅れないよう、ツアー帰着後すぐ地下鉄でSants駅へ移動すること。
+    </div>
+
+
+    <div class="column-box">
+      <div class="col-label">🎵 音楽コラム</div>
+      <h4>パブロ・カザルスと「鳥の歌」——この山が育んだ魂</h4>
+      <p>1936年7月18日。バルセロナで「人民オリンピック」の開会式リハーサルをしていたカザルスのもとに、内戦勃発の知らせが届いた。「皆さん、我々はいつ再会できるか、わかりません。お別れの意味でフィナーレを演奏しましょう」——指揮棒を握ったまま、彼は涙で譜面が見えなかった。<br><br>その後カザルスはフランコ政権に生涯抵抗し続けた。演奏旅行では必ず最後にカタルーニャの民謡「鳥の歌（El Cant dels Ocells）」を弾いた。モンセラートのエスコラニア合唱団が今も歌うこの曲は、カタルーニャの魂そのもの。1971年、94歳のカザルスは国連でこう語りかけた。「カタルーニャの鳥は空を飛びながら、ピース、ピース、ピースと鳴くのです」——その声は途切れ途切れで、聴衆を静かに震わせた。</p>
+    </div>
+
+
+
+  </div>
+</div>
+
+<!-- EP04 -->
+<div class="ep-section" id="ep04">
+  <div class="ep-header">
+    <span class="ep-num">EP 04</span>
+    <h3>ダリの故郷フィゲラスへ</h3>
+    <span class="ep-date">6月19日（金）午後 〜 6月20日（土）午前</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">サルバドール・ダリ（Salvador Dalí, 1904–1989）は、カタルーニャが生んだ20世紀を代表する最も多才な画家の一人。</p>
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">異色の天才を育てたカタルーニャという土地の特殊性があります。古き良き時代のカタルーニャ人たちは、人と違うのは良いことだと考える、奇妙だと思われることをむしろ誇りとするような気質を持っていました。</p>
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">それを凝縮するような人物であるダリが、こんな言葉を残しています。「私のことを話し続けて欲しい。たとえそれが褒め言葉であっても！」（外尾悦郎『ガウディの伝言』より）</p>
+    <h4 class="sec">行程タイムライン</h4>
+    <ul class="timeline">
+      <li><span class="time">15:54</span>Barcelona Sants発 Renfe Avant 34123（OMIO購入済・4,201円）</li>
+      <li><span class="time">16:52</span>Figueres Vilafant着。市バスで中心部へ（または徒歩17分）</li>
+      <li><span class="time">17:30</span><strong>ダリの生家</strong>（Casa Natal Salvador Dalí）前を通過。19時閉館。「ロルカとダリ」屋外パネル展示も要チェック</li>
+      <li><span class="time">18:00</span>Sercotel Hotel President チェックイン（89.53€）</li>
+      <li><span class="time">19:30</span>夕食：タパスバー「Lizarran」（ランブラス通り沿い）</li>
+      <li><span class="time">翌10:45</span><strong>ダリ劇場美術館 入場</strong>（予約番号 97528644・オーディオガイド必ず借りる）</li>
+      <li><span class="time">14:55</span>Figueres Vilafant発 Renfe Avant 34262（OMIO購入済・3,479円）</li>
+      <li><span class="time">15:50</span>Barcelona Sants着。NH Hotel Eixampleへ（チェックインは16時以降）</li>
+    </ul>
+
+    <div class="ticket-box">
+      <div class="ticket-icon">🎨</div>
+      <div>
+        <div class="ticket-title">ダリ劇場美術館（Teatre-Museu Dalí）</div>
+        <table>
+          <tr><td>予約番号</td><td class="ref">97528644</td></tr>
+          <tr><td>入場時間</td><td>10:30開館 → 10:45予定入場</td></tr>
+          <tr><td>注意</td><td>⚠️ オーディオガイドを入場時に必ずリクエスト</td></tr>
+        </table>
+      </div>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.salvador-dali.org/wp-content/uploads/2024/12/FotoxPag20_21.webp" alt="ダリ劇場美術館（テアトル・ムゼウ・ダリ）外観" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🎨 ダリ劇場美術館（Teatre-Museu Dalí）— 外壁を飾る数百個のパン（クロストン）と屋根の巨大卵が目印</figcaption>
+</figure>
+    <div class="box-research">
+      <h4>🎭 ダリ劇場美術館 必見ポイント</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>作品・スポット</th><th>見どころ</th></tr>
+        <tr><td>外観（壁のパン・卵・マネキン）</td><td>建物そのものがアート。外壁のクロストン（カタルーニャのパン）は数百個。屋根の巨大卵はダリの"再生"のシンボル</td></tr>
+        <tr><td>メイ・ウェスト・ルーム</td><td>ソファ・暖炉・絵画が合わさって女優の顔に見える「顔の錯視」空間。鑑賞用の台から見ると別世界</td></tr>
+        <tr><td>雨降るキャデラック（地下）</td><td>高級車の内部に雨を降らせたインスタレーション。コインを入れると雨が降る仕組み</td></tr>
+        <tr><td>天井画（El Palau del Vent）</td><td>仰向けで見上げる巨大天井画。ダリと妻ガラが天国へ昇っていく構図</td></tr>
+        <tr><td>地下墓所</td><td>ダリが「ここで作り、ここに眠る」と選んだ場所。簡素な石棺が展示されている</td></tr>
+        <tr><td>ガラテアの塔（外）</td><td>隣接する円形の塔。ダリが晩年を過ごし、1989年に没した居室</td></tr>
+      </table>
+    </div>
+
+<figure style="margin:14px auto;text-align:center;max-width:280px;">
+  <img src="https://thedali.org/wp-content/themes/dali/assets/timeline/images/intro/portrait.jpg" alt="サルバドール・ダリ" style="width:250px;height:250px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15);" loading="lazy">
+  <figcaption style="font-size:13px;color:#888;margin-top:5px;font-family:sans-serif;">サルバドール・ダリ（1904-1989）</figcaption>
+</figure>
+    <p style="font-size:16px;font-family:sans-serif;line-height:2;margin-bottom:16px;color:#333;">
+      ダリは「偏執狂的批判的方法（Paranoiac-Critical Method）」を提唱した。夢や幻覚の無意識的イメージを、精巧な写実的技法で描き出す。「溶ける時計」は正確に言えば柔らかいカマンベールチーズが溶ける様子からインスピレーションを得た。彼の作品はすべて「夢の中でも論理は成立する」という命題の証明だった。友人ロルカ（詩人）との交友も同時期のフィゲラスで深まった——この地は天才たちが集まる磁場だったのかもしれない。
+
+
+
+
+
+
+
+    <div class="column-box">
+      <div class="col-label">🎭 アートコラム</div>
+      <h4>ロルカとダリ——天才たちの友情と悲劇的な亀裂</h4>
+      <p>1919年、マドリードの学生寮「レジデンシア・デ・エストゥディアンテス」。詩人フェデリコ・ガルシア・ロルカと画家サルバドール・ダリが出会った。ロルカはダリの才能に惚れ込み、ダリはロルカの詩の魔力に魅了された。二人はカタルーニャで夏を過ごし、ダリはロルカの詩集の装丁を担い、ロルカはダリの個展にテキストを寄せた——それは20世紀スペインが生んだ最も輝かしい知的友情だった。<br><br>しかし1936年、スペイン内戦が二人の運命を分けた。ロルカは故郷グラナダでファシストに銃殺された（享年38歳）。ダリはフランコ側を選び、やがて1942年には旧友ブニュエルをFBIに「共産主義者」として告発した。「友人を売った男」「権力の道化」と呼ばれたダリ——それでも彼の作品はロルカへの複雑な思いを内包し続けた。彼は自伝で「私は完全に非政治的だ」と述べながらも、旧友を告発した事実は拭えない。才能の光と人間の影が、これほど鮮明に交差した友情は他にない。</p>
+    </div>
+  </div>
+</div>
+
+<!-- EP05 -->
+<div class="ep-section" id="ep05">
+  <div class="ep-header">
+    <span class="ep-num">EP 05</span>
+    <h3>バルセロナの絶景ハイキング — チビダボ</h3>
+    <span class="ep-date">6月20日（土）午後</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      フィゲラスから戻った6/20夕方、バルセロナを見下ろす聖山チビダボへ。標高512m、コルセロラ自然公園の尾根から360度の夕景——地中海・市街・ガウディの建築群が一望できる。
+    </p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">
+      「チビダボ（Tibidabo）」という名前はラテン語の聖書に由来する。悪魔がイエスを高い山に連れて行き、「<em>Tibi dabo</em>（汝に与えん）——世界のすべてを」と誘惑した場面（マタイ福音書4章）からきている。バルセロナが一望できるこの山にはいかにもふさわしい名だ。6月20日の日没は21時28分。ハイキングを終えてから夕景を楽しむのに最適なタイミング。
+    </p>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://ticketshop.barcelona/images/tibidabobarcelona.jpg" alt="チビダボ山頂からのバルセロナ全景" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏔 チビダボ（Tibidabo 512m）— コルセロラ自然公園の頂。サグラダ・ファミリアと地中海を一望できる絶景スポット</figcaption>
+</figure>
+    <h4 class="sec">アクセスルート</h4>
+    <ul class="timeline">
+      <li>L5 Hospital Clinic → Diagonal（乗換）→ L7 Av. Tibidabo（終点）</li>
+      <li>駅を出てAv. Tibidaboの坂道を登り、Tramvia Blau（青いトラム）またはフニクラ（ケーブルカー）を利用</li>
+      <li>Carretera de les Aigüesハイキングコースへ接続（距離3.44km・約1時間・標高差最大506m）</li>
+    </ul>
+    <div class="box-research">
+      <h4>🥾 ハイキングルート詳細</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>スポット</th><th>内容</th></tr>
+        <tr><td>Templo del Sagrado Corazón</td><td>丘頂部の教会。屋上にキリスト像。バルセロナ全景・地中海が広がる。6月は21時頃まで明るい</td></tr>
+        <tr><td>Carretera de les Aigües</td><td>尾根を水平に走る未舗装トレイル。コルセロラ自然公園内。ランナー・犬の散歩で賑わう地元民の庭</td></tr>
+        <tr><td>Mirador del Tibidabo</td><td>遊園地（Parc d'Atraccions）の横。バルセロナ市街と地中海の空撮気分</td></tr>
+      </table>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🏗 開発コラム</div>
+      <h4>ドクター・アンドレウの夢 — 咳止めドロップで山頂を買った男</h4>
+      <p>チビダボ山を「市民の遊び場」に変えたのは、一人の実業家医師だった。サルバドール・アンドレウ・グラネル（1841〜1929）は、メンソールと甘草を使った「アンドレウ博士の咳止めドロップ（Pastilles Doctor Andreu）」で財を成し、そのあり余る資金を山頂開発に注ぎ込んだ。</p>
+      <p style="margin-top:10px;">1899年、アンドレウはトラムビア・ブラウ（青いトラム）を開通させ、バルセロナの中心部から山麓までのアクセスを開いた。1901年にはフニクラ（登山ケーブルカー）を完成させ、同年、ヨーロッパ最古の遊園地のひとつとなる「パルク・ダトラクシオンス（Parc d'Atraccions）」を開業した。山頂の教会（サグラット・コル）の建設も彼が後押しした。</p>
+      <p style="margin-top:10px;">2026年は遊園地開業125周年。今もチビダボの観覧車はバルセロナの空に回り続けている——すべてはひとつの咳止めドロップから始まった。</p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🕵️ 歴史コラム</div>
+      <h4>スパイの山 — 第二次大戦のバルセロナ</h4>
+      <p>1940〜1944年、スペインはフランコ政権下で「公式中立」を保っていたが、バルセロナは連合国と枢軸国のスパイが入り乱れる情報戦の舞台だった。チビダボの山頂は、その見晴らしの良さゆえに無線送信の拠点としても使われたという。</p>
+      <p style="margin-top:10px;">なかでも伝説的な人物がいる。フアン・プホル・ガルシア（コードネーム「ガルボ」）——バルセロナ生まれの二重スパイだ。彼はドイツのMI6にも英国のMI5にも「忠実なエージェント」として信頼され、どちらにも巧みに操作した情報を流し続けた。1944年6月、彼がヒトラーに送った偽情報——「ノルマンディーは陽動、本命はカレーだ」——はドイツ軍の増援を遅らせ、Dデイの成功に貢献したとされる。</p>
+      <p style="margin-top:10px;">戦後、ガルボは英国からMBE（大英帝国勲章）を、ドイツからは鉄十字勲章を受章した——おそらく歴史上唯一、敵対する両陣営から同時に勲章を受けた人物。彼は1984年まで生き、バルセロナからそう遠くない場所で静かに余生を送ったとされる。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- EP06 -->
+<div class="ep-section" id="ep06">
+  <div class="ep-header">
+    <span class="ep-num">EP 06</span>
+    <h3>ピカソとミロ — カタルーニャが生んだ二人の巨人</h3>
+    <span class="ep-date">6月21日（日）・6月24日（水）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;line-height:1.9;margin-bottom:16px;color:#444;">パブロ・ピカソ（1881–1973）とジョアン・ミロ（1893–1983）は、ともにカタルーニャ地方にルーツを持ち、生涯にわたり絵画、彫刻、陶芸など多岐にわたる表現に挑戦し続けた。両者とも時代に合わせて画風を頻繁に変容させ、芸術の枠を広げたが、ファシストへの反発、芸術を通しての抵抗は一貫していた。また、互いに深い敬意と友情を寄せ合った「良き理解者」でもあった。</p>
+<div class="infographic-block" style="text-align:center;margin:20px 0;">
+  <img src="Vault/04_Resources/画像素材/Web取得/歴史とアート年表（カタルーニャを中心に）.png" alt="歴史とアート年表（カタルーニャを中心に）" style="max-width:860px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
+  <p class="infographic-caption">📅 カタルーニャの芸術家と歴史年表 — ガウディ・カザルス・ピカソ・ミロ・ロルカ・ダリ・ネルーダ、そしてフランコ独裁の時代</p>
+</div>
+
+    <div class="ticket-box">
+      <div class="ticket-icon">🎨</div>
+      <div>
+        <div class="ticket-title">ピカソ美術館（Museu Picasso）</div>
+        <table>
+          <tr><td>予約番号</td><td class="ref">5 / 1554958</td></tr>
+          <tr><td>入場時間</td><td>09:00（火〜日 9:00-19:00）</td></tr>
+          <tr><td>料金</td><td>12.50€（65歳以上割引料金）</td></tr>
+          <tr><td>住所</td><td>Carrer de Montcada 15-23（地下鉄L4 Jaume I駅）</td></tr>
+          <tr><td>⚠️ 重要</td><td>入場前にLevel 0クロークで<strong>オーディオガイドを先に受け取ること</strong>（入場後は取りに戻れない）</td></tr>
+        </table>
+      </div>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2014/11/IMG_3472.jpg" alt="ピカソ美術館外観（モンカダ通り）" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🎨 ピカソ美術館（Museu Picasso）— モンカダ通り15-23番地。5つの中世邸宅を連結した14世紀ゴシック建築が展示空間</figcaption>
+</figure>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2015/01/la-vie-195x300.jpg" alt="ピカソ『人生（La Vie）』1903年（青の時代の傑作）" style="max-height:460px;width:auto;max-width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);display:block;margin:0 auto;" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🖼 《人生（La Vie）》パブロ・ピカソ 1903年 — 青の時代の集大成。貧困・孤独・絶望を冷たい青で描く</figcaption>
+</figure>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2022/07/berasukepikasso-620x405.jpg" alt="ベラスケスとピカソの比較" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🖼 ラス・メニーナス変奏 — ピカソは1957年にベラスケスの名作を58通りに解体・再構築した</figcaption>
+</figure>
+    <div class="box-research">
+      <h4>🗺 ピカソ美術館 館内フロアガイド</h4>
+      <p style="font-size:14px;font-family:sans-serif;margin:8px 0;">5つの中世邸宅（Palau Aguilar / Castellet / Meca / Casa Mauri / Palau Finestres）を連結した構造。ゴシック様式の石造建築にピカソ作品が展示される空間演出が圧巻。</p>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>展示室</th><th>テーマ・内容</th></tr>
+        <tr><td>R1〜R7（幼少〜青年期）</td><td>レウス・ラ・コルーニャ・バルセロナ時代。古典的写実作品。父から受けた写実教育の痕跡</td></tr>
+        <tr><td>R8〜R11（青の時代）</td><td>1901〜1904年。孤独・貧困・死をテーマにした青のトーン一色の傑作群</td></tr>
+        <tr><td>R12（サバルテス室）</td><td>親友ジャウメ・サバルテスの肖像。ピカソとバルセロナの人間的紐帯</td></tr>
+        <tr><td>R13〜R16（ラス・メニーナス）</td><td>1957年にベラスケスの「ラス・メニーナス」を58通りに変奏した連作。現代絵画史上最大の引用・解体実験</td></tr>
+        <tr><td>A1〜A4（陶芸室）</td><td>晩年の陶芸作品。南仏ヴァロリスで制作。軽快でユーモラスな作風</td></tr>
+      </table>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🎨 アートコラム</div>
+      <h4>ゲルニカ — 爆撃と闘争</h4>
+      <p>1937年4月26日、スペイン内戦中のバスク地方の小都市ゲルニカが、ナチス・ドイツ空軍によって無差別爆撃された。パリにいたピカソはその報を受け、こう宣言した。<br>「私の芸術家としての全生涯は、反動と芸術の死に対する絶え間ない闘争以外の何物でもない。私が反動と死に同意するなどと、誰が考え得るだろうか」<br>翌27日からカンバスに向かった。縦3.49m、横7.76mの巨大な白黒の画面——馬、雄牛、叫ぶ女、折れた剣、炎。35日後の6月4日、作品はパリ万国博覧会スペイン共和国館に展示された。</p>
+      <p style="margin-top:10px;">第二次大戦中、ナチス占領下のパリ。ゲシュタポの将校がピカソのアトリエを訪れ、ゲルニカの写真を指差して言った。「これはあなたが描いたのですか？」。ピカソは静かに答えた。「いいえ。あなたたちが描いたのです」。ピカソはパリを去らなかった。独裁者への抵抗として、ゲルニカを守り続けた。ゲルニカは「戦争に抗議する最も有名な絵」となり、長くニューヨーク近代美術館（MoMA）に預けられた。1975年フランコ死去後、ピカソの遺志通り1981年にスペインへ返還——今はマドリードのソフィア王妃芸術センターに所蔵されている。</p>
+    </div>
+<div class="infographic-block" style="text-align:center;margin:20px 0;">
+  <img src="Vault/04_Resources/画像素材/Web取得/PicassoGuernica.jpg" alt="ゲルニカ（パブロ・ピカソ、1937年）" style="max-width:860px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
+  <p class="infographic-caption">《ゲルニカ》パブロ・ピカソ 1937年 — スペイン内戦中のゲルニカ空爆を描いた反戦の傑作。現在マドリードのソフィア王妃芸術センター所蔵</p>
+</div>
+<hr style="border:none;border-top:2px solid var(--border);margin:28px 0;">
+<figure style="margin:20px 0;text-align:center;">
+  <img src="Vault/04_Resources/画像素材/Web取得/ピカソ・ミロ・ダリ.jpg" alt="パブロ・ピカソ、ジョアン・ミロ、サルバドール・ダリ" style="max-width:600px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🎨 バルセロナが育てた3人の巨匠 — ピカソ・ミロ・ダリ。スペイン内戦が彼らに「踏み絵」を迫ったとき、三者三様の選択があった</figcaption>
+</figure>
+
+<h4 class="sec">ミロ美術館（Fundació Joan Miró）（6/24）</h4>
+    <p style="font-size:17px;font-family:sans-serif;line-height:1.9;margin-bottom:16px;color:#444;">ジョアン・ミロ（1893〜1983）はバルセロナ生まれ。1920年代にパリでシュルレアリストと交流しながら独自の視覚言語を開発した。「星・女・鳥」の3モチーフが彼の全作品を貫く象徴体系。星＝宇宙への憧れ、女＝生命と豊穣、鳥＝自由と詩。モンジュイックの丘上の建物はホセ・ルイス・セルトが設計。自然光を活かした展示空間自体が作品の一部。</p>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2020/09/IMG_20200918_170120.jpg" alt="ミロ美術館外観（モンジュイック）" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🎨 ミロ財団美術館（Fundació Joan Miró）— モンジュイックの丘。建築家セルトが設計した自然光溢れる空間</figcaption>
+</figure>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2022/07/miroseiza-620x956.jpg" alt="ミロの星座シリーズ（Constellation）" style="max-height:460px;width:auto;max-width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);display:block;margin:0 auto;" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">✨ ミロ「星座シリーズ」— 1940年代ナチス占領下のパリで描いた繊細な傑作群。星・女・鳥の三大モチーフ</figcaption>
+</figure>
+
+    <div class="column-box">
+      <div class="col-label">🎨 アートコラム</div>
+      <h4>「絵画の暗殺」を宣言した男</h4>
+      <p>1929年、ミロはパリで衝撃的な発言をした。「私は絵画を暗殺したい」。それは自己否定ではなく、「今まで絵画と呼ばれてきたもの」への宣戦布告だった。以後ミロは何度も自分のスタイルを壊し、更新し続けた——1940年代の繊細な「星座シリーズ」、1950年代の荒々しい陶板画、1970年代の巨大壁画。この「自己破壊と再生」こそがミロを20世紀最後の巨人にした。</p>
+      <h4 style="margin-top:16px;">死刑囚の希望 — ミロ最後の大作</h4>
+      <p>1974年、81歳のミロは巨大な岩壁に直接ペイントした作品《死刑囚の希望》を制作した。大きな赤い足跡と黒い星だけの、シンプルな構図。これはフランコ独裁末期、政治犯として処刑台に送られた若者たちへの鎮魂歌だった。ミロは終生フランコに妥協しなかった。1975年フランコ死去の翌年、ミロはバルセロナにこの美術館を開館させた——自分の全作品を故郷へ。「私の美術館はカタルーニャへの贈り物だ」と彼は言った。</p>
+      <h4 style="margin-top:16px;">ミロの言葉——「自由で暴力的なことをした」</h4>
+      <p>晩年、ミロは「フランコやファシストに対して何をしたか」と問われた際、こう答えた。</p>
+      <blockquote style="border-left:4px solid var(--gold);margin:12px 0;padding:10px 16px;background:#fdf8ed;font-style:italic;font-family:sans-serif;font-size:14px;line-height:1.9;color:#4a3b1f;">
+        「自由で暴力的なことをした（Free and violent things）」<br>
+        <span style="font-size:12px;color:#888;">— ジョアン・ミロ（晩年のインタビューより）</span>
+      </blockquote>
+      <p>自身の芸術の創造行為そのものが、ファシズムに対する闘争であることを明言したこの言葉は、ピカソの宣言と並んで、スペインの芸術家たちが選んだ抵抗の形を端的に示している。銃を取らない闘争——色彩と形で世界に叫ぶこと。</p>
+    </div>
+
+    <h4 class="sec">バルセロナ市歴史博物館 MUHBA（6/21）</h4>
+    <p style="font-size:17px;font-family:sans-serif;line-height:1.9;">ゴシック地区の地下2階に展開するローマ時代バルシノ（Barcino）の遺跡。1〜6世紀の住宅・上水道・染物工房・製塩場・ワイン醸造所が保存される。</p>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2015/07/IMG_4443.jpg" alt="バルセロナ市歴史博物館（MUHBA）" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏛 バルセロナ市歴史博物館（MUHBA）— ゴシック地区の王の広場。地下に古代ローマ「Barcino」の遺構が残る。コロンブスが謁見したティネルの間に隣接</figcaption>
+</figure>
+
+
+  </div>
+</div>
+
+<!-- EP07 -->
+<div class="ep-section" id="ep07">
+  <div class="ep-header">
+    <span class="ep-num">EP 07</span>
+    <h3>ガウディ：サグラダ・ファミリアとグエル公園</h3>
+    <span class="ep-date">6月22日（月）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">アントニ・ガウディ（1852–1926）は、カタルーニャのモデルニスモ建築を代表するスペインの天才建築家。自然の造形（曲線、動植物）をモチーフにした独創的で革新的な建築をバルセロナに残し、その多くは世界遺産に登録されている。生涯を建築に捧げ、サグラダ・ファミリアの建設に従事しながら、信仰と自然の融合を追求した。2026年はガウディ没後100周年。スペイン全土が「ガウディ年」として記念する特別な年に、この旅がちょうど重なる。</p>
+    
+<div class="infographic-block">
+  <div class="infographic-title">📊 ガウディ生涯年表 — 1852〜1926年 ／ 2026年没後100周年</div>
+  <svg viewBox="0 0 800 920" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:100%;" font-family="sans-serif">
+  <rect width="800" height="920" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="24" font-weight="bold" fill="#1A202C">アントニ・ガウディ 生涯年表</text>
+  <text x="400" y="60" text-anchor="middle" font-size="16" fill="#718096">1852–1926　カタルーニャが生んだ建築の聖人</text>
+
+  <!-- Vertical axis -->
+  <line x1="200" y1="80" x2="200" y2="870" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 1: 1852年 誕生 -->
+  <circle cx="200" cy="100" r="8" fill="#4A5568"/>
+  <text x="190" y="105" text-anchor="end" font-size="18" font-weight="bold" fill="#4A5568">1852年</text>
+  <text x="215" y="105" font-size="18" font-weight="bold" fill="#4A5568">レウスに誕生</text>
+  <text x="215" y="123" font-size="15" fill="#718096">バルセロナ南西100kmの街で、銅職人の家に生まれる</text>
+
+  <line x1="200" y1="108" x2="200" y2="158" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 2: 1873年 建築学校 -->
+  <circle cx="200" cy="165" r="7" fill="#2B6CB0"/>
+  <text x="190" y="170" text-anchor="end" font-size="18" font-weight="bold" fill="#2B6CB0">1873年</text>
+  <text x="215" y="170" font-size="18" font-weight="bold" fill="#2B6CB0">建築学校入学</text>
+  <text x="215" y="188" font-size="15" fill="#718096">バルセロナ建築学校。卒業時に「天才か狂人か」と学長に評される</text>
+
+  <line x1="200" y1="172" x2="200" y2="223" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 3: 1878年 建築家免許 -->
+  <circle cx="200" cy="230" r="7" fill="#2B6CB0"/>
+  <text x="190" y="235" text-anchor="end" font-size="18" font-weight="bold" fill="#2B6CB0">1878年</text>
+  <text x="215" y="235" font-size="18" font-weight="bold" fill="#2B6CB0">建築家免許取得</text>
+  <text x="215" y="253" font-size="15" fill="#718096">パリ万博に出展。グエル伯爵と出会い、終生の後援者を得る</text>
+
+  <line x1="200" y1="237" x2="200" y2="295" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 4: 1883年 サグラダ・ファミリア引継ぎ (KEY — red box) -->
+  <circle cx="200" cy="305" r="10" fill="#C53030"/>
+  <rect x="213" y="287" width="560" height="42" rx="6" fill="#FFF5F5" stroke="#C53030" stroke-width="1.5"/>
+  <text x="190" y="305" text-anchor="end" font-size="18" font-weight="bold" fill="#C53030">1883年</text>
+  <text x="223" y="303" font-size="18" font-weight="bold" fill="#C53030">サグラダ・ファミリア 設計引継ぎ</text>
+  <text x="223" y="321" font-size="15" fill="#C53030">31歳でバルセロナ聖家族贖罪聖堂を引き継ぐ。以後43年間を捧げる</text>
+
+  <line x1="200" y1="315" x2="200" y2="363" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 5: 1886年 グエル邸 -->
+  <circle cx="200" cy="370" r="7" fill="#6B46C1"/>
+  <text x="190" y="375" text-anchor="end" font-size="18" font-weight="bold" fill="#6B46C1">1886年</text>
+  <text x="215" y="375" font-size="18" font-weight="bold" fill="#6B46C1">グエル邸 完成</text>
+  <text x="215" y="393" font-size="15" fill="#718096">バルセロナ旧市街のグエル一家私邸。放物線アーチを多用した初期傑作</text>
+
+  <line x1="200" y1="377" x2="200" y2="428" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 6: 1900-14年 グエル公園 -->
+  <circle cx="200" cy="435" r="7" fill="#276749"/>
+  <text x="190" y="440" text-anchor="end" font-size="18" font-weight="bold" fill="#276749">1900-14年</text>
+  <text x="215" y="440" font-size="18" font-weight="bold" fill="#276749">グエル公園 設計・建設</text>
+  <text x="215" y="458" font-size="15" fill="#718096">波打つベンチ、トカゲの噴水、86柱の列柱ホール。世界遺産</text>
+
+  <line x1="200" y1="442" x2="200" y2="493" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 7: 1904-06年 カサ・バトリョ -->
+  <circle cx="200" cy="500" r="7" fill="#B7791F"/>
+  <text x="190" y="505" text-anchor="end" font-size="18" font-weight="bold" fill="#B7791F">1904-06年</text>
+  <text x="215" y="505" font-size="18" font-weight="bold" fill="#B7791F">カサ・バトリョ 改修完成</text>
+  <text x="215" y="523" font-size="15" fill="#718096">龍の鱗の屋根と青いモザイクタイル。グラシア通りの名作</text>
+
+  <line x1="200" y1="507" x2="200" y2="558" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 8: 1906-10年 カサ・ミラ -->
+  <circle cx="200" cy="565" r="7" fill="#276749"/>
+  <text x="190" y="570" text-anchor="end" font-size="18" font-weight="bold" fill="#276749">1906-10年</text>
+  <text x="215" y="570" font-size="18" font-weight="bold" fill="#276749">カサ・ミラ（ラ・ペドレラ）完成</text>
+  <text x="215" y="588" font-size="15" fill="#718096">石切り場の意。波打つ石の外壁と奇妙な煙突群。世界遺産</text>
+
+  <line x1="200" y1="572" x2="200" y2="623" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 9: 1914年〜 SF専念 -->
+  <circle cx="200" cy="630" r="7" fill="#C53030"/>
+  <text x="190" y="635" text-anchor="end" font-size="18" font-weight="bold" fill="#C53030">1914年〜</text>
+  <text x="215" y="635" font-size="18" font-weight="bold" fill="#C53030">サグラダ・ファミリアに専念</text>
+  <text x="215" y="653" font-size="15" fill="#718096">他の仕事を断ち、工房に住み込んで禁欲的な生活を送る</text>
+
+  <line x1="200" y1="637" x2="200" y2="695" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Event 10: 1926年 逝去 (KEY — gray box) -->
+  <circle cx="200" cy="705" r="10" fill="#4A5568"/>
+  <rect x="213" y="687" width="560" height="42" rx="6" fill="#EDF2F7" stroke="#4A5568" stroke-width="1.5"/>
+  <text x="190" y="705" text-anchor="end" font-size="18" font-weight="bold" fill="#4A5568">1926年</text>
+  <text x="223" y="703" font-size="18" font-weight="bold" fill="#4A5568">路面電車事故で逝去（73歳）</text>
+  <text x="223" y="721" font-size="15" fill="#4A5568">6月7日、路面電車にはねられ3日後に死去。市民葬で盛大に見送られる</text>
+
+  <!-- Dotted line: posthumous construction 1926→2026 -->
+  <line x1="200" y1="715" x2="200" y2="778" stroke="#B7791F" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Event 11: 2026年 完成 (GOLD box) -->
+  <circle cx="200" cy="790" r="12" fill="#B7791F"/>
+  <rect x="213" y="772" width="560" height="52" rx="6" fill="#FFFAF0" stroke="#B7791F" stroke-width="2"/>
+  <text x="190" y="790" text-anchor="end" font-size="18" font-weight="bold" fill="#B7791F">2026年</text>
+  <text x="223" y="790" font-size="18" font-weight="bold" fill="#B7791F">没後100周年 — サグラダ・ファミリア完成</text>
+  <text x="223" y="810" font-size="15" fill="#B7791F">1883年着工から143年。全ファサードがついに完結する</text>
+
+  <!-- Legend -->
+  <rect x="40" y="852" width="720" height="52" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <circle cx="60" cy="878" r="7" fill="#C53030"/>
+  <text x="74" y="883" font-size="15" fill="#4A5568">サグラダ・ファミリア関連</text>
+  <circle cx="265" cy="878" r="7" fill="#276749"/>
+  <text x="279" y="883" font-size="15" fill="#4A5568">世界遺産（グエル公園・カサ・ミラ等）</text>
+  <circle cx="500" cy="878" r="7" fill="#B7791F"/>
+  <text x="514" y="883" font-size="15" fill="#4A5568">没後100周年（2026）</text>
+  <line x1="660" y1="878" x2="688" y2="878" stroke="#B7791F" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="694" y="883" font-size="15" fill="#4A5568">没後建設</text>
+</svg>
+  <p class="infographic-caption">31歳でサグラダ・ファミリアを引き継いでから43年。74歳で路面電車に轢かれ生涯を終えるまでの軌跡</p>
+</div>
+<figure style="margin:14px auto;text-align:center;max-width:280px;">
+  <img src="Vault/04_Resources/画像素材/Web取得/Antoni_Gaudi.jpg" alt="アントニ・ガウディ肖像写真" style="width:240px;max-width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.15);">
+  <figcaption style="font-size:13px;color:#888;margin-top:5px;font-family:sans-serif;">アントニ・ガウディ（1852-1926）— 1878年頃撮影</figcaption>
+</figure>
+<h4 class="sec">行程タイムライン</h4>
+    <ul class="timeline">
+      <li><span class="time">09:00</span><strong>サグラダ・ファミリア入場</strong>（予約番号 97504514・32€）英語ガイド9:15出発</li>
+      <li><span class="time">10:45</span>タワー予約時間（時間厳守）</li>
+      <li><span class="time">12:00</span>見学終了。徒歩またはバスでサン・パウ病院（Hospital de Sant Pau）へ</li>
+      <li><span class="time">12:30</span>サン・パウ病院見学（事前予約推奨）</li>
+      <li><span class="time">13:30</span>軽食後、バス/タクシーでグエル公園へ（徒歩約20分）</li>
+      <li><span class="time">14:00</span><strong>グエル公園入場</strong>（予約番号 82890831・19.5€）※ガウディの家を最初に！</li>
+      <li><span class="time">17:00</span>一旦ホテルへ戻り。Mercat del Ninot で夕食調達</li>
+      <li><span class="time">19:00</span><strong>カタルーニャ音楽堂 公演</strong>（EP10と連動）</li>
+    </ul>
+
+    <div class="ticket-box">
+      <div class="ticket-icon">⛪</div>
+      <div>
+        <div class="ticket-title">サグラダ・ファミリア（Temple Expiatori de la Sagrada Família）</div>
+        <table>
+          <tr><td>予約番号</td><td class="ref">97504514</td></tr>
+          <tr><td>入場</td><td>09:00（英語ガイド 9:15出発）</td></tr>
+          <tr><td>タワー</td><td class="ref">10:45（時間厳守・逃すと再入場不可）</td></tr>
+          <tr><td>料金</td><td>32€（購入済）</td></tr>
+          <tr><td>特記</td><td>2026年6月10日、ガウディ没後100周年記念式典（教皇来訪）の直後に訪問</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="box-research">
+      <h4>🏗 サグラダ・ファミリア 完全解説</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td>着工</td><td>1882年（初代建築家ビリャール）→ 1883年ガウディが引き継ぎ（31歳）</td></tr>
+        <tr><td>ガウディの設計期間</td><td>1883〜1926年（43年間）。没後も設計図・模型から建設継続</td></tr>
+        <tr><td>1936年の悲劇</td><td>スペイン内戦中、無政府主義者がアトリエを焼討ち→模型・図面の多くが焼失</td></tr>
+        <tr><td>完成予定</td><td>2034年（全18本の塔が完成。ガウディ没後108年後）</td></tr>
+        <tr><td>最高部</td><td>172.5m（イエス・キリストの塔）。バルセロナ最高建築物</td></tr>
+        <tr><td>年間来場者</td><td>約450万人（バルセロナ最大の観光地）</td></tr>
+      </table>
+      <h5 class="sub">3つのファサード</h5>
+      <table class="data-table">
+        <tr><th>ファサード</th><th>方角</th><th>テーマ</th><th>撮影のコツ</th></tr>
+        <tr><td>生誕のファサード</td><td>東（朝日）</td><td>キリストの誕生〜幼年期。ガウディ唯一の完成品</td><td>午前早め。朝日の陰影が彫刻を際立たせる</td></tr>
+        <tr><td>受難のファサード</td><td>西（夕日）</td><td>磔刑・死・復活。骨格的な直線彫刻（スビラックス作）</td><td>午後〜夕方。魔方陣の数字（合計33）を探す</td></tr>
+        <tr><td>栄光のファサード</td><td>南（正面）</td><td>最後の審判・栄光。現在も建設中</td><td>完成後に正面玄関となる将来のメインファサード</td></tr>
+      </table>
+      <h5 class="sub">18本の塔の意味</h5>
+      <p style="font-size:14px;font-family:sans-serif;line-height:1.9;">12使徒の塔＋4福音書記者の塔（マタイ・マルコ・ルカ・ヨハネ）＋聖母マリアの塔（1本）＋イエスの中央塔（172.5m・最後に完成）。12使徒塔は6つが生誕ファサード側（完成）、6つが受難ファサード側（完成）。</p>
+    </div>
+
+<div class="infographic-block" style="text-align:center;margin:20px 0;">
+  <img src="Vault/04_Resources/画像素材/Web取得/Sagrada_Familia_01.jpg" alt="サグラダ・ファミリア（2026年）" style="max-width:900px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
+  <p class="infographic-caption">⛪ サグラダ・ファミリア — 2026年ガウディ没後100周年に完成を迎える143年の大聖堂。ナシオナル通りから見た降誕のファサード側</p>
+</div>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.arukikata.co.jp/wp-content/uploads/20092910405785879_.jpg" alt="サグラダ・ファミリア内部 — 枝分かれする柱と天井からの彩光" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🌿 内部の「光の森」— 木が枝分かれするように広がる柱。ステンドグラスの光が季節・時間帯で色を変える</figcaption>
+</figure>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;">
+    <div class="column-box">
+      <div class="col-label">🏗 建築コラム</div>
+      <h4>逆さ吊り模型 — 重力が設計した建築</h4>
+      <p>ガウディは曲線を計算ではなく「重力」で求めた。糸と砂袋で作った逆さ吊り模型——糸を重力に従って垂らすと、自然にカテナリー曲線（懸垂線）が形成される。これを逆さにすれば、最も構造的に安定したアーチが得られる。「神が設計した曲線」をそのまま建築に転写する手法だ。サグラダ・ファミリアの地下にはこの模型が保存されている。コンピューターのない時代に、ガウディは重力を相棒にして設計した。</p>
+      <h4 style="margin-top:16px;">「直線は人間に属する、曲線は神に属する」</h4>
+      <p>ガウディが残した最も有名な言葉。彼は自然界に直線が存在しないことに着目した。木の幹は微妙に曲がり、骨は弧を描き、波も山も直線を持たない。「自然は神の創造物であり、自然の中に美の原理がある」——だからガウディの建築に直線はない。サグラダ・ファミリアの柱は木が枝分かれするように広がり、グエル公園のベンチは人体の曲線に沿って波打つ。2026年の没後100周年に、すべてのファサードが完成する。</p>
+    </div>
+    <div class="column-box">
+      <div class="col-label">🏛 歴史コラム</div>
+      <h4>内戦で燃えた設計図——破片から復元された143年の夢</h4>
+      <p>1936年7月、スペイン内戦の勃発とともにサグラダ・ファミリアの工房が破壊された。石膏模型・設計図・計算記録の大半が炎の中に消えた。残ったのは焼け焦げた断片と、数枚の写真だけだった。<br><br>しかし建設は止まらなかった。建築家たちは破片を一枚一枚拾い集め、コンピューターで復元した。「直線は人間のもの、曲線は神のもの」というガウディの言葉だけを羅針盤に、破壊された図面を繋ぎ合わせていった。1940年代から再建された生誕のファサード、1980年代から着工された受難のファサード——すべては灰の中から始まった。そして2026年、143年をかけてようやく完成する。建築には必ず完成がある。なぜなら神が完成させるからだ——これもガウディの言葉とされる。</p>
+    </div>
+</div>
+
+    <div class="ticket-box">
+      <div class="ticket-icon">🌿</div>
+      <div>
+        <div class="ticket-title">グエル公園（Park Güell）</div>
+        <table>
+          <tr><td>予約番号</td><td class="ref">82890831</td></tr>
+          <tr><td>入場時間</td><td>14:00</td></tr>
+          <tr><td>料金</td><td>19.5€（購入済）</td></tr>
+          <tr><td>⚠️ 注意</td><td>予約時間開始後30分以内に<strong>ガウディの家を最初に見ること</strong>（時間制限あり）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🏗 建築コラム</div>
+      <h4>外尾悦郎——石に祈りを刻む日本人彫刻家</h4>
+      <p>1978年、一人の若い日本人彫刻家がバルセロナに降り立った。「3ヶ月のつもり」だった。外尾悦郎——彼はサグラダ・ファミリアの生誕のファサード「幼子イエス誕生の場面」の石像制作を依頼された。その後、40年以上がすぎた。外尾はまだバルセロナで石を刻んでいる。<br><br>「ガウディは神様の代理人として設計した。私は神様の代理人の代理として彫刻している」——外尾の言葉はガウディ哲学の本質を語る。彼はただ指示通りに石を削るのではなく、「ガウディが意図した表情とは何か」を問い続ける。2026年、サグラダ・ファミリアが完成を迎える年に、この旅はちょうど重なった。<em>（参考：外尾悦郎『ガウディの伝言』光文社知恵の森文庫）</em></p>
+    </div>
+<table style="width:100%;border-collapse:collapse;margin:20px 0;">
+  <tr>
+    <td style="width:50%;text-align:center;padding:12px;vertical-align:top;">
+      <a href="https://www.amazon.co.jp/s?k=ガウディの伝言+外尾悦郎&tag=hasegawahome-22" target="_blank" rel="noopener">
+        <img src="Vault/04_Resources/表紙画像/ガウディの伝言表紙.jpg" alt="ガウディの伝言" style="height:280px;width:auto;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+      </a>
+      <div style="font-size:14px;color:#555;font-family:sans-serif;margin-top:8px;">ガウディの伝言<br>（外尾悦郎 著）</div>
+    </td>
+    <td style="width:50%;text-align:center;padding:12px;vertical-align:top;">
+      <img src="https://subcdn.en-jine.com/rewards/images/52452/0aba0a907d6fa78a430f6fd02607238f.jpg" alt="外尾悦郎（彫刻家）" style="width:250px;height:250px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15);" loading="lazy">
+      <div style="font-size:13px;color:#888;margin-top:8px;font-family:sans-serif;">外尾悦郎（そとお えつろう）<br>サグラダ・ファミリアの石彫刻家</div>
+    </td>
+  </tr>
+</table>
+    <h4 class="sec" style="margin-top:24px;">グエル公園 見どころ詳細ガイド</h4>
+    <div class="box-research">
+      <h4>🌿 モニュメントゾーン 必見5スポット</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>スポット</th><th>見どころ</th></tr>
+        <tr><td>① 入口ゲートと守衛小屋</td><td>左右2棟の守衛小屋。キノコのような丸い屋根はトレンカディス（陶器の破片モザイク）で覆われる。鉄柵はガウディ自身のデザイン——植物の茎と葉をモチーフにした鉄細工</td></tr>
+        <tr><td>② トカゲの噴水（正面大階段）</td><td>大階段中央に鎮座するカラフルなトカゲ（ドラゴン）の彫刻。実は噴水のノズル——雨水を集めて地下貯水槽に送り、ドラゴンの口から放出する機能的仕掛け。弟子ジュジョールがデザイン担当</td></tr>
+        <tr><td>③ 列柱ホール（百柱の広場）</td><td>86本のドーリア式石柱が天井を支える（当初は市場として設計）。柱の内部が空洞で雨水の排水管としても機能。天井には4枚の円形トレンカディス装飾。真下が大きな貯水槽——建物全体が一つの雨水管理システム</td></tr>
+        <tr><td>④ 波打つベンチ（メインテラス）</td><td>全長110mの超長大ベンチ。ジュジョールによるトレンカディスデザイン。座面が人体の形に沿って傾斜（ガウディが人体工学的に設計）。テラスからバルセロナ市街と地中海を一望</td></tr>
+        <tr><td>⑤ ガウディの家（カサ・ムセウ・ガウディ）</td><td>1906〜1926年、ガウディが生涯最後の20年を過ごした自宅（設計は弟子ベレンゲル）。現在は博物館。ガウディが実際に使った家具・デッサン・個人の遺品を展示。ピンク色の外観が目印</td></tr>
+      </table>
+    </div>
+    <div class="box box-info">
+      <strong>入場のコツ</strong>：午前8〜9時台が最も空いている（今回は14:00予約）。モニュメントゾーン内では<strong>まずガウディの家に向かうこと</strong>（予約注記）。波打つベンチからの眺めは午前中が逆光なくベスト。
+    </div>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.arukikata.co.jp/wp-content/uploads/iStock-534846887_2025_0502_1450.jpeg" alt="グエル公園 — 波打つベンチとバルセロナの絶景テラス" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🌿 グエル公園（Park Güell）— 波打つベンチ（全長110m）からバルセロナ市街と地中海を一望。14:00入場予約済</figcaption>
+</figure>
+  </div>
+</div>
+
+<!-- EP08 -->
+<div class="ep-section" id="ep08">
+  <div class="ep-header">
+    <span class="ep-num">EP 08</span>
+    <h3>モンジュイックの丘とコロンブスの塔</h3>
+    <span class="ep-date">6月21日（日）午後 ・ 6月24日（水）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      e-bikeで街を駆け抜け（6/21午後）、要塞の丘から海を眺める（6/24）——バルセロナの「動」と「静」を一本のEPに収める。
+    </p>
+    <div class="ticket-box">
+      <div class="ticket-icon">🚲</div>
+      <div>
+        <div class="ticket-title">CyclingTourBarcelona — e-bikeツアー（6/21）</div>
+        <table>
+          <tr><td>集合</td><td>Plaça de George Orwell（L3 Liceuから徒歩7分）</td></tr>
+          <tr><td>時間</td><td>15:00〜19:30（4.5時間）</td></tr>
+          <tr><td>料金</td><td>69€（ガイド・写真・タパス・水含む）・8名まで</td></tr>
+          <tr><td>ルート</td><td>ゴシック地区 → 港 → 地中海海岸 → 五輪港 → 凱旋門 → サグラダF → カサ・バトリョ → グラシア通り</td></tr>
+        </table>
+      </div>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,height=655,dpr=1/tour_img/64bd48abea94a.jpeg" alt="CyclingTourBarcelona — e-bikeでバルセロナを疾走" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🚲 e-bikeツアー（CyclingTourBarcelona）— ゴシック地区→港→海岸→五輪港→サグラダF→カサ・バトリョ。15:00〜19:30</figcaption>
+</figure>
+
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2020/09/manac-001.jpg" alt="カタルーニャ美術館（MNAC）外観" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏛 カタルーニャ美術館（MNAC）— モンジュイックの丘の頂。ロマネスク美術の世界最高コレクション。エスパーニャ広場からエスカレーターで</figcaption>
+</figure>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2020/09/IMG_3768.jpg" alt="モンジュイックの丘からのバルセロナ全景" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🌄 モンジュイックの丘（Montjuïc）からの眺め — バルセロナ港、地中海、サグラダ・ファミリアのシルエットまで見渡す</figcaption>
+</figure>
+    <div class="box-research">
+      <h4>🏰 モンジュイックの丘（6/24）完全ガイド</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>スポット</th><th>内容</th><th>アクセス</th></tr>
+        <tr><td>カタルーニャ美術館（MNAC）</td><td>ロマネスク美術の世界最高コレクション。11〜12世紀の壁画が教会からそのまま移設されている。バルセロナカードで入場割引</td><td>エスパーニャ広場からエスカレーター</td></tr>
+        <tr><td>ミロ美術館</td><td>EP06でも訪問。モンジュイック側のアクセスで</td><td>フニクラ → 徒歩</td></tr>
+        <tr><td>モンジュイック城</td><td>18世紀建造の要塞。スペイン内戦・フランコ独裁時代の政治犯処刑場でもあった歴史の現場。城壁からバルセロナ港と地中海を一望</td><td>ケーブルカー or バス150</td></tr>
+        <tr><td>Mirador del Migdia</td><td>城から西へ徒歩10分の「隠れ展望台」。地中海に沈む夕日の名スポット。地元民のみ知る静かな場所</td><td>城から徒歩</td></tr>
+        <tr><td>港ケーブルカー（Teleféric）</td><td>海上を渡る空中ゴンドラ。Sant Sebastià塔 → Jaume I塔 → Miramar。海から見るバルセロナ</td><td>バルセロネータ海岸から</td></tr>
+        <tr><td>コロンブスの塔</td><td>1888年万博記念の高さ60m塔。Columbus号でアメリカから戻り、イサベル女王に謁見したコロンブスの像。塔頂部まで昇れる（バルセロナカードで割引）</td><td>ランブラス通り南端</td></tr>
+      </table>
+    </div>
+
+
+
+
+    <div class="column-box">
+      <div class="col-label">🏗 建築コラム</div>
+      <h4>ガウディの高さの哲学——「人間の作品は神の作品を超えられない」</h4>
+      <p>モンジュイックの丘（標高約173m）とサグラダ・ファミリアの高さの間には、ガウディの深い信仰に基づく絶対的なルールがある。</p>
+      <blockquote style="border-left:4px solid var(--gold);margin:12px 0;padding:10px 16px;background:#fdf8ed;font-style:italic;font-family:sans-serif;font-size:14px;line-height:1.9;color:#4a3b1f;">
+        "La obra humana no puede superar la Divina, por eso la Sagrada Família tendrá 170 metros de altura, 3 metros menos que la montaña de Montjuïc."<br>
+        <span style="font-size:12px;color:#888;">（日本語訳）「人間の作品が神の作品（神聖なるもの）を超えることはできない。だからこそ、サグラダ・ファミリアは高さ170メートルとなり、モンジュイックの山より3メートル低くなるのだ。」</span>
+      </blockquote>
+      <p>ガウディはすべては偉大な自然の書物から生まれると信じていた（"Todo sale del gran libro de la naturaleza"）。彼にとって建築とは、自然＝神の創造物の法則を発見し、それを模倣・賛美する行為だった。バルセロナを見下ろすモンジュイックの丘は「神の領域の象徴」であり、人間が建てる塔がその高さを超えることは創造主への傲慢（ヒュブリス）にあたる——そう確信していた。<br><br>
+      2026年2月20日、ガウディの死から100年目の節目に、サグラダ・ファミリアの中で最も高い「イエス・キリストの塔」の最上部に巨大な十字架が設置され、計画通りの172.5メートルに到達した。モンジュイックの丘（約173〜177m）を超えないというガウディの遺志は、1世紀以上の時を超えて今も厳格に守られている。<br><br>
+      ちなみにモンジュイックの丘頂上には、今も<strong>モンジュイック城</strong>がドカッと鎮座している。カタルーニャ大統領コンパニュスが処刑された要塞の城壁に立つと、遠くにサグラダ・ファミリアのシルエットが見える。「あそこに見える塔の頂上は、今自分が立っているこの足元よりわずかに低いのだ」——ガウディの美学を身体で感じられる場所だ。</p>
+    </div>
+
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">ランブラス通りの南端に立つコロンブスの塔（高さ60m）。頂上の像は右手で「前方の海」を指差している。しかしその方向は「新大陸（西）」でも「故郷ジェノヴァ（北東）」でもなく、ほぼ南南東——マヨルカ島かアルジェリア方面だ。なぜか？</p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">1888年のバルセロナ万博のために建てられたこの像は、ランブラス通りから港へ向かう人々に「海への探求」を象徴するドラマチックな構図を優先した。歴史的厳密性より、都市景観上の象徴性が選ばれた。</p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">また、コロンブスは実際には陸路でバルセロナに到着したのに、なぜか港の先端に立っている——彫刻とは、事実ではなく物語を語るものなのだろう。</p>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2014/12/IMG_0037-768x1024.jpg" alt="コロンブスの塔（Monument a Colom）— ランブラス通り南端" style="max-height:460px;width:auto;max-width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);display:block;margin:0 auto;" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🗼 コロンブスの塔（Monument a Colom）— 高さ60m。1888年バルセロナ万博のために建設。頂上の像は南南東を指す</figcaption>
+</figure>
+
+    <div class="column-box">
+      <div class="col-label">🏛 歴史コラム</div>
+      <h4>1493年バルセロナ謁見 — コロンブスが新大陸を報告した場所</h4>
+      <p>1493年4月下旬、クリストファー・コロンブスはバルセロナに入城した。新大陸から持ち帰ったオウム・先住民・黄金の装飾品を携えた凱旋パレードだった。謁見の場所はゴシック地区の「王の広場（Plaça del Rei）」——カタルーニャ・ゴシック建築の傑作「ティネルの間（Saló del Tinell）」で、カトリック両王イサベル1世とフェルナンド2世に報告を行った。謁見後、王室礼拝堂でテ・デウム（Te Deum Laudamus）を斉唱し、両王とコロンブスは涙を流したと伝えられる。<br><br>
+      ところで、なぜバルセロナだったのか？この時期、カトリック両王はフランス王シャルル8世との「バルセロナ条約」締結のためにたまたまバルセロナに滞在していた。宮廷は固定された首都を持たない「移動宮廷」だったのだ。「マドリードで謁見」は歴史的誤解——マドリードはこの時代まだ王国の正式首都ではなかった。</p>
+    </div>
+
+
+
+    <div class="column-box">
+      <div class="col-label">🏛 歴史コラム</div>
+      <h4>1992年バルセロナ五輪——廃工場地帯が蘇った日</h4>
+      <p>1992年の夏季五輪はバルセロナを根本から変えた。海岸沿いの工場廃墟地帯が選手村・ポルト・オリンピック（五輪港）に変貌し、市民が泳げる海岸が初めて誕生した。モンジュイックのオリンピックスタジアム（1936年人民五輪用に建造→1992年改修）は今も使われている。フランコ政権後のカタルーニャ復権と民主化の象徴として、バルセロナ市民にとって1992年は特別な年だった。</p>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- EP09 -->
+<div class="ep-section" id="ep09">
+  <div class="ep-header">
+    <span class="ep-num">EP 09</span>
+    <h3>ピレネー山脈・ヌリア渓谷</h3>
+    <span class="ep-date">6月23日（火）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      バルセロナから北へ2時間、ピレネー山脈の懐へ。ヌリア渓谷（Vall de Núria）はフランスとの国境近くに広がるカタルーニャ最後の秘境。アクセスはラック式登山鉄道のみ。標高1,967mのエメラルドの牧草地と湖が待つ。
+    </p>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">
+      ツアーは朝バルセロナを出発し、まず中世の市場都市<strong>ヴィック（Vic）</strong>へ。ローマ時代の基盤の上に中世が重なるこの街の「プラサ・マジョール（Plaça Major）」は、木曜と土曜の朝市で賑わうカタルーニャ随一の広場だ。その後、標高1,236mの石造りの村<strong>クエラルブス（Queralbs）</strong>からラック式登山鉄道（クレマジェラ）に乗り込み、終点のヌリア聖域（1,967m）へ——景色が劇的に変わる約15分の垂直旅だ。
+    </p>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://dynamic-media.tacdn.com/media/photo-o/2e/c9/8b/ab/caption.jpg?w=700&h=500&s=1" alt="ピレネー山脈・ヌリア渓谷" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">⛰ ピレネー山脈 — バルセロナから北へ約2時間。ヌリア渓谷（1,967m）はラック式登山鉄道のみアクセス可能なカタルーニャ最後の秘境</figcaption>
+</figure>
+    <div class="ticket-box">
+      <div class="ticket-icon">🏔</div>
+      <div>
+        <div class="ticket-title">バルセロナ発 ピレネー＆中世の町 小グループツアー（Viator）</div>
+        <table>
+          <tr><td>料金</td><td class="ref">119€（¥21,112）予約済</td></tr>
+          <tr><td>集合</td><td>8:15 カタルーニャ音楽堂隣のメインオフィス</td></tr>
+          <tr><td>帰着</td><td>約19:00 カタルーニャ広場</td></tr>
+          <tr><td>ルート</td><td>バルセロナ発 → モントセニー → ヴィック（中世の町）→ Queralbs → ヌリア渓谷（ラック鉄道）</td></tr>
+        </table>
+      </div>
+    </div>
+    <h4 class="sec">ヌリア渓谷 詳細</h4>
+    <div class="box-research">
+      <h4>🥾 渓谷での過ごし方</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>アクティビティ</th><th>内容</th></tr>
+        <tr><td>ラック式登山鉄道</td><td>Queralbs（標高1,220m）→ Núria（1,967m）。急勾配のラック式レール。車窓から谷と滝を望む約15分の乗車</td></tr>
+        <tr><td>渓谷ハイキング</td><td>フィットネスに応じた複数コース。Queralbsからの徒歩（片道1.5〜2時間）も可能</td></tr>
+        <tr><td>ヌリア聖地（Santuari de Núria）</td><td>標高1,967mの聖域。カタルーニャの守護聖人ヌリア聖母が祀られる山岳巡礼地</td></tr>
+        <tr><td>湖畔散策</td><td>牧草地・山岳湖でのんびりランチ。ヌリア渓谷の牛からとれるチーズ・バターが名物</td></tr>
+      </table>
+    </div>
+    <div class="column-box">
+      <div class="col-label">🏛 歴史コラム</div>
+      <h4>ヌリア憲章 — 1931年、カタルーニャの自治がこの渓谷で生まれた</h4>
+      <p>ヌリア渓谷は単なる秘境ではない。カタルーニャ政治史上最も重要な文書のひとつが生まれた場所だ。1931年8月、カタルーニャ自治のための<strong>ヌリア憲章（Estatut de Núria）</strong>の草案がこの聖域で作成された。</p>
+      <p style="margin-top:10px;">ちょうど第二スペイン共和国が成立したばかりのこの時期、カタルーニャの政治家たちは山上の聖域に集まり、自治権回復のための基本法を起草した。高山の清浄な空気の中で書かれたこの憲章は、同年12月のスペイン議会で承認され、カタルーニャは1932年に自治憲章を獲得する——フランコ独裁が始まる1939年まで、わずか7年間の束の間の自由だった。</p>
+      <p style="margin-top:10px;">そして1939年、フランコの勝利によってヌリア憲章は廃止された。約40年後、フランコの死（1975年）と民主化を経て、1979年にカタルーニャは新たな自治憲章を取り戻す。ヌリアの聖域に立つとき、足元には政治の歴史も埋まっている。</p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">⛪ 信仰コラム</div>
+      <h4>聖ギルスの伝説 — 鍋と鐘と十字架</h4>
+      <p>なぜ、鉄道でしかたどり着けない標高2,000mの谷に、大きな聖域があるのか。その答えは1,300年前の伝説にある。</p>
+      <p style="margin-top:10px;">紀元700年頃、プロヴァンス出身の隠者<strong>聖ギルス（Sant Gil）</strong>がこの谷に定住した。彼は岩壁に聖母像を彫り、鐘を鳴らして周囲の羊飼いたちを集め、自ら作った鍋で食事を振る舞いながらキリスト教を説いた。しかしイスラム勢力の侵攻が迫ると、ギルスは<strong>聖母像・鍋・鐘・十字架</strong>の4つを岩の中に隠して姿を消した。</p>
+      <p style="margin-top:10px;">数世紀後の1072年、巡礼者アマデウスが夢のお告げを受けてこの地を訪れた。赤い毛の牛が石壁を蹴ったまさにその場所から、隠されていた聖遺物が発見されたとされる。以来、ヌリアは「不妊の女性が聖ギルスの鍋に頭を入れ、パートナーが鐘の紐を引く」という独特の豊穣祈願の聖地として名を馳せるようになった。</p>
+      <p style="margin-top:10px;">今も聖域の至る所に「鍋・鐘・十字架」のシンボルが刻まれている。標高2,000mの秘境が1,300年にわたり人々を引き寄せてきた理由は、山の美しさだけではない。</p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🦅 自然コラム</div>
+      <h4>ピレネーの野生 — カモシカ・マーモット・ヒゲワシ</h4>
+      <p>ヌリア渓谷周辺は、ヨーロッパでも有数の高山生態系が残るエリアだ。ツアーの移動中や渓谷のハイキングで出会える可能性がある生き物たちを知っておくと、景色の見え方が変わる。</p>
+      <p style="margin-top:10px;"><strong>ピレネー・カモシカ（Isard）</strong>——急峻な岩場を自在に駆け抜ける高山の主。蹄の外側が硬く内側が柔らかいため、滑りやすい岩でも抜群のグリップ力を発揮する。岩の尾根に小さなシルエットを見つけたら、それがイサードだ。</p>
+      <p style="margin-top:10px;"><strong>マーモット（Marmota）</strong>——岩場の陰に暮らし、外敵を察知すると鋭い口笛のような警戒音を上げる。6月は冬眠から覚めたばかりで活動が活発。ヌリア渓谷の草地で遭遇する可能性が高い。</p>
+      <p style="margin-top:10px;"><strong>ヒゲワシ（Lammergeier / Quebrantahuesos）</strong>——翼幅が最大3mに達する巨大な猛禽類。骨を食べるという特異な生態を持ち、高い岩の上から骨を落として砕く行動が知られる。ピレネーはこの鳥の世界的な保護拠点。上空に大きな影が落ちたら見上げてみること。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- EP10 -->
+<div class="ep-section" id="ep10">
+  <div class="ep-header">
+    <span class="ep-num">EP 10</span>
+    <h3>カタルーニャ：音楽とPalau de la Música</h3>
+    <span class="ep-date">6月22日（月）夜 ／ 6月25日（木）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      ユネスコ世界遺産の音楽堂で夜の公演を体験。光と音楽が交差するモダルニズマの傑作空間で、バルセロナ滞在の集大成を締めくくる。
+    </p>
+    <div class="ticket-box">
+      <div class="ticket-icon">🎵</div>
+      <div>
+        <div class="ticket-title">Palau de la Música Catalana — Mare Mundi</div>
+        <table>
+          <tr><td>日時</td><td class="ref">6月22日（月）19:00開演（18:15到着推奨）</td></tr>
+          <tr><td>演目</td><td><strong>Mare Mundi</strong> — 地中海の海と空をテーマにした特別プログラム（三部作第一弾）</td></tr>
+          <tr><td>出演</td><td>カタルーニャ・コブラ＆弦楽交響楽団（SCCC）／ポリフォニカ・ダ・プッチ＝レッチ（合唱）／ハバネラグループ「アルジャウ」</td></tr>
+          <tr><td>楽曲ハイライト</td><td>ハバネラ <em>La gavina</em>・<em>Surfin' USA</em>・<em>My Heart Will Go On</em>・<em>Viatge a Ítaca</em>（カタルーニャ現代詩）／フィナーレ：<em>Mar i Cel</em>（海と空）</td></tr>
+          <tr><td>ドレスコード</td><td><strong>スマート・カジュアル</strong>（襟付きシャツ＋チノパン、ワンピース等）。冷房対策に薄手の羽織り推奨</td></tr>
+          <tr><td>予約</td><td>予約済</td></tr>
+          <tr><td>住所</td><td>C/ del Palau de la Música, 4-6（旧市街・ウルキナオナ駅徒歩数分）</td></tr>
+          <tr><td>備考</td><td>6/22はサン・ジョアン祭前夜。終演後、旧市街で爆竹・花火が始まる。大きなバッグはクローク必須</td></tr>
+        </table>
+      </div>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.imagenradio.com.mx/410x265/filters:format(webp):quality(75)/media/files/imagen_radio/dsc00835_2.jpg" alt="カタルーニャ音楽堂 コンサートホール内部" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🎵 カタルーニャ音楽堂（Palau de la Música Catalana）— ステンドグラスの天井と彫刻が埋め尽くすモダルニズマの傑作。自然光で演奏が可能な欧州唯一のコンサートホール</figcaption>
+</figure>
+
+    <div class="box-research">
+      <h4>🏛 カタルーニャ音楽堂 建築の奇跡</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td>設計者</td><td>リュイス・ドメネク・イ・ムンタネール（ガウディと並ぶモダルニズマの巨匠）</td></tr>
+        <tr><td>建設</td><td>1905〜1908年。鉄骨構造＋ガラスのカーテンウォール</td></tr>
+        <tr><td>世界遺産</td><td>1997年登録。欧州唯一「日中の公演を完全に自然光でまかなえる」ホール</td></tr>
+        <tr><td>ステンドグラス天井</td><td>中央が太陽（黄金）、周辺が空（青）。季節・時間帯で場内の色彩が変化</td></tr>
+        <tr><td>6/22の体験</td><td>夏至直後の19:00開演。前半は残光の自然光→後半に人工光へのグラデーションを体験</td></tr>
+      </table>
+      <p style="font-size:14px;font-family:sans-serif;margin-top:8px;line-height:1.9;">
+        舞台左側：カタルーニャ合唱運動の創始者アンセルム・クラーベの胸像＋「5月の花」を歌う少女たちの彫刻。舞台右側：ベートーヴェンの胸像＋「ワルキューレの騎行」の彫刻——「カタルーニャ郷土音楽」と「ヨーロッパ古典音楽」の融合という政治的メッセージが空間に刻まれている。
+      </p>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://kamimura.com/wp-content/uploads/2015/11/escenario1-620x412.jpg" alt="カタルーニャ音楽堂 舞台" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🎵 カタルーニャ音楽堂（Palau de la Música Catalana）— 舞台を彩る彫刻と色彩の饗宴</figcaption>
+</figure>
+
+    <h4 style="font-size:19px;font-family:sans-serif;font-weight:bold;margin:24px 0 10px;color:#333;">パブロ・カザルス：平和の調べ</h4>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">パブロ・カザルスは1876年、バルセロナ近郊のエル・ベンドレリュ生まれのチェリスト。20世紀最高の弦楽器奏者と称された。1939年、フランコ政権の樹立に抗議して故国スペインを去り、フランスの小村プラード・ド・コンフランに自ら幽閉した。「フランコが生きている限り、スペインには戻らない」——その言葉通り、カザルスは38年間、故郷の土を踏まなかった。1971年10月24日、94歳のカザルスはニューヨークの国連本部の壇上でチェロを演奏した。国連平和賞の授賞式だった。演奏前、彼は立ち上がり英語で聴衆に語りかけた。</p>
+    <blockquote style="border-left:4px solid var(--gold);margin:12px 0;padding:10px 16px;background:#fdf8ed;font-style:italic;font-family:sans-serif;font-size:15px;line-height:1.9;color:#4a3b1f;">「これからカタルーニャの民間伝承の短い作品を演奏します。曲の題名は『鳥の歌』です——鳥たちは空を飛びながら、ピース（平和）、ピース、ピースと歌うのです。それは大変美しく、私の祖国カタルーニャの魂でもあるのです」。感激のあまり声は途切れがちで、それゆえに聴く人々の心をより深く打った。</blockquote>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">そして1992年夏、バルセロナ。世界が注目する中、オリンピックの閉会式の聖火が消える直前、スタジアムに物悲しく荘重なソプラノの歌声が響いた。歌うのは地元バルセロナ生まれのソプラノ歌手ビクトリア・デ・ロス・アンヘレス——歌はカタルーニャ民謡の「鳥の歌」だ。カザルスが亡命先で弾き続け、国連の壇上で語りかけたその曲が、故郷バルセロナの空に高らかに響いた。カザルスの死から19年後のことだった。<br>
+      <a href="https://youtu.be/dE4Me1Xs_Zg?si=dCQCiLPaAOUxj_sz&t=4308" target="_blank" rel="noopener" style="font-size:13px;color:var(--blue);">▶ Barcelona 1992 — Closing Ceremony（Olympic公式 YouTube）</a></p>
+<table style="width:100%;border-collapse:collapse;margin:20px 0;">
+  <tr>
+    <td style="width:50%;text-align:center;padding:12px;vertical-align:top;">
+      <img src="Vault/04_Resources/表紙画像/カザルス_チェロ協奏曲 & 鳥の歌_CDカバー.jpg" alt="パブロ・カザルス チェロ協奏曲" style="height:280px;width:auto;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+      <div style="font-size:14px;color:#555;font-family:sans-serif;margin-top:8px;">パブロ・カザルス<br>チェロ協奏曲 &amp; 鳥の歌</div>
+    </td>
+    <td style="width:50%;text-align:center;padding:12px;vertical-align:top;">
+      <img src="https://cdn.amebaowndme.com/madrid-prd/madrid-web/images/sites/512336/28f375951313a8290e0cc85a14cda197_0bfe0b51667f8cc66f09978c684b426c.jpg" alt="パブロ・カザルス" style="width:250px;height:250px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15);" loading="lazy">
+      <div style="font-size:13px;color:#888;margin-top:8px;font-family:sans-serif;">パブロ・カザルス（1876–1973）<br>20世紀最高のチェリスト</div>
+    </td>
+  </tr>
+</table>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">1987年、クイーンのフレディ・マーキュリーはバルセロナ出身のソプラノ歌手モンセラート・カヴァリエに声をかけた。「あなたのために曲を書いた。一緒にレコーディングしてほしい」。デュエット曲「Barcelona」——クラシックとロックが交差するこの曲は、1992年バルセロナ五輪の非公式テーマ曲となった。しかしフレディは開会式の前年1991年11月に死去。五輪開会式では録音されたフレディの声がオリンピック・スタジアムに響き渡り、カヴァリエは泣きながら歌い続けた。バルセロナという街は、その瞬間に「音楽の都」として世界に刻まれた。</p>
+<div style="text-align:center;margin:20px 0;">
+  <div class="book-img-card" style="display:inline-block;">
+    <img src="Vault/04_Resources/表紙画像/BARCELONAフレディ・マーキュリー_CDカバー.jpg" alt="BARCELONA - Freddie Mercury &amp; Montserrat Caballé" style="width:200px;max-width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+    <div class="book-caption">BARCELONA<br>Freddie Mercury &amp; Montserrat Caballé (1992)</div>
+  </div>
+</div>
+
+    
+<h4 class="sec">6月25日（木）— バルセロナ最終日</h4>
+    <ul class="timeline">
+      <li><span class="time">午前</span>エスパーニャ広場「ラス・アレナス（旧闘牛場のショッピングセンター）」周辺でお土産購入</li>
+      <li><span class="time">11:00</span>チェックアウト（荷物預け）・最後の街歩き</li>
+      <li><span class="time">13:00</span>空港へ移動（地下鉄L9 or タクシー）</li>
+      <li><span class="time">15:05</span><strong>BA479 BCN発 → LHR 16:30着</strong>（予約番号 YVU26N）</li>
+    </ul>
+
+
+  </div>
+</div>
+
+<!-- ======== PART 3: CORTINA ======== -->
+<div class="part-header" id="cortina">
+  <div class="part-num">Part 3</div>
+  <h2>コルチナ・ダンペッツォ編 — EP11〜EP17</h2>
+  <div class="tagline">ドロミテの真珠へ。2億5千万年の地球の歴史が、目の前に立ち上がる。6月29日〜7月4日（5泊6日）</div>
+</div>
+
+<div style="padding:20px 40px;">
+  <p style="font-size:17px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:0;">
+    イタリアのドロミテ地方は、2009年にUNESCO世界自然遺産に登録された。約2億5000万年前の熱帯の海に形成されたサンゴ礁が、大陸の衝突による造山運動で隆起し、垂直に切り立つ白い岩峰群となった。その中心に位置するコルチナ・ダンペッツォは標高1,224mの山岳リゾートで、ヴェネト州に属するイタリア最北端の景勝地のひとつ。1956年冬季オリンピックの開催地として世界に知られ、2026年冬季五輪（ミラノ・コルティナ）ではふたたびその名を世界に刻んだ。
+  </p>
+</div>
+<figure style="margin:0 auto;text-align:center;max-width:900px;">
+  <img src="https://crea.ismcdn.jp/mwimgs/8/a/767wm/img_8ac0f4e8e265f198dd87a7d3846b5013310795.jpg" alt="コルチナ・ダンペッツォ全景" style="max-width:100%;width:100%;border-radius:0;box-shadow:none;" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;padding:0 40px;">コルチナ・ダンペッツォ全景 — ドロミテの真珠。1956年・2026年冬季五輪の地</figcaption>
+</figure>
+
+
+<div style="padding:20px 40px;">
+  <h4 class="sec">📓 ドロミテとコルチナ・ダンペッツォ概要</h4>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:20px;margin:16px 0 4px;padding:0 40px;">
+  <div style="width:75%;max-width:720px;">
+    <img src="Vault/04_Resources/画像素材/コルチナ/コルチナ概要1.jpeg" alt="コルチナ・ダンペッツォ 1" style="width:100%;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" loading="lazy">
+  </div>
+  <div style="width:75%;max-width:720px;">
+    <img src="Vault/04_Resources/画像素材/コルチナ/コルチナ概要2.jpeg" alt="コルチナ・ダンペッツォ 2" style="width:100%;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" loading="lazy">
+  </div>
+  <div style="width:75%;max-width:720px;">
+    <img src="Vault/04_Resources/画像素材/コルチナ/コルチナ概要3.jpeg" alt="コルチナ・ダンペッツォ 3" style="width:100%;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" loading="lazy">
+  </div>
+  <div style="width:75%;max-width:720px;">
+    <img src="Vault/04_Resources/画像素材/コルチナ/コルチナ概要4.jpeg" alt="コルチナ・ダンペッツォ 4" style="width:100%;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" loading="lazy">
+  </div>
+  <div style="width:75%;max-width:720px;">
+    <img src="Vault/04_Resources/画像素材/コルチナ/コルチナ概要5.jpeg" alt="コルチナ・ダンペッツォ 5" style="width:100%;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" loading="lazy">
+  </div>
+  <div style="width:75%;max-width:720px;">
+    <img src="Vault/04_Resources/画像素材/コルチナ/コルチナ概要6.jpeg" alt="コルチナ・ダンペッツォ 6" style="width:100%;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);" loading="lazy">
+  </div>
+</div>
+<div style="padding:30px 40px;max-width:960px;border-bottom:1px solid var(--border)">
+  <table class="data-table">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>標高</td><td>市街 1,224m。山頂（トファーナ）3,244m</td></tr>
+    <tr><td>7月の気候</td><td>日中は暖かいが朝夕冷える。紫外線SPF50以上必須。<strong>午後は雷雨多発→13〜14時までに山頂行動完了</strong></td></tr>
+    <tr><td>山小屋の現金</td><td>リフジオ（山小屋）はカード不可の場合多い。<strong>常に50〜100€の現金携行</strong></td></tr>
+    <tr><td>昼休憩</td><td>多くの店は12:30〜15:30 Riposoで閉鎖。ショッピングは午前または16時以降</td></tr>
+    <tr><td>環境マナー</td><td>レゴーレ・ダンペッツォ（中世からの共同体所有制）で厳格管理。ゴミ持帰り・トレイル外歩行厳禁</td></tr>
+    <tr><td>水</td><td>街の水飲み場（Fontana）の水は飲用可。再利用ボトル持参推奨</td></tr>
+  </table>
+</div>
+
+<!-- EP11 -->
+<div class="ep-section" id="ep11">
+  <div class="ep-header">
+    <span class="ep-num">EP 11</span>
+    <h3>コルチナ・ダンペッツォ</h3>
+    <span class="ep-date">6月29日（月）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      ロンドンを早朝に出発、ベネチア・マルコポーロ空港へ。コルチナエクスプレスで山道を2時間——水の都から岩峰の街へ、景色が劇的に変わる移動自体がコンテンツになる。
+    </p>
+
+    <h4 class="sec">コルチナ・ダンペッツォの歴史</h4>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">
+      コルチナ・ダンペッツォは中世に神聖ローマ帝国の管轄下に置かれ、15世紀にヴェネツィア共和国が征服、16世紀から第一次世界大戦後の1920年まではオーストリア・ハプスブルク家が統治した。大国の狭間で翻弄されながらも、垂直に切り立つ岩峰と深い谷が「天然の要塞」として機能し、独自の文化とラディン語を守り続けた。1920年にイタリアへ帰属し現在に至る。街を歩けば、イタリア語・ドイツ語・ラディン語が交差する案内標識が、その複雑な歴史を静かに物語る。
+    </p>
+
+    <h4 class="sec">1956年 → 2026年：オリンピック・レガシー</h4>
+    <p style="font-size:16px;font-family:sans-serif;line-height:1.9;color:#444;margin-bottom:14px;">
+      1956年、コルチナはイタリア初の冬季オリンピックを開催。オーストリアのトニー・ザイラーが回転・大回転・滑降の三冠、日本の猪谷千春が銀メダル（冬季五輪日本初のメダル）を獲得した歴史的な大会となった。現在もスケートリンクや1956年当時のジャンプ台が街に残る。2026年、ミラノとの共同開催で70年ぶり2度目の冬季五輪を迎える——訪れる2026年7月は五輪直前の活気に満ちている。
+    </p>
+
+    <div class="box-research">
+      <h4>🪨 地質：熱帯の海から隆起した「輝く岩」</h4>
+      <p style="font-size:15px;font-family:sans-serif;line-height:1.9;margin-top:8px;">
+        約2億5000万年前（中生代三畳紀）、この地は熱帯の浅い海だった。サンゴ・海綿の巨大な環礁が繁栄し、アフリカとヨーロッパ大陸の衝突（アルプス造山運動）で隆起——現在の3000m級の山々が誕生した。トレイルを歩くと岩肌に魚・海洋生物の化石が発見できる。
+      </p>
+      <p style="font-size:15px;font-family:sans-serif;line-height:1.9;">
+        18世紀のフランス地質学者デオダ・ドゥ・ドロミュー（Déodat de Dolomieu）がカルシウム＋マグネシウムの特殊岩石を発見し「ドロマイト（苦灰岩）」と命名——地名の語源となった。朝日・夕陽を浴びると岩肌がピンク〜黄金〜サンゴ色に輝く現象を「<strong>エンロサディラ（Enrosadira）</strong>」と呼ぶ。2009年ユネスコ世界自然遺産登録。
+      </p>
+    </div>
+    <div class="box-research" style="margin-top:16px">
+      <h4>⚔️ 歴史：ドロミテの「白い戦争」——第一次世界大戦イタリア戦線</h4>
+      <p style="font-size:15px;font-family:sans-serif;line-height:1.9;margin-top:8px;">
+        1915〜1917年、ドロミテはイタリア軍とオーストリア＝ハンガリー帝国軍が血みどろの山岳戦を繰り広げた最前線。岩をくり抜いたトンネル・錆びた鉄梯子・ワイヤーロープが今も残る。マイナス40度の冬、雪崩・凍結による犠牲者が戦闘死より多かったとされる近代史の傷跡——チンクエ・トッリで最も色濃く体感できる。
+      </p>
+    </div>
+    <div class="box-research" style="margin-top:16px">
+      <h4>🗣 言語：ラディン語——天然の要塞が守り抜いた希少言語</h4>
+      <p style="font-size:15px;font-family:sans-serif;line-height:1.9;margin-top:8px;">
+        コルチナの案内標識にはイタリア語・ドイツ語に加えて「ラディン語（Ladin）」が併記される。古代ローマ軍の俗ラテン語＋先住民レティ人の言葉が融合した、約3万人が使うロマンス語派の少数言語（ユネスコ「消滅危機言語」）。「垂直に切り立つ岩峰と深い谷」という厳しい地形が他地域との接触を物理的に遮断する「天然の要塞」として機能し生き残った。<br>
+        <strong>挨拶：Bun dé（ブン・デ）= こんにちは</strong>
+      </p>
+    </div>
+
+    <h4 class="sec">行程タイムライン</h4>
+    <ul class="timeline">
+      <li><span class="time">7時前</span>絵理宅出発。Heathrow Expressでパディントン → LHR</li>
+      <li><span class="time">10:10</span><strong>BA598 LHR発 → VCE 13:25着</strong>（予約番号 YVY9MC）</li>
+      <li><span class="time">14:20</span><strong>コルチナエクスプレス</strong> ベネチア空港発 → コルチナ（所要2時間10分・事前予約済）</li>
+      <li><span class="time">16:30</span><strong>コルチナ・ダンペッツォ着</strong></li>
+      <li><span class="time">16:45</span><strong>Hotel Aquila チェックイン</strong>（Piazza Pittori Fratelli Ghedina, 1）</li>
+      <li><span class="time">17:30</span>ツーリスト・インフォ（Piazza Roma）でガイドツアー予約確認・地図入手</li>
+      <li><span class="time">夜</span>Dolom'eats all'Aquila（ホテル内）でカスンツィエイ初体験</li>
+    </ul>
+    <div class="ticket-box">
+      <div class="ticket-icon">🏨</div>
+      <div>
+        <div class="ticket-title">Hotel Aquila（コルチナ）— 6泊のベースキャンプ</div>
+        <table>
+          <tr><td>住所</td><td>Piazza Pittori Fratelli Ghedina, 1, 32043 Cortina d'Ampezzo</td></tr>
+          <tr><td>チェックイン</td><td>6/29（月）</td></tr>
+          <tr><td>チェックアウト</td><td>7/4（土）</td></tr>
+          <tr><td>URL</td><td>http://www.aquilacortina.com/</td></tr>
+          <tr><td>特徴</td><td>コルソ・イタリア（メインストリート）まで徒歩5分。コルチナ中心の好立地</td></tr>
+        </table>
+      </div>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.dolomiten-suedtirol.com/img/db/b/20170921161057.jpg" alt="Hotel Aquila — コルチナ・ダンペッツォのベースキャンプ" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏨 Hotel Aquila（コルチナ・ダンペッツォ）— Piazza Pittori広場に面した老舗ホテル。6泊のベースキャンプ</figcaption>
+</figure>
+
+    <div class="ticket-box">
+      <div class="ticket-icon">🚌</div>
+      <div>
+        <div class="ticket-title">コルチナエクスプレス（空港直通バス）</div>
+        <table>
+          <tr><td>往路</td><td class="ref">6/29 VCE 14:20発 → コルチナ 16:30着</td></tr>
+          <tr><td>復路</td><td class="ref">7/4 コルチナ 11:30発 → VCE 13:45着</td></tr>
+          <tr><td>予約</td><td>手配済（予約票 CortinaExpress PDF）</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EP12 -->
+<div class="ep-section" id="ep12">
+  <div class="ep-header">
+    <span class="ep-num">EP 12</span>
+    <h3>ファローリア、トファーナ</h3>
+    <span class="ep-date">6月30日（火）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      コルチナ到着翌日、まずロープウェイで一気に標高2,123mへ。ファローリア山頂から眺めるドロミテのパノラマで、今後6日間の舞台を一望する。午後はSnowServiceでe-bikeをテスト、翌日の本番に備える。
+    </p>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="Vault/04_Resources/画像素材/コルチナ/EP12ファローリア.jpeg" alt="ファローリア展望台からの眺め" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🚡 ファローリア（2,123m）からのパノラマ — コルチナ盆地とドロミテの岩峰群を一望</figcaption>
+</figure>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="Vault/04_Resources/画像素材/コルチナ/EP12トファーナ.jpeg" alt="トファーナ ロープウェイからの眺め" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏔 トファーナ（3,244m）— 「天の矢」フレッチャ・ネル・チェーロで到達するドロミテ最高峰</figcaption>
+</figure>
+
+    <h4 class="sec">行程タイムライン</h4>
+    <ul class="timeline">
+      <li><span class="time">午前</span><strong>ファローリアケーブルカー（Funivia Faloria）</strong> → Rifugio Faloria（山小屋）。コルチナ盆地とTofana側の大パノラマ</li>
+      <li><span class="time">午後</span><strong>トファーナロープウェイ（Freccia nel Cielo）</strong> Col Drusciè → Ra Valles → Cima Tofana（3,244m）。3段階の乗継で最高地点へ</li>
+      <li><span class="time">夕方</span><strong>Snow Service</strong>（Via Marconi 12/C）でe-bikeレンタル下見・翌日予約確認</li>
+    </ul>
+    <div class="box-research">
+      <h4>🚡 ロープウェイ情報</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>施設</th><th>到達点</th><th>特徴</th></tr>
+        <tr><td>ファローリアケーブルカー</td><td>2,123m</td><td>コルチナ入門展望台。Rifugio Faloria（テラスランチ）あり。コルチナ全景と反対側の岩峰群</td></tr>
+        <tr><td>トファーナ・フレッチャ・ネル・チェーロ</td><td>3,244m</td><td>「天の矢」の愛称。3段階乗継。最高地点から360度のドロミテ大展望。7月は晴れた日でも上層に雲が発生しやすい</td></tr>
+      </table>
+    </div>
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://cdn.ildolomiti.it/s3fs-public/styles/articolo/public/articoli/2023/08/faloria.jpg" alt="ファローリアケーブルカー（Funivia Faloria）— コルチナ・ダンペッツォ" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🚡 ファローリアケーブルカー（Funivia Faloria）— 標高2,123mのファローリア山頂へ。コルチナ盆地とドロミテの大パノラマ</figcaption>
+</figure>
+    <div class="box box-warn">
+      Cortina Vertical Pass（52€/日）でファローリア＋トファーナ両方に乗れる。1日で両方利用するなら購入を検討。
+    </div>
+  </div>
+</div>
+
+<!-- EP13 -->
+<div class="ep-section" id="ep13">
+  <div class="ep-header">
+    <span class="ep-num">EP 13</span>
+    <h3>ミズリーナ湖、サイクリング</h3>
+    <span class="ep-date">7月3日（金）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      SnowServiceでe-Bikeを借り、コルチナを出発。トレ・クローチェ峠（1,805m）を越えてミズリーナ湖へ。帰路は旧ドロミテ鉄道の廃線跡（自転車専用道）——トンネル・鉄橋・針葉樹林を抜けてコルチナへ戻る。走行・景色・湖の静寂をすべて一本に収める。
+    </p>
+<div class="infographic-block" style="text-align:center;margin:20px 0;">
+  <img src="Vault/04_Resources/画像素材/Web取得/DolomiteCyclingMap.jpg" alt="ドロミテ サイクリングマップ E1" style="max-width:860px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
+  <p class="infographic-caption">🚲 Lunga via delle Dolomiti — E1ルートマップ。コルチナ・ダンペッツォ → トレ・クローチェ峠 → ミズリーナ湖 → チマバンチェ → 旧線路跡でコルチナへ</p>
+</div>
+    <div class="ticket-box">
+      <div class="ticket-icon">🚲</div>
+      <div>
+        <div class="ticket-title">Snow Service — e-Bikeレンタル</div>
+        <table>
+          <tr><td>住所</td><td>Via Guglielmo Marconi, 12/C（バス停・スキーパスオフィス向かい）</td></tr>
+          <tr><td>開店</td><td>08:30（7月は通し営業）</td></tr>
+          <tr><td>電話</td><td class="ref">+39 0436 862467</td></tr>
+          <tr><td>料金目安</td><td>30€〜（ハイエンドe-MTB。事前オンライン予約で10〜20%割引）</td></tr>
+          <tr><td>機材</td><td>500〜625Whバッテリー搭載ミッドドライブモーター e-MTB推奨</td></tr>
+          <tr><td>必要書類</td><td>パスポート（または写し）＋デポジット用クレジットカード</td></tr>
+          <tr><td>Hotel配送</td><td>Hotel Aquilaへの配送・回収サービスあり（夏季）</td></tr>
+          <tr><td colspan="2" style="background:#f0f9f0;font-weight:bold;font-family:sans-serif;">📋 予約確認（6/30）</td></tr>
+          <tr><td>予約番号</td><td class="ref">319101</td></tr>
+          <tr><td>日付</td><td>6月30日（月）</td></tr>
+          <tr><td>機材</td><td>E-MTB Full Suspension TREK RAIL（SC2599）/ フレームS / ヘルメット・スマホホルダー付き</td></tr>
+          <tr><td>オンライン決済</td><td>92.00€（デポジット済）</td></tr>
+          <tr><td colspan="2" style="background:#f0f9f0;font-weight:bold;font-family:sans-serif;">📋 予約確認（7/3）</td></tr>
+          <tr><td>予約番号</td><td class="ref">319098</td></tr>
+          <tr><td>日付</td><td>7月3日（金）</td></tr>
+          <tr><td>機材</td><td>E-MTB Full Suspension TREK RAIL（SC2599）/ フレームS / ヘルメット・スマホホルダー付き</td></tr>
+          <tr><td>オンライン決済</td><td>92.00€（デポジット済）</td></tr>
+          <tr><td>⚠️ 注意</td><td>e-bikeは前日受取不可。当日（開店08:30〜）に直接受取のこと</td></tr>
+        </table>
+      </div>
+    </div>
+    <h4 class="sec">ルートプロファイル</h4>
+    <table class="data-table">
+      <tr><th>区間</th><th>距離</th><th>標高差</th><th>所要時間</th><th>特徴</th></tr>
+      <tr><td>コルチナ → トレ・クローチェ峠</td><td>8.0km</td><td>+581m（1,224→1,805m）</td><td>45〜60分</td><td>平均勾配7.3%・最大12%。針葉樹林の中を登る。SR48号線</td></tr>
+      <tr><td>峠 → ミズリーナ湖</td><td>7km</td><td>-51m（1,805→1,754m）</td><td>20〜30分</td><td>ほぼ下り。湖が突然現れる感動のアプローチ</td></tr>
+      <tr><td>ミズリーナ湖 滞在</td><td>—</td><td>—</td><td>2〜3時間</td><td>北岸リフレクション撮影・湖一周・Quinzランチ</td></tr>
+      <tr><td>復路：旧線路跡（チマバンチェ経由）</td><td>約20km</td><td>緩やかな下り基調</td><td>1.5〜2時間</td><td>廃線跡の自転車専用道。トンネル・鉄橋が連続</td></tr>
+    </table>
+
+    <div class="box-research">
+      <h4>📍 ミズリーナ湖（Lago di Misurina）撮影ガイド</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>スポット</th><th>狙い・ポイント</th></tr>
+        <tr><td>北岸（Istituto Pio XII前）</td><td>最有名リフレクションポイント。大きな療養施設の建物＋ドロミテの峰が湖面に映る。<strong>早朝・無風が必須</strong></td></tr>
+        <tr><td>湖一周ウォーク（2.5km）</td><td>ほぼ平坦・約30〜40分。OSMO360でセルフィースタイル周回撮影</td></tr>
+        <tr><td>カディーニ・ディ・ミズリーナ展望台</td><td>湖から徒歩30〜45分（急登あり）。尖塔群とトレ・チーメのパノラマ</td></tr>
+        <tr><td>早朝の霧</td><td>夏の早朝6〜7時、湖面に霧が漂う幻想的な時間帯。タイムラプスモード推奨</td></tr>
+      </table>
+      <h5 class="sub">ミズリーナ湖畔 ランチ選択肢</h5>
+      <table class="data-table">
+        <tr><td><strong>Ristorante Quinz</strong></td><td>湖正面のテラス席。湖を眺めながらの食事。パスタ・シュニッツェル・アップルシュトゥルーデル</td></tr>
+        <tr><td>Pizzeria Edelweiss</td><td>ピザ・スナック。軽食向き</td></tr>
+        <tr><td>Malga Rin Bianco</td><td>湖対岸の農家レストラン。地元乳製品・チーズが新鮮</td></tr>
+      </table>
+    </div>
+
+<figure style="margin:20px 0;text-align:center;">
+  <img src="https://www.dolomiti.it/storage/localities/22604/conversions/il_lago_di_misurina_iStock-desktop-webp.webp" alt="ミズリーナ湖（Lago di Misurina）— 早朝のリフレクション" style="max-width:700px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);" loading="lazy">
+  <figcaption style="font-size:14px;color:#666;font-family:sans-serif;margin-top:6px;">🏔 ミズリーナ湖（Lago di Misurina 1,754m）— カディーニ・ディ・ミズリーナの岩峰が映り込む早朝のリフレクション</figcaption>
+</figure>
+
+
+    <div class="box-research" style="margin-top:16px">
+      <h4>🚂 旧ドロミテ鉄道跡（Lunga Via delle Dolomiti）——廃線が甦る</h4>
+      <p style="font-size:15px;font-family:sans-serif;line-height:1.9;margin-top:8px;">
+        1921〜1964年まで運行した「トレニーノ・デッレ・ドロミーティ（Trenino delle Dolomiti）」の軌道跡。現在は自転車専用道として整備。Dobbiaco（ドッビアーコ）からコルチナまでの全長約30kmが舗装済み。特に<strong>チマバンチェ峠（1,529m）付近のトンネルと鉄橋区間</strong>は廃線時代の構造物が現存し、没入感抜群の走行体験ができる。勾配が緩やかで一般の自転車でも走れるが、e-bikeなら余裕をもって楽しめる。
+      </p>
+    </div>
+
+    <div class="box box-warn">
+      バッテリー管理：往路（峠越え）で全体の40〜50%消費を想定。ミズリーナ到着時に残量確認し、復路に備えること。不安な場合は帰路にバスで戻ることも可能（50/51番バス）。
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🏔 ミズリーナ湖</div>
+      <h4>「鏡の湖」が映し出すドロミテの静寂</h4>
+      <p>標高1,754mのミズリーナ湖は、トレ・クローチェ峠を下ったとき突然視界に広がる「驚きの湖」だ。澄んだ湖面にカディーニ・ディ・ミズリーナの尖塔群が映り込む光景は、地元では古くから「鏡の湖（Specchio delle Dolomiti）」と呼ばれてきた。湖一周2.5kmをゆっくり歩けば、刻々と変化する光と岩峰の表情に気づく——ペダルで越えてきた峠の汗が、ここでようやく意味を持つ。ドロミテの「垂直性」と湖の「水平性」が静かに対話する場所。</p>
+    </div>
+  </div>
+</div>
+
+<!-- EP14 -->
+<div class="ep-section" id="ep14">
+  <div class="ep-header">
+    <span class="ep-num">EP 14</span>
+    <h3>トレ・チーメ・ディ・ラヴァレード</h3>
+    <span class="ep-date">7月1日（水）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      ドロミテの象徴。3つの岩峰がそびえる世界で最も撮影された山岳景観の一つ。プライベートガイドで早朝8時からスタート、混雑前の圧倒的な静寂の中に立つ。
+    </p>
+<div class="infographic-block" style="text-align:center;margin:20px 0;">
+  <img src="Vault/04_Resources/画像素材/Web取得/Tre_Cime_di_Lavaredo.jpg" alt="トレ・チーメ・ディ・ラヴァレード" style="max-width:900px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
+  <p class="infographic-caption">🏔 トレ・チーメ・ディ・ラヴァレード（2,999m）— ドロミテを代表する3つの岩峰。左からCima Piccola・Cima Grande・Cima Ovest</p>
+</div>
+    <div class="ticket-box">
+      <div class="ticket-icon">🥾</div>
+      <div>
+        <div class="ticket-title">Private Guided Hike to Tre Cime di Lavaredo（Viator）</div>
+        <table>
+          <tr><td>予約番号</td><td class="ref">Viator #1351716701</td></tr>
+          <tr><td>料金</td><td class="ref">320€</td></tr>
+          <tr><td>ピックアップ</td><td>Hotel Aquila（ガイドと直接調整済み）</td></tr>
+          <tr><td>出発時刻</td><td>8:00推奨（早朝出発で混雑回避）</td></tr>
+          <tr><td>所要時間</td><td>4〜8時間（ルートはカスタマイズ可）</td></tr>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="box-research">
+      <h4>🏔 トレ・チーメ 詳細ルートと撮影ポイント</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>スポット</th><th>標高</th><th>内容・ポイント</th></tr>
+        <tr><td>アウロンツォ小屋（出発点）</td><td>2,333m</td><td>有料道路（約40€/台）経由。朝8時は観光客ほぼゼロ</td></tr>
+        <tr><td>カディーニ・ディ・ミズリーナ展望台（先行推奨）</td><td>—</td><td>尖塔群の絶景。往復1.5〜2時間。「ドロミテのモルドール」。EP随一の撮影ポイント</td></tr>
+        <tr><td>ラヴァレード峠（2,454m）</td><td>2,454m</td><td>三峰を間近で捉える最高アングル</td></tr>
+        <tr><td>ロカテッリ小屋（Drei Zinnen Hütte）</td><td>2,405m</td><td>世界で最も有名なドロミテの風景が広がる。ランチ（カネデルリ・パスタ）</td></tr>
+        <tr><td>ピアニ湖（小屋裏）</td><td>—</td><td>静かな池にトレ・チーメのリフレクション</td></tr>
+        <tr><td>WWI洞窟（Caves）</td><td>—</td><td>岩をくり抜いたトンネル。洞窟の穴越しにトレ・チーメを「額縁構図」で撮影</td></tr>
+        <tr><td>ランガルム（帰路）</td><td>—</td><td>7月はリンドウ・エーデルワイスが満開。放牧の牛とカウベルの音</td></tr>
+      </table>
+      <h5 class="sub">7月の動植物（標高2,500m付近）</h5>
+      <p style="font-size:14px;font-family:sans-serif;line-height:1.9;">
+        <strong>植物：</strong>エーデルワイス（岩場）・ゲンチアナ（深青紫）・カンパニュラ・モレッティアーナ（ドロミテ固有種）<br>
+        <strong>動物：</strong>アルプスマーモット（警戒時の鋭い口笛）・キバシガラス（カラス科、群れで飛翔）・カベバシリ（岩壁を這うように飛ぶ希少種）
+      </p>
+    </div>
+
+
+    <div class="column-box">
+      <div class="col-label">🏔 文化コラム</div>
+      <h4>ファネス王国の伝説——ドロミテに宿る叙事詩</h4>
+      <p>ドロミテには、岩峰と谷に息づく壮大な叙事詩がある。ラディン人が代々語り継いできた「<em>Rëgn de Fanes</em>（ファネス王国）」の物語だ。<br><br>
+      かつて、<strong>ファネス高原（現Alpe di Fanes）</strong>を拠点とする王国があった。王国の先祖モルティーナはマーモットと盟約を結び、自然と調和した平和な時代を築いた——マーモットの紋章を盾に刻んだ「マーモットの王国」として。しかし外国の王が帝国の野心を持ち込み、紋章は鷲に変えられ、王国は軍事化された。<br><br>
+      王の娘<strong>ドラシッラ</strong>は無敵の戦士王女として成長したが、慈悲心から小人たちに魔法の矢を与えてしまい、その矢で命を落とす。裏切り者の王は、現在の<strong>ファルツァレーゴ峠（Passo Falzarego）</strong>で石に変えられた——「偽りの王（Falsche König）」を意味するその峠名は、今もこの伝説を刻む。<br><br>
+      生き残った女王と王女ルイアンタは民を率いて地下世界へ逃れた。そして今も<strong>ブライエス湖（Lago di Braies）</strong>の湖底の隠し扉から、8月の満月の夜にだけ黒いボートに乗って現れるという——「銀のラッパ」の音が山に鳴り響き、ファネス王国が再び栄光を取り戻す「約束の時」を待ちながら。<br><br>
+      夕暮れ時、白い岩峰が突然ピンク色に染まり、深紅へ、そして紫へ変化する「<em>Enrosadira</em>（エンロサディーラ）」——この現象をラディン人はドラシッラの鎧が血の色に染まる予兆として語り継ぐ。ファルツァレーゴ峠の奇岩を眺めながら、あるいはブライエス湖の静かな水面に触れながら、旅人は2000年前の伝説に触れている。</p>
+    </div>
+    <div class="box-research" style="margin-top:16px">
+      <h4>⚔️ WWI遺構——岩の中の戦場</h4>
+      <p style="font-size:15px;font-family:sans-serif;line-height:1.9;margin-top:8px;">
+        トレ・チーメ北壁の洞窟は第一次世界大戦中にオーストリア軍が掘削した防衛施設。標高2,900m近い極寒の岩場で、兵士たちは岩を手で削り生活スペースを確保した。近年の温暖化で氷河が溶け、兵士の遺体・手紙・缶詰が新たに発見されるケースが相次いでいる。
+      </p>
+    </div>
+    <div class="box box-tip">
+      <strong>装備チェック（必須）：</strong>トレッキングブーツ（アンクル以上）・防寒レイヤー（フリース＋ウィンドシェル）・サンスクリーンSPF50・水1.5L以上・現金50€（ロカテッリ小屋）
+    </div>
+  </div>
+</div>
+
+<!-- EP15 -->
+<div class="ep-section" id="ep15">
+  <div class="ep-header">
+    <span class="ep-num">EP 15</span>
+    <h3>チンクエ・トッリ</h3>
+    <span class="ep-date">7月2日（木）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      5つの奇塔（チンクエ・トッリ）は同時に、第一次世界大戦の野外博物館でもある。岩をくり抜いた塹壕・弾薬庫・観測所が100年前のまま現存する。Rifugio Averauでのランチ後、Nuvolau山頂（2,574m）からドロミテを一望する。
+    </p>
+<div class="infographic-block" style="text-align:center;margin:20px 0;">
+  <img src="Vault/04_Resources/画像素材/Web取得/Cinque_Torri_Dolomiti.jpg" alt="チンクエ・トッリ" style="max-width:900px;width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.12);">
+  <p class="infographic-caption">🗼 チンクエ・トッリ（2,361m）— 「5つの塔」を意味するドロミテの奇岩群。手前の草原はWWI戦場跡。左上にRifugio Scoiattoliが見える</p>
+</div>
+    <div class="box box-info">
+      チンクエ・トッリガイドハイク：問い合わせ中・返事待ち。確定次第チケット一覧に追記。
+    </div>
+
+<div class="infographic-block">
+  <div class="infographic-title">📈 トレッキング高度プロファイル比較 — トレ・チーメ vs チンクエ・トッリ</div>
+  <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="600" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" font-size="30" font-weight="bold" fill="#1A202C">ドロミテ　トレッキング高度プロファイル</text>
+  <text x="600" y="60" text-anchor="middle" font-size="19" fill="#718096">トレ・チーメ（EP14・15）　＆　チンクエ・トッリ（EP16・17）</text>
+
+  <!-- === CHART 1: Tre Cime (left side) === -->
+  <!-- Chart area -->
+  <rect x="60" y="85" width="500" height="340" rx="6" fill="white" stroke="#CBD5E0" stroke-width="1"/>
+
+  <!-- Chart title -->
+  <text x="310" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#276749">⛰ トレ・チーメ周回コース</text>
+  <text x="310" y="124" text-anchor="middle" font-size="18" fill="#718096">EP14・EP15　約9.5km　獲得標高+300m</text>
+
+  <!-- Y axis (altitude 2200-2500m) -->
+  <line x1="110" y1="145" x2="110" y2="395" stroke="#E2E8F0" stroke-width="1"/>
+  <!-- Y axis labels -->
+  <text x="105" y="150" text-anchor="end" font-size="16" fill="#718096">2500m</text>
+  <text x="105" y="214" text-anchor="end" font-size="16" fill="#718096">2440m</text>
+  <text x="105" y="278" text-anchor="end" font-size="16" fill="#718096">2380m</text>
+  <text x="105" y="342" text-anchor="end" font-size="16" fill="#718096">2320m</text>
+  <text x="105" y="395" text-anchor="end" font-size="16" fill="#718096">2270m</text>
+  <!-- Grid lines -->
+  <line x1="110" y1="150" x2="535" y2="150" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="110" y1="214" x2="535" y2="214" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="110" y1="278" x2="535" y2="278" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="110" y1="342" x2="535" y2="342" stroke="#EDF2F7" stroke-width="1"/>
+
+  <!-- X axis (0 to 9.5km) -->
+  <line x1="110" y1="395" x2="535" y2="395" stroke="#A0AEC0" stroke-width="1.5"/>
+  <text x="110" y="412" text-anchor="middle" font-size="16" fill="#718096">0</text>
+  <text x="184" y="412" text-anchor="middle" font-size="16" fill="#718096">2km</text>
+  <text x="258" y="412" text-anchor="middle" font-size="16" fill="#718096">4km</text>
+  <text x="322" y="412" text-anchor="middle" font-size="16" fill="#718096">6km</text>
+  <text x="406" y="412" text-anchor="middle" font-size="16" fill="#718096">8km</text>
+  <text x="535" y="412" text-anchor="middle" font-size="16" fill="#718096">9.5km</text>
+
+  <!-- Elevation profile fill (Tre Cime CCW):
+       Start: Auronzo 2333m → gentle climb to Lavaredo 2344m (km2) →
+       descent to valley 2315m (km3) → climb to Locatelli 2405m (km5.5) →
+       descent east side 2370m (km7) → back to Auronzo 2333m (km9.5)
+       Scale: y = 395 - (alt - 2270) * (395-150)/(2500-2270)
+             y = 395 - (alt - 2270) * 245/230 = 395 - (alt-2270)*1.065 -->
+  <!-- 2333m → y = 395 - 63*1.065 = 328 | 2344m → y = 320 | 2315m → y = 351 | 2405m → y = 283 | 2370m → y = 320 | 2333m → y = 328 -->
+  <path d="M110,328 Q150,326 184,320 Q210,315 220,351 Q240,365 258,355 Q290,340 322,283 Q355,275 390,315 Q415,330 450,320 Q490,318 535,328"
+        fill="#C6F6D5" opacity="0.6" stroke="none"/>
+  <path d="M110,395 L110,328 Q150,326 184,320 Q210,315 220,351 Q240,365 258,355 Q290,340 322,283 Q355,275 390,315 Q415,330 450,320 Q490,318 535,328 L535,395 Z"
+        fill="#276749" opacity="0.15"/>
+  <path d="M110,328 Q150,326 184,320 Q210,315 220,351 Q240,365 258,355 Q290,340 322,283 Q355,275 390,315 Q415,330 450,320 Q490,318 535,328"
+        stroke="#276749" stroke-width="2.5" fill="none"/>
+
+  <!-- Key points on Tre Cime profile -->
+  <circle cx="110" cy="328" r="5" fill="#B7791F"/>
+  <text x="110" y="322" text-anchor="middle" font-size="9" fill="#B7791F">START</text>
+  <text x="110" y="313" text-anchor="middle" font-size="8" fill="#718096">Auronzo</text>
+
+  <circle cx="184" cy="320" r="5" fill="#C53030"/>
+  <text x="184" y="314" text-anchor="middle" font-size="9" fill="#C53030">Rif. Lavaredo</text>
+  <text x="184" y="305" text-anchor="middle" font-size="8" fill="#718096">2344m</text>
+
+  <circle cx="322" cy="283" r="6" fill="#276749"/>
+  <text x="322" y="277" text-anchor="middle" font-size="9" font-weight="bold" fill="#276749">最高点</text>
+  <text x="322" y="268" text-anchor="middle" font-size="9" fill="#C53030">Rif. Locatelli</text>
+  <text x="322" y="259" text-anchor="middle" font-size="8" fill="#718096">2405m</text>
+
+  <circle cx="535" cy="328" r="5" fill="#B7791F"/>
+  <text x="535" y="322" text-anchor="middle" font-size="9" fill="#B7791F">GOAL</text>
+
+  <!-- EP14 separator on chart -->
+  <line x1="322" y1="145" x2="322" y2="395" stroke="#276749" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <rect x="115" y="426" width="60" height="18" rx="3" fill="#276749"/>
+  <text x="145" y="439" text-anchor="middle" font-size="16" fill="white">EP14</text>
+  <rect x="360" y="426" width="60" height="18" rx="3" fill="#276749" opacity="0.8"/>
+  <text x="390" y="439" text-anchor="middle" font-size="16" fill="white">EP15</text>
+
+  <!-- === CHART 2: Cinque Torri (right side) === -->
+  <rect x="640" y="85" width="500" height="340" rx="6" fill="white" stroke="#CBD5E0" stroke-width="1"/>
+
+  <!-- Chart title -->
+  <text x="890" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#276749">⛰ チンクエ・トッリ ハイキング</text>
+  <text x="890" y="124" text-anchor="middle" font-size="18" fill="#718096">EP16・EP17　約7km　獲得標高+350m</text>
+
+  <!-- Y axis (2000-2400m range) -->
+  <line x1="690" y1="145" x2="690" y2="395" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="685" y="150" text-anchor="end" font-size="16" fill="#718096">2400m</text>
+  <text x="685" y="210" text-anchor="end" font-size="16" fill="#718096">2350m</text>
+  <text x="685" y="270" text-anchor="end" font-size="16" fill="#718096">2300m</text>
+  <text x="685" y="330" text-anchor="end" font-size="16" fill="#718096">2200m</text>
+  <text x="685" y="395" text-anchor="end" font-size="16" fill="#718096">2100m</text>
+  <line x1="690" y1="150" x2="1115" y2="150" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="690" y1="210" x2="1115" y2="210" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="690" y1="270" x2="1115" y2="270" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="690" y1="330" x2="1115" y2="330" stroke="#EDF2F7" stroke-width="1"/>
+
+  <!-- X axis -->
+  <line x1="690" y1="395" x2="1115" y2="395" stroke="#A0AEC0" stroke-width="1.5"/>
+  <text x="690" y="412" text-anchor="middle" font-size="16" fill="#718096">0</text>
+  <text x="751" y="412" text-anchor="middle" font-size="16" fill="#718096">1km</text>
+  <text x="812" y="412" text-anchor="middle" font-size="16" fill="#718096">2km</text>
+  <text x="873" y="412" text-anchor="middle" font-size="16" fill="#718096">3km</text>
+  <text x="934" y="412" text-anchor="middle" font-size="16" fill="#718096">4km</text>
+  <text x="995" y="412" text-anchor="middle" font-size="16" fill="#718096">5km</text>
+  <text x="1056" y="412" text-anchor="middle" font-size="16" fill="#718096">6km</text>
+  <text x="1115" y="412" text-anchor="middle" font-size="16" fill="#718096">7km</text>
+
+  <!-- Cinque Torri profile:
+       Passo Falzarego (2105m) → climb to Averau refuge 2413m (km3) → Cinque Torri rocks ~2361m (km4.5) → return via WWI trenches → back 2105m
+       Scale: y = 395 - (alt - 2100) * (395-150)/(2400-2100) = 395 - (alt-2100) * 245/300 = 395 - (alt-2100)*0.817 -->
+  <!-- 2105m → y=391 | 2180m → y=329 | 2413m → y=148 | 2361m → y=191 | 2240m → y=278 | 2105m → y=391 -->
+  <path d="M690,391 Q720,380 751,350 Q780,320 812,310 Q840,295 873,148 Q900,148 934,191 Q960,210 995,235 Q1035,260 1056,278 Q1080,320 1115,391"
+        fill="#276749" opacity="0.15"/>
+  <path d="M690,391 Q720,380 751,350 Q780,320 812,310 Q840,295 873,148 Q900,148 934,191 Q960,210 995,235 Q1035,260 1056,278 Q1080,320 1115,391"
+        stroke="#276749" stroke-width="2.5" fill="none"/>
+
+  <!-- Key points Cinque Torri -->
+  <circle cx="690" cy="391" r="5" fill="#B7791F"/>
+  <text x="690" y="386" text-anchor="middle" font-size="9" fill="#B7791F">START</text>
+  <text x="690" y="377" text-anchor="middle" font-size="8" fill="#718096">Falzarego</text>
+  <text x="690" y="368" text-anchor="middle" font-size="8" fill="#718096">2105m</text>
+
+  <circle cx="873" cy="148" r="6" fill="#276749"/>
+  <text x="873" y="142" text-anchor="middle" font-size="9" font-weight="bold" fill="#276749">最高点</text>
+  <text x="873" y="133" text-anchor="middle" font-size="9" fill="#C53030">Rif. Averau</text>
+  <text x="873" y="124" text-anchor="middle" font-size="8" fill="#718096">2413m</text>
+
+  <circle cx="934" cy="191" r="5" fill="#C53030"/>
+  <text x="934" y="185" text-anchor="middle" font-size="9" fill="#C53030">チンクエ・トッリ</text>
+  <text x="934" y="176" text-anchor="middle" font-size="8" fill="#718096">岩峰群 2361m</text>
+
+  <!-- WWI marker -->
+  <circle cx="1056" cy="278" r="5" fill="#6B46C1"/>
+  <rect x="1065" y="265" width="95" height="20" rx="3" fill="white" stroke="#6B46C1" stroke-width="1"/>
+  <text x="1112" y="279" text-anchor="middle" font-size="9" fill="#6B46C1">WWI塹壕跡（EP17）</text>
+
+  <circle cx="1115" cy="391" r="5" fill="#B7791F"/>
+  <text x="1115" y="386" text-anchor="middle" font-size="9" fill="#B7791F">GOAL</text>
+
+  <!-- EP16 separator -->
+  <line x1="873" y1="145" x2="873" y2="395" stroke="#276749" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <rect x="695" y="426" width="60" height="18" rx="3" fill="#276749"/>
+  <text x="725" y="439" text-anchor="middle" font-size="16" fill="white">EP16</text>
+  <rect x="920" y="426" width="60" height="18" rx="3" fill="#276749" opacity="0.8"/>
+  <text x="950" y="439" text-anchor="middle" font-size="16" fill="white">EP17</text>
+
+  <!-- === Summary table at bottom === -->
+  <rect x="60" y="520" width="1080" height="68" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="542" text-anchor="middle" font-size="19" font-weight="bold" fill="#4A5568">コース比較</text>
+
+  <!-- Table headers -->
+  <text x="140" y="562" text-anchor="middle" font-size="18" fill="#4A5568" font-weight="bold">コース</text>
+  <text x="320" y="562" text-anchor="middle" font-size="18" fill="#4A5568" font-weight="bold">距離</text>
+  <text x="460" y="562" text-anchor="middle" font-size="18" fill="#4A5568" font-weight="bold">獲得標高</text>
+  <text x="620" y="562" text-anchor="middle" font-size="18" fill="#4A5568" font-weight="bold">最高点</text>
+  <text x="800" y="562" text-anchor="middle" font-size="18" fill="#4A5568" font-weight="bold">所要時間</text>
+  <text x="980" y="562" text-anchor="middle" font-size="18" fill="#4A5568" font-weight="bold">難易度</text>
+
+  <!-- Table row 1 -->
+  <text x="140" y="580" text-anchor="middle" font-size="18" fill="#276749">トレ・チーメ</text>
+  <text x="320" y="580" text-anchor="middle" font-size="18" fill="#718096">9.5km</text>
+  <text x="460" y="580" text-anchor="middle" font-size="18" fill="#718096">+300m</text>
+  <text x="620" y="580" text-anchor="middle" font-size="18" fill="#718096">Rif. Locatelli 2405m</text>
+  <text x="800" y="580" text-anchor="middle" font-size="18" fill="#718096">4〜5時間</text>
+  <text x="980" y="580" text-anchor="middle" font-size="18" fill="#718096">★★☆ 中級</text>
+
+  <!-- Table row 2 -->
+  <text x="140" y="578" text-anchor="middle" font-size="18" fill="#276749"/>
+  <line x1="80" y1="568" x2="1140" y2="568" stroke="#CBD5E0" stroke-width="0.5"/>
+
+  <text x="140" y="584" text-anchor="middle" font-size="18" fill="#276749">チンクエ・トッリ</text>
+  <text x="320" y="584" text-anchor="middle" font-size="18" fill="#718096">7km</text>
+  <text x="460" y="584" text-anchor="middle" font-size="18" fill="#718096">+350m</text>
+  <text x="620" y="584" text-anchor="middle" font-size="18" fill="#718096">Rif. Averau 2413m</text>
+  <text x="800" y="584" text-anchor="middle" font-size="18" fill="#718096">3〜4時間</text>
+  <text x="980" y="584" text-anchor="middle" font-size="18" fill="#718096">★★☆ 中級</text>
+</svg>
+  <p class="infographic-caption">距離・標高差・難易度の比較。チンクエ・トッリはリフト利用でファミリー向けコースも可</p>
+</div>
+    <div class="box-research">
+      <h4>🏰 チンクエ・トッリ 地質・歴史・ルート</h4>
+      <h5 class="sub">地質の奇跡：3つの形成メカニズム</h5>
+      <table class="data-table" style="margin-top:4px">
+        <tr><td>垂直断層の変位</td><td>岩層が垂直破断→アヴェラウ山塊と高度差が生じた</td></tr>
+        <tr><td>凍結破砕作用</td><td>岩の裂け目に水が浸入→凍結膨張を数千年繰り返す→個別の尖塔に分離</td></tr>
+        <tr><td>岩石氷河</td><td>崩落岩石と氷が一体となり斜面をゆっくり流下</td></tr>
+      </table>
+      <h5 class="sub">WWI 屋外博物館ルート</h5>
+      <table class="data-table" style="margin-top:4px">
+        <tr><th>ルート</th><th>所要時間</th><th>内容</th></tr>
+        <tr><td>M5a トリンチェア・アルタ</td><td>約20分</td><td>高台の観測所・塹壕。イタリア軍が30cm砲を設置した場所</td></tr>
+        <tr><td>M5b センティエロ・デッレ・トリンチェア</td><td>約30分</td><td>兵士の居住区・防衛線の跡</td></tr>
+        <tr><td>M5c ジロ・デッレ・チンクエ・トッリ（メイン）</td><td>約2時間</td><td>5塔全体を周回。最も包括的なルート</td></tr>
+      </table>
+    </div>
+    <div class="box-research" style="margin-top:16px">
+      <h4>🏠 Rifugio Averau（2,413m）＆ Nuvolau山頂（2,574m）</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><td>Rifugio Averau</td><td>「ドロミテで最も標高の高い山小屋の一つ」。テラスからチンクエ・トッリとコルチナ盆地を同時に見渡せる。ランチはカネデルリ・カイザーシュマーレン（EP17ハイライト）</td></tr>
+        <tr><td>Nuvolau山頂</td><td>Averauから徒歩20〜30分。標高2,574m。ドロミテ最高の展望台の一つ——360度の大パノラマ</td></tr>
+      </table>
+      <h5 class="sub">7月の生態系（標高2,100m付近）</h5>
+      <p style="font-size:16px;font-family:sans-serif;line-height:1.9;">
+        <strong>植物：</strong>アルペンローズ（バイ・デ・ドーネスの斜面が鮮やかなピンク）・エーデルワイス・ゲンチアナ・アルニカ（黄花・薬草）<br>
+        <strong>動物：</strong>アルプスマーモット（7月は子育て期）・シャモア（急斜面を自在に移動）・イヌワシ（断崖に巣）
+      </p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🏛 歴史コラム</div>
+      <h4>白い戦争（Guerra Bianca）— 3,000mの塹壕で戦った兵士たち</h4>
+      <p>1915年、イタリアはオーストリア・ハンガリー帝国に宣戦布告した。戦線の一部はドロミテの山中——標高2,000〜3,000mの岩壁と氷河の上に引かれた。「白い戦争」と呼ばれるこの山岳戦では、砲弾よりも雪崩と凍傷で多くの兵士が命を落とした。チンクエ・トッリでは岩をくり抜いた塹壕・弾薬庫・観測所が今も当時のまま残り、有刺鉄線の一部すら見ることができる。<br><br>
+      もう一つの奇妙な事実——当時コルチナ・ダンペッツォはオーストリア領だった。つまりイタリア軍は「外国の山」で戦い、1918年の勝利によって初めてコルチナをイタリアに組み込んだ。美しい景色の下に、国境争いと戦死者の記憶が重なっている。WWI野外博物館（Museo all'Aperto della Grande Guerra）ではガイドとともに塹壕を歩くことができる。</p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">⛰ 地質コラム</div>
+      <h4>エンロザディーラ — なぜドロミテの岩は夕暮れに赤く燃えるのか</h4>
+      <p>ドロミテを訪れた者が必ず口にする体験——夕暮れ時、白い岩峰が突然ピンク色に染まり、やがて深紅に、そして紫へと変化する。この現象は「エンロザディーラ（Enrosadira）」と呼ばれる。ラディン語で「バラ色に染まる」の意。<br><br>
+      科学的には、白亜紀の石灰岩（ドロマイト岩）が低角度の夕日の赤色光を吸収・散乱することで起きる。だがラディンの民話はこう語る——かつて山に住むドワーフの王が太陽の娘に恋をした。太陽はその恋を拒み、呪いをかけた。「昼も夜も日の光を見てはならない」。苦しんだ王が呪いを解こうと月の国に助けを求め、月光で岩を覆った。だが日の出の瞬間、白い岩に最初の一筋の光が当たった——その瞬間を、今も山は毎日繰り返している。EP17のNuvolau山頂（2,574m）は、このエンロザディーラを最も美しく見る展望台の一つだ。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- EP16 -->
+<div class="ep-section" id="ep16">
+  <div class="ep-header">
+    <span class="ep-num">EP 16</span>
+    <h3>コルチナの山岳リゾートステイ — 街・食・1956年五輪の記憶</h3>
+    <span class="ep-date">6月29日〜7月4日（滞在全体）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      ハイキングや山岳ではなく「コルチナという街」にフォーカスするエピソード。窓辺の赤い花・Corso Italiaのブティック・ラディン料理・1956年冬季五輪の記憶——5日間の滞在を総括する"コルチナとはどんな街か"を届ける。
+    </p>
+
+    <div class="box-research">
+      <h4>🏨 Hotel Aquila — 滞在ベース</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><td>住所</td><td>Piazza Pittori Fratelli Ghedina, 1, 32043 Cortina d'Ampezzo (BL), Italy</td></tr>
+        <tr><td>チェックイン</td><td>6月29日（月）</td></tr>
+        <tr><td>チェックアウト</td><td>7月4日（土）</td></tr>
+        <tr><td>ウェブ</td><td>http://www.aquilacortina.com/</td></tr>
+        <tr><td>ホテル内レストラン</td><td>Dolom'eats all'Aquila（ラディン料理＋イタリア料理）</td></tr>
+        <tr><td>撮影スポット</td><td>ホテル正面からのドロミテ朝景（早朝）、窓辺の花（午前光）</td></tr>
+      </table>
+      <div class="box box-tip" style="margin-top:10px">
+        Hotel Aquilaはドロミテを見渡す「Piazza Pittori」に面し、主要レストラン・Corso Italiaまで徒歩5分圏。一人で動くベースキャンプとして最適なロケーション。
+      </div>
+    </div>
+
+    <div class="box-research" style="margin-top:16px">
+      <h4>🍽 アンペッツォ郷土料理 — 6大定番</h4>
+      <p style="font-size:14px;font-family:sans-serif;margin-bottom:8px;color:#666;">チロル（オーストリア）系・イタリア（ヴェネト）系・中欧系の3つの食文化が交差する山岳料理。</p>
+      <table class="data-table">
+        <tr><th>料理名</th><th>説明</th><th>食べ頃</th></tr>
+        <tr>
+          <td><strong>カスンツィエイ</strong><br><span style="font-size:14px;color:#888">Casunziei all'Ampezzana</span></td>
+          <td>半月形ラビオリに赤ビーツを詰め、溶かしバター・ポピーシード・パルミジャーノで仕上げる。コルチナ料理の象徴。ビーツの赤・バターの黄・ポピーの黒が「アンペッツォの旗」と呼ばれる三色を皿の上で描く</td>
+          <td>夕食・ランチ</td>
+        </tr>
+        <tr>
+          <td><strong>カネデルリ</strong><br><span style="font-size:14px;color:#888">Canederli / Knödel</span></td>
+          <td>乾燥パン・スペック（燻製生ハム）・チーズを練り上げたチロル風パン団子。ブイヨンスープまたは溶かしバターで供される。高地登山に必要な炭水化物＋タンパク質を効率補給する知恵の産物</td>
+          <td>山小屋ランチ・ディナー</td>
+        </tr>
+        <tr>
+          <td><strong>グヤーシュ</strong><br><span style="font-size:14px;color:#888">Gulasch</span></td>
+          <td>ハンガリー起源の牛肉・野菜の煮込み。寒冷地向け高カロリー料理としてコルチナに定着。寒い日の夕食の定番</td>
+          <td>夕食</td>
+        </tr>
+        <tr>
+          <td><strong>アップル・シュトゥルーデル</strong><br><span style="font-size:14px;color:#888">Strudel di mele</span></td>
+          <td>薄生地でリンゴ・レーズン・シナモン・ナッツを包んで焼く。温かいバニラソース添えが正統スタイル。山小屋・カフェどこでも注文できるアルプス定番デザート</td>
+          <td>カフェ・デザート</td>
+        </tr>
+        <tr>
+          <td><strong>カイザーシュマーレン</strong><br><span style="font-size:14px;color:#888">Kaiserschmarren / Šmòrn</span></td>
+          <td>厚焼きパンケーキを引き裂き粉糖・ジャムをまぶす「皇帝風パンケーキ」。山小屋エネルギー補給の甘味。Rifugio Averauでのランチ後に注文を検討</td>
+          <td>山小屋デザート</td>
+        </tr>
+        <tr>
+          <td><strong>ウーゴ</strong><br><span style="font-size:14px;color:#888">Hugo</span></td>
+          <td>プロセッコ＋エルダーフラワーシロップ＋ミント＋ソーダ。<strong>コルチナ近郊発祥</strong>とされる食前酒。アペリティーボの時間（17〜19時）にバルで注文するのが地元流。登山帰りの最初の一杯に</td>
+          <td>アペリティーボ（17〜19時）</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box-research" style="margin-top:16px">
+      <h4>🍕 市街レストラン使い分けガイド</h4>
+      <div class="column-box">
+        <div>
+          <h5 class="sub">ホテル直結・至近</h5>
+          <table class="data-table" style="margin-top:4px">
+            <tr><td><strong>Dolom'eats all'Aquila</strong></td><td>ホテル内（0分）。ラディン料理（カスンツィエイ等）。到着日疲れているときに最適</td></tr>
+            <tr><td><strong>Croda Cafè</strong></td><td>Piazza Pittori（1〜2分）。ピザ・軽食。遅い時間でも入りやすい</td></tr>
+          </table>
+          <h5 class="sub" style="margin-top:12px">ローカル食堂（一人推奨）</h5>
+          <table class="data-table" style="margin-top:4px">
+            <tr><td><strong>Al Camin</strong></td><td>地元住民の支持率No.1。「タマネギのスパゲッティ」が伝説メニュー。木材内装が温かい</td></tr>
+            <tr><td><strong>Ariston</strong></td><td>Robertoシェフが地元食材研究。カネデルリ・ジビエをリーズナブルに</td></tr>
+            <tr><td><strong>De LEN</strong></td><td><strong>終日営業（All-day dining）</strong>。トレッキング帰り15時以降でも食事可能。貴重な存在</td></tr>
+          </table>
+        </div>
+        <div>
+          <h5 class="sub">バル・ワインバー</h5>
+          <table class="data-table" style="margin-top:4px">
+            <tr><td><strong>Osteria Il Gusto</strong><br><span style="font-size:14px">Corso Italia 137</span></td><td>ワインバー＋チーズ・ハムの盛り合わせ。一人飲み・ウーゴのアペリティーボに最適</td></tr>
+            <tr><td><strong>Hacker-Pschorr Haus</strong></td><td>ミュンヘン老舗醸造所系ビアホール。フランクフルト・チロル風サラダ。素早くボリューム満点</td></tr>
+          </table>
+          <h5 class="sub" style="margin-top:12px">状況別 使い分け早見表</h5>
+          <table class="data-table" style="margin-top:4px">
+            <tr><td>到着日・疲れている</td><td>Dolom'eats / Croda Cafè</td></tr>
+            <tr><td>軽く一人飲み</td><td>Osteria Il Gusto</td></tr>
+            <tr><td>しっかり地元料理</td><td>Al Camin / Ariston</td></tr>
+            <tr><td>午後遅い帰還（15時〜）</td><td>Ristorante De LEN</td></tr>
+            <tr><td>トレッキング前ランチ調達</td><td>Alverà（ベーカリー）/ Panino Top Bar</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-research" style="margin-top:16px">
+      <h4>🛍 ショッピング＆おみやげガイド</h4>
+      <div class="box box-warn" style="margin-bottom:10px">
+        ⚠️ 多くの店は 12:30〜15:30 が昼休憩（Riposo）。ショッピングは<strong>午前中または16時以降</strong>に計画すること。
+      </div>
+      <h5 class="sub">La Cooperativa di Cortina（ラ・コープ） — 1893年創業の地域の砦</h5>
+      <table class="data-table" style="margin-top:4px">
+        <tr><td>スーパーマーケット</td><td>地元オーガニック産品・夏季限定の新鮮ポルチーニキノコ</td></tr>
+        <tr><td>デリカテッセン</td><td>その場でスライスするスペック・プッチァ（クミン風パン）。トレッキングランチ調達に最適</td></tr>
+        <tr><td>土産・お菓子</td><td>コルチナ限定品・地元チーズ・ワイン・菓子を網羅</td></tr>
+        <tr><td>玩具部門</td><td>アルプス動物のぬいぐるみ・Sevi木製玩具（1831年創業）</td></tr>
+        <tr><td>香水・コスメ</td><td>コルチナ1893フレグランス・アルプスの香りのルームディフューザー</td></tr>
+      </table>
+      <h5 class="sub" style="margin-top:14px">Corso Italia 専門店</h5>
+      <table class="data-table" style="margin-top:4px">
+        <tr><td><strong>Artigianato Artistico Ampezzano</strong></td><td>アンペッツォ伝統工芸——フィリグラーナ（銀線細工）・タルカシ（象嵌細工）のジュエリー・木彫品。店内が古い農家の家具で装飾された美術館のような空間</td></tr>
+        <tr><td><strong>Sottosopra</strong></td><td>「ドロミテのバザール」。フェルトスリッパ・ウールソックス・山小屋風インテリア雑貨</td></tr>
+        <tr><td><strong>Strazzacappa</strong></td><td>路地裏のヴィンテージショップ。高品質なローデンコート・アンティーク</td></tr>
+      </table>
+      <h5 class="sub" style="margin-top:14px">🎁 おみやげ 選定マトリクス（7/4朝 購入計画）</h5>
+      <table class="data-table" style="margin-top:4px">
+        <tr><th>対象</th><th>品目</th><th>購入先</th><th>ポイント</th></tr>
+        <tr><td>日本の知人</td><td>エーデルワイスの銀細工（ブローチ・イヤリング）</td><td>Artigianato Artistico</td><td>高山植物モチーフの精緻な職人技</td></tr>
+        <tr><td>日本の知人</td><td>コルチナ1893フレグランス</td><td>ラ・コープ</td><td>コルチナ限定・アルプスの香り</td></tr>
+        <tr><td>日本の知人</td><td>高級チョコレート（Venchi等）</td><td>ラ・コープ</td><td>パッケージが美しく保存が利く</td></tr>
+        <tr><td>娘</td><td>カシミア製品</td><td>Corso Italiaブティック</td><td>ロンドンの冬でも重宝</td></tr>
+        <tr><td>孫（幼児〜学童）</td><td>アルプス動物ぬいぐるみ（マーモット・カモシカ）</td><td>ラ・コープ 玩具部門</td><td>コルチナの象徴「リス（Scoiattoli）」が特におすすめ</td></tr>
+        <tr><td>孫（学童）</td><td>Sevi木製レターブロック</td><td>ラ・コープ 玩具部門</td><td>孫の名前をアルファベットで揃えて贈る。日本語学習にも使える知育玩具</td></tr>
+        <tr><td>孫・娘</td><td>ミラノ・コルチナ2026 オリンピックグッズ</td><td>ラ・コープ・各所</td><td>2026年冬季五輪公式スウェット・キャップ。歴史的記念品</td></tr>
+      </table>
+    </div>
+
+    <div class="box-research" style="margin-top:16px">
+      <h4>🏅 1956年冬季五輪とコルチナの歴史 — 2026年への橋渡し</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><td>1956年大会</td><td>コルチナ・ダンペッツォで開催。当時の競技会場・ジャンプ台の跡が今も市内に現存</td></tr>
+        <tr><td>2026年大会</td><td>ミラノ＝コルチナ2026冬季五輪の共催都市。スキー競技の主要会場として70年ぶりに返り咲く</td></tr>
+        <tr><td>YouTube連動</td><td>1956年→2026年の70年の変化をEP16のナレーションテーマに。「五輪がどう街を変えたか」という問いを旅行者視点で語る</td></tr>
+      </table>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🍽 食文化コラム</div>
+      <h4>カスンツィエイ — ドロミテにしかない赤い半月</h4>
+      <p>コルチナ料理の象徴「カスンツィエイ・アル・アンペッツァーナ」は、ほかのどこにもない料理だ。半月形のラビオリの中には赤ビーツの甘く土っぽいピュレ。上に溶かしバターとポピーシード、削ったパルミジャーノ。赤・黄・黒がアンペッツォの旗の三色を皿の上で描く。ラディン文化——フランス語でもイタリア語でもドイツ語でもなく、ラテン語の直系子孫であるラエト・ロマンス語を話すこの山の民が、何世紀もかけて磨き上げた味だ。カネデルリ（パン団子スープ）と並び、コルチナに来たら必ず食べるべき二品。</p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🛒 地域コラム</div>
+      <h4>ラ・コープ1893 — 130年続く山の協同組合</h4>
+      <p>Corso Italia沿いに構える「La Cooperativa di Cortina（コルチナ生活協同組合）」は1893年創設、130年以上続く老舗だ。コルチナの人々が食料を確保するために作った協同組合が起源で、現在は高品質な地元食材からアウトドアウェア、お土産まで幅広く扱う。地元産チーズ（Piave・Asiago）、スペック（燻製生ハム）、グラッパ、ドロミテ産ハチミツ——ここに来ればコルチナの人々が何を食べているかがわかる。旅先でいちばん正直な場所は、観光客向けショップではなく地元のスーパーだ。<br><br>
+      <strong>お土産として特におすすめ：</strong>ラディン伝統工芸品（木彫り）/ Marmolada産ハチミツ / 地元産グラッパ（Aquavite di Dolomiti）/ ドロミテの地図＋絵本 / ヴァルガルデーナの木彫りキャラクター。</p>
+    </div>
+
+    <div class="column-box">
+      <div class="col-label">🏛 歴史コラム</div>
+      <h4>1956年から2026年へ — コルチナと冬季五輪70年の物語</h4>
+      <p>1956年1月26日〜2月5日、コルチナ・ダンペッツォは第7回冬季オリンピックの開催地となった。アルペンスキー・ボブスレー・スピードスケート——当時のコルチナはまだハプスブルク帝国の名残をとどめる小さな山岳リゾートだった。五輪は街を国際的に知らしめ、スキーインフラを整備し、Hotel Aquilaをはじめとする多くのホテルが開業した。その記憶が今も街のあちこちに残っている——スキージャンプ台の跡、オリンピックアイスリンクの建物、広場に刻まれた「1956」の文字。<br><br>
+      そして2026年、再びコルチナが世界の舞台に立つ。ミラノとの共催で第25回冬季五輪が開催される。70年の時を経た復活。街は少し背筋を伸ばしているように見える。</p>
+    </div>
+
+    <div class="box box-tip" style="margin-top:16px">
+      <strong>📹 EP16 撮影チェックリスト</strong><br>
+      ホテル正面からの早朝ドロミテ景色（三脚使用）／Corso Italiaの夕方ウォーク（OSMO360）／Dolom'eatsでのカスンツィエイ料理クローズアップ／ラ・コープの店内雰囲気／Osteria Il Gustoでのウーゴアペリティーボ
+    </div>
+  </div>
+</div>
+
+
+<!-- EP17 -->
+<div class="ep-section" id="ep17">
+  <div class="ep-header">
+    <span class="ep-num">EP 17</span>
+    <h3>総集編と帰路 — コルチナを出て、旅を締めくくる</h3>
+    <span class="ep-date">7月4日（土）〜7月10日（金）</span>
+  </div>
+  <div class="ep-body">
+    <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
+      旅最終章。コルチナの朝を最後に味わい、コルチナエクスプレスでベネチアへ。ロンドンで孫たちと5日間過ごし、JL44で羽田へ帰還する。EP01〜EP16のベストシーンを振り返りながら「街道を行く」というコンセプトで旅の意味を締めくくる。
+    </p>
+
+    <div class="box-research">
+      <h4>📅 帰路タイムライン</h4>
+      <table class="data-table" style="margin-top:8px">
+        <tr><th>日時</th><th>内容</th><th>注意・メモ</th></tr>
+        <tr>
+          <td><strong>7/4（土）朝</strong></td>
+          <td>コルチナ市内でおみやげ最終購入・パッキング</td>
+          <td>ラ・コープ・Artigianato・Corso Italiaブティックを朝イチで回る。昼休憩（12:30〜）前に完了すること</td>
+        </tr>
+        <tr>
+          <td><strong>7/4（土）11:30</strong></td>
+          <td>コルチナエクスプレス（バス）発</td>
+          <td>Hotel Aquila前から乗車。予約票：[[交通/CortinaExpress]]</td>
+        </tr>
+        <tr>
+          <td><strong>7/4（土）13:45</strong></td>
+          <td>Venezia Marco Polo空港着</td>
+          <td>ベネチア空港。チェックイン・出国手続き</td>
+        </tr>
+        <tr>
+          <td><strong>7/4（土）17:00</strong></td>
+          <td>BA607 Venice Marco Polo発</td>
+          <td>予約番号：YVY9MC</td>
+        </tr>
+        <tr>
+          <td><strong>7/4（土）18:20</strong></td>
+          <td>LHR（ヒースロー）着</td>
+          <td>Heathrow Express → Paddington → 絵理宅</td>
+        </tr>
+        <tr>
+          <td><strong>7/5〜7/8</strong></td>
+          <td>ロンドン最終滞在（絵理宅）</td>
+          <td>孫（丞・司）と観光・買い物。7/6〜8は詳細未定</td>
+        </tr>
+        <tr>
+          <td><strong>7/9（木）19:20</strong></td>
+          <td>JL44 LHR発</td>
+          <td>予約番号：DHKFGE（座席46J）</td>
+        </tr>
+        <tr>
+          <td><strong>7/10（金）17:20</strong></td>
+          <td>羽田着 → 品川経由 → 浜松帰着</td>
+          <td>旅全日程完了</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box-research" style="margin-top:16px">
+      <h4>🎬 EP17 コンテンツ構成（編集方針）</h4>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-title">A. 帰路の映像</div>
+          <ul style="font-size:14px;font-family:sans-serif;line-height:2;padding-left:16px;">
+            <li>コルチナの朝——最後の朝食・Hotel Aquilaを出る瞬間</li>
+            <li>Corso Italia「歩き収め」</li>
+            <li>コルチナエクスプレス車窓——山→平野の変化をOSMO360タイムラプスで収録</li>
+            <li>ベネチア空港——旅の終わりのムード</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">B. 旅全体の振り返り</div>
+          <ul style="font-size:14px;font-family:sans-serif;line-height:2;padding-left:16px;">
+            <li>ロンドン——孫たちとの時間</li>
+            <li>バルセロナ——ガウディ・ダリ・カタルーニャ文化</li>
+            <li>ドロミテ——トレ・チーメ・チンクエ・トッリ・ミズリーナ湖</li>
+            <li>コルチナの街——また来たいという感情</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">C. ナレーション締め</div>
+          <ul style="font-size:14px;font-family:sans-serif;line-height:2;padding-left:16px;">
+            <li>「街道を行く」コンセプトとの接続</li>
+            <li>旅の意味——70代で行くドロミテ、孫と過ごすロンドン</li>
+            <li>次の旅への予告（あれば）</li>
+          </ul>
+        </div>
+      </div>
+      <table class="data-table" style="margin-top:12px">
+        <tr><td>尺の目安</td><td>15〜20分（他EPより長め）</td></tr>
+        <tr><td>ベストカット数</td><td>EP01〜EP16から15〜20本</td></tr>
+        <tr><td>公開日</td><td>2026年12月5日（土）19:00 JST — シリーズ完結</td></tr>
+      </table>
+    </div>
+
+    <div class="box box-tip" style="margin-top:16px">
+      <strong>📹 EP17 撮影で意識すること</strong><br>
+      帰路バス車窓はOSMO360タイムラプス必須 ／ ホテル前・Corso Italiaで「最後のシーン」を意識して撮影 ／ 各地で「また来たい」と思った瞬間の映像を残す ／ ベネチア空港・BA607搭乗ゲートで旅のエンディング映像
+    </div>
+  </div>
+</div>
+
+
+</div><!-- end Part 3 wrapper -->
+
+<!-- ===== APPENDIX ===== -->
+<div style="background:linear-gradient(135deg,#1a3a2a,#2d6a4f);padding:40px 32px 32px;margin:40px 0 0;border-radius:4px 4px 0 0;">
+  <p style="font-family:serif;font-size:14px;letter-spacing:3px;color:#c9a84c;text-transform:uppercase;margin:0 0 8px;">Appendix</p>
+  <h2 style="font-family:serif;font-size:26px;color:#fff;margin:0 0 8px;">巻末資料</h2>
+  <p style="font-family:sans-serif;font-size:15px;color:rgba(255,255,255,0.7);margin:0;">予約番号一覧 / 事前準備チェックリスト / YouTube公開スケジュール</p>
+</div>
+
+<!-- A1: チケット・予約一覧 -->
+<div style="background:#fff;border:1px solid #e0d9ce;border-top:none;padding:32px;margin-bottom:32px">
+  <h3 style="font-family:serif;font-size:20px;color:#1a3a2a;border-bottom:2px solid #c9a84c;padding-bottom:8px;margin-top:0">A-1. チケット・予約一覧（旅行中のレファレンス用）</h3>
+  <p style="font-family:sans-serif;font-size:14px;color:#888;margin-bottom:20px">最終更新：2026-05-03 ／ PDFは各サブフォルダーに格納済み</p>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px;margin-bottom:8px">✈️ フライト</h4>
+  <table class="data-table">
+    <tr><th>区間</th><th>便名</th><th>日時</th><th>予約番号</th></tr>
+    <tr><td>羽田 → LHR</td><td>JL41</td><td>6/15（月）00:15発 → 06:25着</td><td><strong>DHKFGE</strong></td></tr>
+    <tr><td>LHR → 羽田</td><td>JL44</td><td>7/9（木）19:20発 → 7/10 17:20着</td><td><strong>DHKFGE</strong>（座席46J）</td></tr>
+    <tr><td>LHR → BCN（バルセロナ）</td><td>BA480</td><td>6/18（木）12:40発 → 15:55着</td><td><strong>YVU26N</strong></td></tr>
+    <tr><td>BCN → LHR</td><td>BA479</td><td>6/25（木）15:05発 → 16:30着</td><td><strong>YVU26N</strong></td></tr>
+    <tr><td>LHR → VCE（ベネチア）</td><td>BA598</td><td>6/29（月）10:10発 → 13:25着</td><td><strong>YVY9MC</strong></td></tr>
+    <tr><td>VCE → LHR</td><td>BA607</td><td>7/4（土）17:00発 → 18:20着</td><td><strong>YVY9MC</strong></td></tr>
+  </table>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px;margin-bottom:8px">🚆 交通</h4>
+  <table class="data-table">
+    <tr><th>日付</th><th>区間</th><th>備考</th></tr>
+    <tr><td>6/15（月）到着日</td><td>LHR → Paddington</td><td rowspan="6">Heathrow Express 全6回購入済（@13.5£ RailCard適用）</td></tr>
+    <tr><td>6/18（木）BCN出発日</td><td>Paddington → LHR</td></tr>
+    <tr><td>6/25（木）BCN帰り</td><td>LHR → Paddington</td></tr>
+    <tr><td>6/29（月）VCE出発日</td><td>Paddington → LHR</td></tr>
+    <tr><td>7/4（土）VCE帰り</td><td>LHR → Paddington</td></tr>
+    <tr><td>7/9（木）帰国日</td><td>Paddington → LHR</td></tr>
+    <tr><td>6/18〜20</td><td>バルセロナ地下鉄（Hola BCN 3日間）</td><td>バウチャー番号：3050007742690（24.57€購入済）／TMB券売機で発券</td></tr>
+    <tr><td>6/29（月）14:20発</td><td>VCE空港 → コルチナ（コルチナエクスプレス）</td><td>16:30着</td></tr>
+    <tr><td>7/4（土）11:30発</td><td>コルチナ → VCE空港（コルチナエクスプレス）</td><td>13:45着</td></tr>
+  </table>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px;margin-bottom:8px">🎟️ アトラクション</h4>
+  <table class="data-table">
+    <tr><th>施設</th><th>日付</th><th>予約番号</th><th>注意事項</th></tr>
+    <tr>
+      <td><strong>モンセラート早朝ツアー</strong></td>
+      <td>6/19（金）</td>
+      <td>Viator #1316897479</td>
+      <td>集合6:15〜6:45（バルセロナ市内ピックアップ）。8:00 Black Madonna見学。帰着13:15〜13:30</td>
+    </tr>
+    <tr>
+      <td><strong>ダリ劇場美術館</strong></td>
+      <td>6/20（土）</td>
+      <td>97528644</td>
+      <td>開館10:30、10:45入場予定。オーディオガイドをリクエスト</td>
+    </tr>
+    <tr>
+      <td><strong>ピカソ美術館</strong></td>
+      <td>6/21（日）09:00</td>
+      <td>5 / 1554958（12.50€・65歳以上）</td>
+      <td>⚠️ 入場前にLevel 0クロークでオーディオガイドを先に受け取ること</td>
+    </tr>
+    <tr>
+      <td><strong>バルセロナカード 96H</strong></td>
+      <td>6/21〜</td>
+      <td>照会ID: 751243748<br>バウチャー: SG0020260503536466793886</td>
+      <td>カタルーニャ広場観光案内所（08:30〜20:30）で発行。キャンセル期限：6/20 23:59</td>
+    </tr>
+    <tr>
+      <td><strong>e-bikeサイクリングツアー</strong></td>
+      <td>6/21（日）15:00〜19:30</td>
+      <td>—（69€）</td>
+      <td>Plaça de George Orwell集合（L3 Liceuから徒歩7分）</td>
+    </tr>
+    <tr>
+      <td><strong>サグラダ・ファミリア</strong></td>
+      <td>6/22（月）9:00入場</td>
+      <td>97504514（32€）</td>
+      <td>⚠️ タワー予約時間10:45を逃さないこと。英語ガイド9:15出発</td>
+    </tr>
+    <tr>
+      <td><strong>グエル公園</strong></td>
+      <td>6/22（月）14:00</td>
+      <td>82890831（19.5€）</td>
+      <td>⚠️ ガウディの家を最初に見ること（予約時間から30分以内）</td>
+    </tr>
+    <tr>
+      <td><strong>カタルーニャ音楽堂</strong></td>
+      <td>6/22（月）19:00</td>
+      <td>—</td>
+      <td>La Simfònica de Cobla i Corda de Catalunya (SCCC) 公演</td>
+    </tr>
+    <tr>
+      <td><strong>ピレネー＆中世の町ツアー</strong></td>
+      <td>6/23（火）8:15集合</td>
+      <td>Viator（119€ / ¥21,112）</td>
+      <td>カタルーニャ音楽堂隣のメインオフィス集合。帰着19:00頃カタルーニャ広場</td>
+    </tr>
+    <tr>
+      <td><strong>トレ・チーメ プライベートガイドハイク</strong></td>
+      <td>7/1（水）</td>
+      <td>Viator #1351716701（320€）</td>
+      <td>Hotel Aquilaでガイドと直接調整済み。所要4〜8時間</td>
+    </tr>
+  </table>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px;margin-bottom:8px">🏨 ホテル</h4>
+  <table class="data-table">
+    <tr><th>ホテル</th><th>チェックイン→アウト</th><th>予約番号</th><th>住所</th></tr>
+    <tr>
+      <td><strong>絵理宅（Phase 1）</strong></td>
+      <td>6/15〜6/18</td>
+      <td>—</td>
+      <td>Flat 48, 50 Kensington Gardens Square, London W2 4BA</td>
+    </tr>
+    <tr>
+      <td><strong>Sercotel Hotel President</strong><br>（フィゲラス）</td>
+      <td>6/19→6/20</td>
+      <td>6559699236（89.53€）</td>
+      <td>Avinguda Salvador Dalí, 82, 17600, Figueres</td>
+    </tr>
+    <tr>
+      <td><strong>NH Barcelona Eixample</strong></td>
+      <td>6/20→6/25</td>
+      <td>5052650657 / 5052670514</td>
+      <td>Valencia, 105-107, Eixample, 08011, Barcelona</td>
+    </tr>
+    <tr>
+      <td><strong>絵理宅（Phase 2）</strong></td>
+      <td>6/25〜6/29</td>
+      <td>—</td>
+      <td>Flat 48, 50 Kensington Gardens Square, London W2 4BA</td>
+    </tr>
+    <tr>
+      <td><strong>Hotel Aquila</strong><br>（コルチナ）</td>
+      <td>6/29→7/4</td>
+      <td>—</td>
+      <td>Piazza Pittori Fratelli Ghedina, 1, 32043 Cortina d'Ampezzo</td>
+    </tr>
+    <tr>
+      <td><strong>絵理宅（Phase 3）</strong></td>
+      <td>7/4〜7/9</td>
+      <td>—</td>
+      <td>Flat 48, 50 Kensington Gardens Square, London W2 4BA</td>
+    </tr>
+  </table>
+
+  <div class="box box-info" style="margin-top:20px">
+    <strong>📌 UK ETA</strong>　取得済み（2026.04.06）― Reference: 2020-0000-4851-7362
+  </div>
+</div>
+
+
+<!-- A2: 事前準備チェックリスト -->
+<div style="background:#fff;border:1px solid #e0d9ce;padding:32px;margin-bottom:32px">
+  <h3 style="font-family:serif;font-size:20px;color:#1a3a2a;border-bottom:2px solid #c9a84c;padding-bottom:8px;margin-top:0">A-2. 出発前チェックリスト</h3>
+
+  <div class="column-box">
+    <div>
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:0">✅ 完了済み</h4>
+      <table class="data-table">
+        <tr><td>✅ UK ETA取得</td><td>2026.04.06 ／ Ref: 2020-0000-4851-7362</td></tr>
+        <tr><td>✅ UBIGI eSIM購入</td><td>ヨーロッパ30日プラン</td></tr>
+        <tr><td>✅ Heathrow Express</td><td>3往復分購入済（@13.5£）</td></tr>
+        <tr><td>✅ 旅行保険</td><td>JALカード＋追加確認済み</td></tr>
+      </table>
+
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px">📋 書類・デジタル</h4>
+      <table class="data-table">
+        <tr><td>☐ eチケット他控えを印刷</td><td>携帯不具合時用</td></tr>
+        <tr><td>☐ パスポートのコピー・写真予備を印刷</td><td></td></tr>
+        <tr><td>☐ 予約番号一覧をまとめて印刷 or オフライン保存</td><td>このブックのA-1を印刷推奨</td></tr>
+      </table>
+
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px">💴 現金・カード</h4>
+      <table class="data-table">
+        <tr><td>☐ JAL Global Wallet（JAL Pay）にGBP・EUR各10万円程度チャージ</td><td>日常決済（レストラン・おみやげ）はJAL Global Wallet → マイル効率アップ</td></tr>
+        <tr><td>☐ 高額決済（ホテル）はJALゴールドカード</td><td></td></tr>
+        <tr><td>☐ £と€の現金を羽田で若干入手</td><td>各200ドル相当目安</td></tr>
+      </table>
+    </div>
+    <div>
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:0">📡 通信・アプリ</h4>
+      <table class="data-table">
+        <tr><td>☐ UBIGI eSIMをアクティベート</td><td>ロンドン到着後すぐ</td></tr>
+        <tr><td>☐ OysterCard オンライン登録・紐づけ</td><td>到着後すぐ（国外では不可）</td></tr>
+        <tr><td>☐ オフライン地図ダウンロード</td><td>London / Barcelona / Cortina</td></tr>
+      </table>
+      <div class="box box-info" style="margin-top:8px;font-size:14px">
+        UBIGI eSIM：NTTグループ傘下。ヨーロッパではVodafone・Orangeと提携。ピレネー・ドロミテなど山岳エリアでの安定性が高評価（2025〜2026レビュー）
+      </div>
+
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px">🔋 機材・充電</h4>
+      <table class="data-table">
+        <tr><td>☐ モバイルバッテリー（10,000mAh / 39.2Wh）</td><td>機内持込可</td></tr>
+        <tr><td>☐ OSMO360予備バッテリー（8.13Wh）</td><td>機内持込可</td></tr>
+        <tr><td colspan="2">⚠️ モバイルバッテリーは座席上の収納棚に収納しないこと（JAL規定）</td></tr>
+      </table>
+
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px">🧳 持ち物（衣類・装備）</h4>
+      <table class="data-table">
+        <tr><td>☐ トレッキング用シューズ</td><td>ドロミテ対応</td></tr>
+        <tr><td>☐ レインウェア</td><td></td></tr>
+        <tr><td>☐ 防寒レイヤー</td><td>コルチナは標高高く朝夕冷える</td></tr>
+        <tr><td>☐ サポーター（ひざ・ひじ）</td><td></td></tr>
+        <tr><td>☐ 湿布・絆創膏</td><td></td></tr>
+      </table>
+
+      <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px">💊 医薬品</h4>
+      <table class="data-table">
+        <tr><td>☐ 処方薬</td><td>必要量を確認</td></tr>
+        <tr><td>☐ 風邪薬・胃薬・整腸剤・頭痛薬・鼻炎薬</td><td></td></tr>
+        <tr><td>☐ 睡眠導入剤</td><td>たまこしクリニックで処方</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px">📝 未定・検討中</h4>
+  <table class="data-table">
+    <tr><td>☐ ロンドン地下鉄ストライキ（6/16〜17）の代替交通手段確認</td><td>バス・タクシー・自転車シェアを事前確認</td></tr>
+    <tr><td>☐ 7/6〜8（ロンドン最終滞在）の過ごし方を決める</td><td>孫との時間・観光・買い物を検討</td></tr>
+    <tr><td>☐ 孫（丞・司）へのおみやげ候補リストアップ</td><td>コルチナで購入（ラ・コープ）、バルセロナ土産と合わせて</td></tr>
+    <tr><td>☐ チンクエ・トッリガイドハイク</td><td>検討中・270〜330€。返事待ち</td></tr>
+    <tr><td>☐ モンセラートツアー：NH Barcelona Eixample近辺ピックアップ確認</td><td>ホテル付近ピックアップが可能か事前確認を</td></tr>
+  </table>
+</div>
+
+
+<!-- A3: YouTube公開スケジュール -->
+<div style="background:#fff;border:1px solid #e0d9ce;padding:32px;margin-bottom:32px">
+  <h3 style="font-family:serif;font-size:20px;color:#1a3a2a;border-bottom:2px solid #c9a84c;padding-bottom:8px;margin-top:0">A-3. YouTube 公開スケジュール</h3>
+  <div class="column-box" style="margin-bottom:16px">
+    <div>
+      <table class="data-table">
+        <tr><td>撮影期間</td><td>2026年6月（バルセロナ）/ 7月（コルチナ）</td></tr>
+        <tr><td>帰国</td><td>2026年7月9日</td></tr>
+        <tr><td>編集開始</td><td>帰国後すぐ（7月中旬〜）</td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="data-table">
+        <tr><td>投稿ペース</td><td>毎週1本</td></tr>
+        <tr><td>投稿曜日・時間</td><td><strong>毎週土曜日 19:00 JST</strong></td></tr>
+        <tr><td>Shorts</td><td>本編の3日前（水曜日）に1本</td></tr>
+        <tr><td>シリーズ完結</td><td><strong>2026年12月5日（土）</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px;margin-bottom:8px">第2部 バルセロナ編（EP01〜EP10）</h4>
+  <table class="data-table">
+    <tr style="background:#2d6a4f;color:#fff"><th>回</th><th>本編公開日</th><th>EP</th><th>タイトル</th><th>Shorts（水曜）</th></tr>
+    <tr><td>1</td><td>2026/8/1（土）</td><td>EP01</td><td>ロンドンからバルセロナへ</td><td>7/29</td></tr>
+    <tr><td>2</td><td>8/8</td><td>EP02</td><td>バルセロナを歩く——街と食事</td><td>8/5</td></tr>
+    <tr><td>3</td><td>8/15</td><td>EP03</td><td>モンセラート早朝ツアー</td><td>8/12</td></tr>
+    <tr><td>4</td><td>8/22</td><td>EP04</td><td>ダリの故郷フィゲラスへ</td><td>8/19</td></tr>
+    <tr><td>5</td><td>8/29</td><td>EP05</td><td>バルセロナの絶景ハイキング</td><td>8/26</td></tr>
+    <tr><td>6</td><td>9/5</td><td>EP06</td><td>ピカソとミロ</td><td>9/2</td></tr>
+    <tr><td>7</td><td>9/12</td><td>EP07</td><td>ガウディ：サグラダ・ファミリアとグエル公園</td><td>9/9</td></tr>
+    <tr><td>8</td><td>9/19</td><td>EP08</td><td>モンジュイックの丘とコロンブスの塔</td><td>9/16</td></tr>
+    <tr><td>9</td><td>9/26</td><td>EP09</td><td>ピレネー山脈・ヌリア渓谷</td><td>9/23</td></tr>
+    <tr><td>10</td><td>10/3</td><td>EP10</td><td>カタルーニャ音楽堂・総集編</td><td>9/30</td></tr>
+  </table>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px;margin-bottom:8px">第3部 コルチナ編（EP11〜EP17）</h4>
+  <table class="data-table">
+    <tr style="background:#2d6a4f;color:#fff"><th>回</th><th>本編公開日</th><th>EP</th><th>タイトル</th><th>Shorts（水曜）</th></tr>
+    <tr><td>11</td><td>10/10</td><td>EP11</td><td>コルチナ・ダンペッツォ</td><td>10/7</td></tr>
+    <tr><td>12</td><td>10/17</td><td>EP12</td><td>ファローリア、トファーナ</td><td>10/14</td></tr>
+    <tr><td>13</td><td>10/24</td><td>EP13</td><td>ミズリーナ湖、サイクリング</td><td>10/21</td></tr>
+    <tr><td>14</td><td>10/31</td><td>EP14</td><td>トレ・チーメ・ディ・ラヴァレード</td><td>10/28</td></tr>
+    <tr><td>15</td><td>11/7</td><td>EP15</td><td>チンクエトッリ</td><td>11/4</td></tr>
+    <tr><td>16</td><td>11/14</td><td>EP16</td><td>ドロミテの文化と食</td><td>11/11</td></tr>
+    <tr style="background:#fff9ee;font-weight:bold"><td>17</td><td><strong>11/21（土）🎉</strong></td><td>EP17</td><td>総集編と帰路</td><td>11/18</td></tr>
+  </table>
+
+  <div class="box box-tip" style="margin-top:20px">
+    <strong>📋 毎週の制作フロー</strong>：月〜火：編集 → 水：Shorts公開 → 木〜金：仕上げ・説明文・サムネイル → 土：本編公開
+  </div>
+
+  <h4 style="font-family:serif;color:#2d6a4f;margin-top:20px;margin-bottom:8px">優先 Shorts エピソード</h4>
+  <table class="data-table">
+    <tr><th>EP</th><th>Shorts内容</th><th>理由</th></tr>
+    <tr><td>EP01</td><td>旅の始まり・LHR→BCN</td><td>シリーズ開幕の期待感</td></tr>
+    <tr><td>EP03</td><td>Black Madonnаの朝（モンセラート）</td><td>朝一番の映像がShortsに最適</td></tr>
+    <tr><td>EP07</td><td>サグラダ・ファミリア内部</td><td>定番スポットでリーチ大</td></tr>
+    <tr><td>EP13</td><td>e-bike走行POV</td><td>没入感POVはShortsで強い</td></tr>
+    <tr><td>EP14</td><td>トレ・チーメ登場の瞬間</td><td>衝撃の初登場シーン</td></tr>
+    <tr><td>EP16</td><td>WWI塹壕の中</td><td>歴史系は意外にShortsでバズる</td></tr>
+  </table>
+</div>
+
+
+</div><!-- end appendix container -->
+
+<!-- FOOTER -->
+<footer style="background:#1a3a2a;color:rgba(255,255,255,0.6);padding:32px;text-align:center;font-family:sans-serif;font-size:14px;margin-top:0">
+  <p style="margin:0 0 8px;font-size:14px;color:#c9a84c;font-family:serif;letter-spacing:2px;">RICHIE'S JOURNEY — 欧州旅行ブック v1</p>
+  <p style="margin:0 0 4px">事前準備編 ／ 2026年5月作成 ／ Cowork mode with Claude</p>
+  <p style="margin:0;color:rgba(255,255,255,0.3);">旅程：2026年6月14日〜7月10日 ／ ロンドン・バルセロナ・コルチナ・ダンペッツォ</p>
+</footer>
+
+</div><!-- end main-wrap -->
+
+<!-- Back to top button -->
+<a href="#top" style="position:fixed;bottom:24px;right:24px;background:#2d6a4f;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,0.3);z-index:1000;" title="トップへ戻る">↑</a>
+
+</body>
+</html>
