@@ -52,7 +52,7 @@ nav ul li a:hover { background: var(--primary-light); color: white; }
 .ep-section { border-bottom: 1px solid var(--border); }
 .ep-header { background: var(--bg-section); border-left: 4px solid var(--primary-light); padding: 24px 40px; display: flex; align-items: baseline; gap: 20px; }
 .ep-num { font-size: 16px; font-family: sans-serif; color: var(--primary-light); font-weight: bold; letter-spacing: 2px; white-space: nowrap; }
-.ep-header h3 { font-size: 24px; color: var(--primary); font-weight: 400; letter-spacing: 2px; }
+.ep-header h3 { font-size: 24px; color: var(--primary); font-weight: 700; letter-spacing: 2px; }
 .ep-header .ep-date { font-size: 15px; color: var(--text-light); font-family: sans-serif; margin-left: auto; white-space: nowrap; }
 .ep-body { padding: 30px 40px; max-width: 960px; font-size: 17px; line-height: 1.9; }
 
@@ -258,6 +258,8 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
   .book-img-row { gap: 12px; }
   .book-img-card img { height: 140px !important; width: auto !important; }
   div[style*="float:right"] { float: none !important; display: block; margin: 0 auto 16px !important; text-align: center; }
+  .checklist-grid { grid-template-columns: 1fr !important; }
+  .yt-schedule-summary { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 480px) {
   body { font-size: 16px; }
@@ -1855,7 +1857,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
     <div class="box-research">
       <h4>🌿 モニュメントゾーン 必見5スポット</h4>
       <table class="data-table" style="margin-top:8px">
-        <tr><th>スポット</th><th>見どころ</th></tr>
+        <tr><th style="width:28%">スポット</th><th>見どころ</th></tr>
         <tr><td>① 入口ゲートと守衛小屋</td><td>左右2棟の守衛小屋。キノコのような丸い屋根はトレンカディス（陶器の破片モザイク）で覆われる。鉄柵はガウディ自身のデザイン——植物の茎と葉をモチーフにした鉄細工</td></tr>
         <tr><td>② トカゲの噴水（正面大階段）</td><td>大階段中央に鎮座するカラフルなトカゲ（ドラゴン）の彫刻。実は噴水のノズル——雨水を集めて地下貯水槽に送り、ドラゴンの口から放出する機能的仕掛け。弟子ジュジョールがデザイン担当</td></tr>
         <tr><td>③ 列柱ホール（百柱の広場）</td><td>86本のドーリア式石柱が天井を支える（当初は市場として設計）。柱の内部が空洞で雨水の排水管としても機能。天井には4枚の円形トレンカディス装飾。真下が大きな貯水槽——建物全体が一つの雨水管理システム</td></tr>
@@ -1914,7 +1916,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
     <div class="box-research">
       <h4>🏰 モンジュイックの丘（6/24）完全ガイド</h4>
       <table class="data-table" style="margin-top:8px">
-        <tr><th>スポット</th><th>内容</th><th>アクセス</th></tr>
+        <tr><th style="width:26%">スポット</th><th>内容</th><th style="width:22%">アクセス</th></tr>
         <tr><td>カタルーニャ美術館（MNAC）</td><td>ロマネスク美術の世界最高コレクション。11〜12世紀の壁画が教会からそのまま移設されている。バルセロナカードで入場割引</td><td>エスパーニャ広場からエスカレーター</td></tr>
         <tr><td>ミロ美術館</td><td>EP06でも訪問。モンジュイック側のアクセスで</td><td>フニクラ → 徒歩</td></tr>
         <tr><td>モンジュイック城</td><td>18世紀建造の要塞。スペイン内戦・フランコ独裁時代の政治犯処刑場でもあった歴史の現場。城壁からバルセロナ港と地中海を一望</td><td>ケーブルカー or バス150</td></tr>
@@ -2302,7 +2304,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
     <div class="box-research">
       <h4>🚡 ロープウェイ情報</h4>
       <table class="data-table" style="margin-top:8px">
-        <tr><th>施設</th><th>到達点</th><th>特徴</th></tr>
+        <tr><th style="width:30%">施設</th><th style="width:12%">到達点</th><th>特徴</th></tr>
         <tr><td>ファローリアケーブルカー</td><td>2,123m</td><td>コルチナ入門展望台。Rifugio Faloria（テラスランチ）あり。コルチナ全景と反対側の岩峰群</td></tr>
         <tr><td>トファーナ・フレッチャ・ネル・チェーロ</td><td>3,244m</td><td>「天の矢」の愛称。3段階乗継。最高地点から360度のドロミテ大展望。7月は晴れた日でも上層に雲が発生しやすい</td></tr>
       </table>
@@ -2364,11 +2366,11 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
     </div>
     <h4 class="sec">ルートプロファイル</h4>
     <table class="data-table">
-      <tr><th>区間</th><th>距離</th><th>標高差</th><th>所要時間</th><th>特徴</th></tr>
-      <tr><td>コルチナ → トレ・クローチェ峠</td><td>8.0km</td><td>+581m（1,224→1,805m）</td><td>45〜60分</td><td>平均勾配7.3%・最大12%。針葉樹林の中を登る。SR48号線</td></tr>
-      <tr><td>峠 → ミズリーナ湖</td><td>7km</td><td>-51m（1,805→1,754m）</td><td>20〜30分</td><td>ほぼ下り。湖が突然現れる感動のアプローチ</td></tr>
-      <tr><td>ミズリーナ湖 滞在</td><td>—</td><td>—</td><td>2〜3時間</td><td>北岸リフレクション撮影・湖一周・Quinzランチ</td></tr>
-      <tr><td>復路：旧線路跡（チマバンチェ経由）</td><td>約20km</td><td>緩やかな下り基調</td><td>1.5〜2時間</td><td>廃線跡の自転車専用道。トンネル・鉄橋が連続</td></tr>
+      <tr><th style="width:32%">区間</th><th style="width:28%">距離 / 標高差 / 所要時間</th><th>特徴</th></tr>
+      <tr><td>コルチナ → トレ・クローチェ峠</td><td>8.0km / +581m（1,224→1,805m）/ 45〜60分</td><td>平均勾配7.3%・最大12%。針葉樹林の中を登る。SR48号線</td></tr>
+      <tr><td>峠 → ミズリーナ湖</td><td>7km / -51m（1,805→1,754m）/ 20〜30分</td><td>ほぼ下り。湖が突然現れる感動のアプローチ</td></tr>
+      <tr><td>ミズリーナ湖 滞在</td><td>— / — / 2〜3時間</td><td>北岸リフレクション撮影・湖一周・Quinzランチ</td></tr>
+      <tr><td>復路：旧線路跡（チマバンチェ経由）</td><td>約20km / 緩やかな下り基調 / 1.5〜2時間</td><td>廃線跡の自転車専用道。トンネル・鉄橋が連続</td></tr>
     </table>
 
 <div class="infographic-block" style="text-align:center;margin:20px 0;">
@@ -2737,7 +2739,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
       <h4>🍽 アンペッツォ郷土料理 — 6大定番</h4>
       <p style="font-size:14px;font-family:sans-serif;margin-bottom:8px;color:#666;">チロル（オーストリア）系・イタリア（ヴェネト）系・中欧系の3つの食文化が交差する山岳料理。</p>
       <table class="data-table">
-        <tr><th>料理名</th><th>説明</th><th style="width:130px">写真</th></tr>
+        <tr><th style="width:140px">料理名</th><th>説明</th><th style="width:120px">写真</th></tr>
         <tr>
           <td><strong>カスンツィエイ</strong><br><span style="font-size:14px;color:#888">Casunziei all'Ampezzana</span></td>
           <td>半月形ラビオリに赤ビーツを詰め、溶かしバター・ポピーシード・パルミジャーノで仕上げる。コルチナ料理の象徴。ビーツの赤・バターの黄・ポピーの黒が「アンペッツォの旗」と呼ばれる三色を皿の上で描く</td>
@@ -2820,14 +2822,14 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
       </table>
       <h5 class="sub" style="margin-top:14px">🎁 おみやげ 選定マトリクス（7/4朝 購入計画）</h5>
       <table class="data-table" style="margin-top:4px">
-        <tr><th>対象</th><th>品目</th><th>購入先</th><th>ポイント</th></tr>
-        <tr><td>日本の知人</td><td>エーデルワイスの銀細工（ブローチ・イヤリング）</td><td>Artigianato Artistico</td><td>高山植物モチーフの精緻な職人技</td></tr>
-        <tr><td>日本の知人</td><td>コルチナ1893フレグランス</td><td>ラ・コープ</td><td>コルチナ限定・アルプスの香り</td></tr>
-        <tr><td>日本の知人</td><td>高級チョコレート（Venchi等）</td><td>ラ・コープ</td><td>パッケージが美しく保存が利く</td></tr>
-        <tr><td>娘</td><td>カシミア製品</td><td>Corso Italiaブティック</td><td>ロンドンの冬でも重宝</td></tr>
-        <tr><td>孫（幼児〜学童）</td><td>アルプス動物ぬいぐるみ（マーモット・カモシカ）</td><td>ラ・コープ 玩具部門</td><td>コルチナの象徴「リス（Scoiattoli）」が特におすすめ</td></tr>
-        <tr><td>孫（学童）</td><td>Sevi木製レターブロック</td><td>ラ・コープ 玩具部門</td><td>孫の名前をアルファベットで揃えて贈る。日本語学習にも使える知育玩具</td></tr>
-        <tr><td>孫・娘</td><td>ミラノ・コルチナ2026 オリンピックグッズ</td><td>ラ・コープ・各所</td><td>2026年冬季五輪公式スウェット・キャップ。歴史的記念品</td></tr>
+        <tr><th style="width:15%">対象</th><th>品目</th><th style="width:38%">購入先 / ポイント</th></tr>
+        <tr><td>日本の知人</td><td>エーデルワイスの銀細工（ブローチ・イヤリング）</td><td>Artigianato Artistico<br><span style="font-size:13px;color:#888">高山植物モチーフの精緻な職人技</span></td></tr>
+        <tr><td>日本の知人</td><td>コルチナ1893フレグランス</td><td>ラ・コープ<br><span style="font-size:13px;color:#888">コルチナ限定・アルプスの香り</span></td></tr>
+        <tr><td>日本の知人</td><td>高級チョコレート（Venchi等）</td><td>ラ・コープ<br><span style="font-size:13px;color:#888">パッケージが美しく保存が利く</span></td></tr>
+        <tr><td>娘</td><td>カシミア製品</td><td>Corso Italiaブティック<br><span style="font-size:13px;color:#888">ロンドンの冬でも重宝</span></td></tr>
+        <tr><td>孫（幼児〜学童）</td><td>アルプス動物ぬいぐるみ（マーモット・カモシカ）</td><td>ラ・コープ 玩具部門<br><span style="font-size:13px;color:#888">「リス（Scoiattoli）」が特におすすめ</span></td></tr>
+        <tr><td>孫（学童）</td><td>Sevi木製レターブロック</td><td>ラ・コープ 玩具部門<br><span style="font-size:13px;color:#888">日本語学習にも使える知育玩具</span></td></tr>
+        <tr><td>孫・娘</td><td>ミラノ・コルチナ2026 オリンピックグッズ</td><td>ラ・コープ・各所<br><span style="font-size:13px;color:#888">公式スウェット・キャップ。歴史的記念品</span></td></tr>
       </table>
     </div>
 
@@ -3013,7 +3015,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
 
   <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px;margin-bottom:8px">🎟️ アトラクション</h4>
   <table class="data-table">
-    <tr><th>施設</th><th>日付</th><th>予約番号</th><th>注意事項</th></tr>
+    <tr><th style="width:22%">施設</th><th style="width:13%">日付</th><th style="width:20%">予約番号</th><th>注意事項</th></tr>
     <tr>
       <td><strong>モンセラート早朝ツアー</strong></td>
       <td>6/19（金）</td>
@@ -3127,7 +3129,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
 <div style="background:#fff;border:1px solid #e0d9ce;padding:32px;margin-bottom:32px">
   <h3 style="font-family:serif;font-size:20px;color:#1a3a2a;border-bottom:2px solid #c9a84c;padding-bottom:8px;margin-top:0">A-2. 出発前チェックリスト</h3>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px;">
+  <div class="checklist-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px;">
     <div>
       <h4 style="font-family:serif;font-size:16px;color:#fff;background:#2d6a4f;padding:6px 12px;border-radius:4px;margin:0 0 8px;">✅ 完了済み</h4>
       <table class="data-table">
@@ -3201,7 +3203,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
 <!-- A3: YouTube公開スケジュール -->
 <div style="background:#fff;border:1px solid #e0d9ce;padding:32px;margin-bottom:32px">
   <h3 style="font-family:serif;font-size:20px;color:#1a3a2a;border-bottom:2px solid #c9a84c;padding-bottom:8px;margin-top:0">A-3. YouTube 公開スケジュール</h3>
-  <div class="column-box" style="margin-bottom:16px">
+  <div class="yt-schedule-summary" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;border:1px solid var(--border);border-radius:8px;padding:16px;background:#f9f7f4;">
     <div>
       <table class="data-table">
         <tr><td>撮影期間</td><td>2026年6月（バルセロナ）/ 7月（コルチナ）</td></tr>
@@ -3214,7 +3216,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
         <tr><td>投稿ペース</td><td>毎週1本</td></tr>
         <tr><td>投稿曜日・時間</td><td><strong>毎週土曜日 19:00 JST</strong></td></tr>
         <tr><td>Shorts</td><td>本編の3日前（水曜日）に1本</td></tr>
-        <tr><td>シリーズ完結</td><td><strong>2026年12月5日（土）</strong></td></tr>
+        <tr><td>シリーズ完結</td><td><strong>2026年11月21日（土）</strong></td></tr>
       </table>
     </div>
   </div>
