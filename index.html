@@ -34,17 +34,17 @@ nav ul li a { display: block; padding: 8px 14px; color: #cde8d8; font-size: 15px
 nav ul li a:hover { background: var(--primary-light); color: white; }
 
 /* カバー */
-.cover { background: linear-gradient(135deg, #0d2318 0%, #1a3a2a 40%, #2d6a4f 70%, #3d8b6a 100%); color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 40px; position: relative; overflow: hidden; }
+.cover { background: linear-gradient(135deg, #0d2318 0%, #1a3a2a 40%, #2d6a4f 70%, #2a5c42 100%); color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 40px; position: relative; overflow: hidden; }
 .cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
 .cover-badge { background: var(--gold); color: var(--primary); font-size: 16px; font-family: sans-serif; font-weight: bold; letter-spacing: 2px; padding: 4px 16px; border-radius: 20px; margin-bottom: 20px; text-transform: uppercase; }
 .cover h1 { font-size: 54px; font-weight: 300; letter-spacing: 8px; margin-bottom: 10px; text-shadow: 2px 2px 20px rgba(0,0,0,0.5); }
 .cover h1 span { color: var(--gold); font-weight: 700; }
-.cover .subtitle { font-size: 20px; letter-spacing: 4px; color: #9bcbb0; margin-bottom: 30px; font-family: sans-serif; }
-.cover .dates { font-size: 16px; color: #7ab99a; letter-spacing: 2px; font-family: sans-serif; margin-bottom: 40px; }
-.cover .route-visual { display: flex; align-items: center; gap: 12px; color: #cde8d8; font-size: 16px; font-family: sans-serif; flex-wrap: wrap; justify-content: center; }
+.cover .subtitle { font-size: 20px; letter-spacing: 4px; color: rgba(255,255,255,0.92); margin-bottom: 30px; font-family: sans-serif; text-shadow: 0 1px 8px rgba(0,0,0,0.4); }
+.cover .dates { font-size: 16px; color: rgba(255,255,255,0.78); letter-spacing: 2px; font-family: sans-serif; margin-bottom: 40px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+.cover .route-visual { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.90); font-size: 16px; font-family: sans-serif; flex-wrap: wrap; justify-content: center; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
 .cover .route-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
 .cover .route-line { width: 30px; height: 1px; background: var(--gold); opacity: 0.6; }
-.cover-note { margin-top: 50px; font-size: 16px; color: #5a9977; font-family: sans-serif; letter-spacing: 1px; }
+.cover-note { margin-top: 50px; font-size: 16px; color: rgba(255,255,255,0.65); font-family: sans-serif; letter-spacing: 1px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
 
 /* セクション */
 .part-header { background: var(--primary); color: white; padding: 50px 60px; }
@@ -2365,18 +2365,23 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
   </div>
   <div class="ep-body">
     <p style="font-size:17px;font-family:sans-serif;margin-bottom:16px;color:#444;">
-      ロンドンを早朝に出発、ベネチア・マルコポーロ空港へ。コルチナエクスプレスで山道を2時間——水の都から岩峰の街へ、景色が劇的に変わる移動自体がコンテンツになる。
+      ロンドンを早朝に出発、ベネチア・マルコポーロ空港へ。EU新入国管理システム（EES）による審査待ちを経て、夕刻のコルチナエクスプレスで山道を2時間——水の都から岩峰の街へ、景色が劇的に変わる移動自体がコンテンツになる。夜のコルチナ着、初めてのカスンツィエイで旅の第3章が幕を開ける。
     </p>
 
     <h4 class="sec">行程タイムライン</h4>
+    <div class="box box-tip" style="margin-bottom:12px;font-size:14px;">
+      ⚠️ <strong>EES（EU入国・出国管理システム）導入による遅延対応</strong><br>
+      2025年より EU が導入した EES（Entry/Exit System）の影響で、非EU旅券保持者はベネチア空港での入国審査に<strong>最大2〜3時間</strong>を要するケースが報告されている。当初予定の14:20発は入国完了が間に合わないと判断し、<strong>17:20発（コルチナ着19:30）に変更済み</strong>。
+    </div>
     <ul class="timeline">
       <li><span class="time">7時前</span>絵理宅出発。Heathrow Expressでパディントン → LHR</li>
       <li><span class="time">10:10</span><strong>BA598 LHR発 → VCE 13:25着</strong>（予約番号 YVY9MC）</li>
-      <li><span class="time">14:20</span><strong>コルチナエクスプレス</strong> ベネチア空港発 → コルチナ（所要2時間10分・事前予約済）</li>
-      <li><span class="time">16:30</span><strong>コルチナ・ダンペッツォ着</strong></li>
-      <li><span class="time">16:45</span><strong>Hotel Aquila チェックイン</strong>（Piazza Pittori Fratelli Ghedina, 1）</li>
-      <li><span class="time">17:30</span>ツーリスト・インフォ（Piazza Roma）でガイドツアー予約確認・地図入手</li>
-      <li><span class="time">夜</span>Dolom'eats all'Aquila（ホテル内）でカスンツィエイ初体験</li>
+      <li><span class="time">13:25〜</span>ベネチア空港 入国審査（EES対応）——長時間待ちを想定。空港内で軽食・充電を済ませる</li>
+      <li><span class="time">17:00</span>バス乗り場（parcheggio bus turistici）へ移動・集合（15分前集合が必須）</li>
+      <li><span class="time">17:20</span><strong>コルチナエクスプレス</strong> ベネチア空港発（座席8番 / 予約番号 ILM983945）</li>
+      <li><span class="time">19:30</span><strong>コルチナ・ダンペッツォ着</strong>（Piazza Roma）</li>
+      <li><span class="time">19:45</span><strong>Hotel Aquila チェックイン</strong>（Piazza Pittori Fratelli Ghedina, 1）</li>
+      <li><span class="time">夜</span>Dolom'eats all'Aquila（ホテル内）でカスンツィエイ初体験。ツーリスト・インフォは<strong>翌朝（EP12）</strong>に変更</li>
     </ul>
     <div class="ticket-box">
       <div class="ticket-icon">🏨</div>
@@ -2402,9 +2407,11 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
       <div>
         <div class="ticket-title">コルチナエクスプレス（空港直通バス）</div>
         <table>
-          <tr><td>往路</td><td class="ref">6/29 VCE 14:20発 → コルチナ 16:30着</td></tr>
-          <tr><td>復路</td><td class="ref">7/4 コルチナ 11:30発 → VCE 13:45着</td></tr>
-          <tr><td>予約</td><td>手配済（予約票 CortinaExpress PDF）</td></tr>
+          <tr><td>往路</td><td class="ref">6/29 VCE <strong>17:20発</strong> → コルチナ Piazza Roma <strong>19:30着</strong>（座席8番）</td></tr>
+          <tr><td>復路</td><td class="ref">7/4 コルチナ Piazza Roma 11:30発 → VCE 13:45着（座席4番）</td></tr>
+          <tr><td>往路予約番号</td><td><strong>ILM983945</strong></td></tr>
+          <tr><td>復路予約番号</td><td><strong>MMV844743</strong></td></tr>
+          <tr><td>備考</td><td>EES遅延対応のため17:20便に変更（当初14:20）</td></tr>
         </table>
       </div>
     </div>
@@ -2975,7 +2982,7 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
         </tr>
       </table>
       <p style="margin-top:12px">「誰も寝てはならぬ」は後半、テノール歌手アンドレア・ボチェッリによって圧倒的なスケールで生歌唱された。ミラノのスカラ座と縁深いヴェルディ・プッチーニを選んだことは、「オペラ発祥の国」としての自己表現でもある。3人の巨匠たちを現代的なポップビジュアルに落とし込み、伝統と創造性を同時に見せる——それがまさに「Armonia（調和）」の体現だった。</p>
-      <p style="margin-top:10px;font-size:14px;color:#666;font-style:italic;">📹 EP16ナレーションへの活用メモ：「コルチナでオリンピックの余韻に触れながら、この開会式のことを思った。音楽で世界をひとつにする——ドロミテの山が見守るこの街にも、その「調和」の空気が残っていた」</p>
+      <p style="margin-top:12px;font-size:14px;color:rgba(255,255,255,0.82);font-style:italic;background:rgba(255,255,255,0.07);border-left:3px solid rgba(201,168,76,0.7);padding:8px 12px;border-radius:0 4px 4px 0;">📹 EP16ナレーションへの活用メモ：「コルチナでオリンピックの余韻に触れながら、この開会式のことを思った。音楽で世界をひとつにする——ドロミテの山が見守るこの街にも、その「調和」の空気が残っていた」</p>
     </div>
 
     <!-- ══ FOOD & CULTURE ══════════════════════════ -->
@@ -3297,8 +3304,8 @@ h5.sub { font-size: 16px; color: var(--accent); margin: 14px 0 6px; font-family:
     <tr><td>7/4（土）VCE帰り</td><td>LHR → Paddington</td></tr>
     <tr><td>7/9（木）帰国日</td><td>Paddington → LHR</td></tr>
     <tr><td>6/18〜20</td><td>バルセロナ地下鉄（Hola BCN 3日間）</td><td>バウチャー番号：3050007742690（24.57€購入済）／TMB券売機で発券</td></tr>
-    <tr><td>6/29（月）14:20発</td><td>VCE空港 → コルチナ（コルチナエクスプレス）</td><td>16:30着</td></tr>
-    <tr><td>7/4（土）11:30発</td><td>コルチナ → VCE空港（コルチナエクスプレス）</td><td>13:45着</td></tr>
+    <tr><td>6/29（月）<strong>17:20発</strong></td><td>VCE空港 → コルチナ Piazza Roma（コルチナエクスプレス）座席8番</td><td><strong>19:30着</strong>　予約番号：ILM983945　※EES遅延対応のため14:20から変更</td></tr>
+    <tr><td>7/4（土）11:30発</td><td>コルチナ Piazza Roma → VCE空港（コルチナエクスプレス）座席4番</td><td>13:45着　予約番号：MMV844743</td></tr>
   </table>
 
   <h4 style="font-family:serif;color:#2d6a4f;margin-top:24px;margin-bottom:8px">🎟️ アトラクション</h4>
