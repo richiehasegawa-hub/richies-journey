@@ -106,6 +106,12 @@ nav ul li a:hover { background: var(--primary-light); color: white; }
 .data-table td { padding: 7px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .data-table tr:nth-child(even) td { background: var(--bg-section); }
 .data-table td:first-child { font-weight: bold; color: var(--primary); white-space: nowrap; }
+/* column-box内のdata-tableはカラー反転補正 */
+.column-box .data-table td { color: #e8f5ee; border-bottom-color: rgba(255,255,255,0.18); }
+.column-box .data-table td:first-child { color: #ffffff; }
+.column-box .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.10); color: #e8f5ee; }
+.column-box .data-table tr:nth-child(even) td:first-child { color: #ffffff; }
+.column-box .data-table span[style*="color:#888"] { color: rgba(255,255,255,0.55) !important; }
 
 /* セクション内見出し */
 h4.sec { font-size: 17px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px; margin: 20px 0 10px; font-family: sans-serif; }
