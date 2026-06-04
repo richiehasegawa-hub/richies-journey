@@ -1,0 +1,126 @@
+<svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="580" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">サグラダ・ファミリア 建設年表</text>
+  <text x="600" y="63" text-anchor="middle" font-size="13" fill="#718096">1882–2026　144年の大聖堂建設プロジェクト</text>
+
+  <!-- Phase color legend -->
+  <rect x="80" y="80" width="16" height="16" rx="3" fill="#718096"/>
+  <text x="102" y="93" font-size="12" fill="#718096">ガウディ以前</text>
+  <rect x="200" y="80" width="16" height="16" rx="3" fill="#C53030"/>
+  <text x="222" y="93" font-size="12" fill="#C53030">ガウディ設計期</text>
+  <rect x="360" y="80" width="16" height="16" rx="3" fill="#6B46C1"/>
+  <text x="382" y="93" font-size="12" fill="#6B46C1">ガウディ没後〜内戦</text>
+  <rect x="540" y="80" width="16" height="16" rx="3" fill="#2B6CB0"/>
+  <text x="562" y="93" font-size="12" fill="#2B6CB0">再建・継続期</text>
+  <rect x="680" y="80" width="16" height="16" rx="3" fill="#276749"/>
+  <text x="702" y="93" font-size="12" fill="#276749">完成フェーズ</text>
+  <rect x="810" y="80" width="16" height="16" rx="3" fill="#B7791F"/>
+  <text x="832" y="93" font-size="12" fill="#B7791F">完成・100周年</text>
+
+  <!-- Main timeline axis -->
+  <line x1="80" y1="240" x2="1120" y2="240" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Phase bars on timeline (x scale: 1882=80, 2026=1120, range=144yr, 1yr≈7.22px) -->
+  <!-- 1882-1883: ガウディ以前 (フォントゥセレ) -->
+  <rect x="80" y="228" width="7" height="24" rx="2" fill="#718096"/>
+  <!-- 1883-1926: ガウディ期 -->
+  <rect x="87" y="222" width="311" height="36" rx="4" fill="#C53030"/>
+  <text x="242" y="244" text-anchor="middle" font-size="11" font-weight="bold" fill="white">ガウディ設計期（1883-1926）</text>
+  <!-- 1926-1936: 後継者期 -->
+  <rect x="398" y="228" width="72" height="24" rx="3" fill="#6B46C1"/>
+  <text x="434" y="244" text-anchor="middle" font-size="10" fill="white">後継者期</text>
+  <!-- 1936: 内戦・資料焼失 (thin red mark) -->
+  <rect x="470" y="220" width="4" height="40" fill="#E53E3E"/>
+  <!-- 1940-2000: 再建期 -->
+  <rect x="474" y="228" width="434" height="24" rx="3" fill="#2B6CB0"/>
+  <text x="691" y="244" text-anchor="middle" font-size="11" fill="white">再建・継続期（1940-2010）</text>
+  <!-- 2010-2026: 完成フェーズ -->
+  <rect x="908" y="222" width="155" height="36" rx="4" fill="#276749"/>
+  <text x="985" y="235" text-anchor="middle" font-size="11" font-weight="bold" fill="white">完成フェーズ</text>
+  <text x="985" y="250" text-anchor="middle" font-size="10" fill="#C6F6D5">2010-2026</text>
+  <!-- 2026 star -->
+  <rect x="1063" y="218" width="57" height="44" rx="4" fill="#B7791F"/>
+  <text x="1091" y="237" text-anchor="middle" font-size="12" font-weight="bold" fill="white">2026</text>
+  <text x="1091" y="253" text-anchor="middle" font-size="10" fill="#FEFCBF">完成!</text>
+
+  <!-- === KEY EVENTS ABOVE LINE === -->
+
+  <!-- 1882: 着工 -->
+  <line x1="80" y1="228" x2="80" y2="145" stroke="#718096" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="30" y="110" width="100" height="38" rx="6" fill="#718096"/>
+  <text x="80" y="127" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1882年</text>
+  <text x="80" y="141" text-anchor="middle" font-size="10" fill="#E2E8F0">フォントゥセレ</text>
+  <text x="80" y="153" text-anchor="middle" font-size="9" fill="#CBD5E0">着工</text>
+
+  <!-- 1883: ガウディ就任 -->
+  <line x1="87" y1="222" x2="87" y2="90" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="37" y="58" width="100" height="35" rx="6" fill="#C53030"/>
+  <text x="87" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1883年</text>
+  <text x="87" y="88" text-anchor="middle" font-size="10" fill="#FED7D7">ガウディ就任</text>
+
+  <!-- 1893: 生誕ファサード着工 -->
+  <line x1="159" y1="222" x2="159" y2="145" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="109" y="110" width="100" height="38" rx="6" fill="#C53030" opacity="0.85"/>
+  <text x="159" y="127" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1893年</text>
+  <text x="159" y="141" text-anchor="middle" font-size="10" fill="#FED7D7">生誕ファサード</text>
+  <text x="159" y="153" text-anchor="middle" font-size="9" fill="#FED7D7">着工</text>
+
+  <!-- 1910: パリ万博模型展示 -->
+  <line x1="246" y1="222" x2="246" y2="90" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="196" y="58" width="100" height="35" rx="6" fill="#C53030" opacity="0.85"/>
+  <text x="246" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1910年</text>
+  <text x="246" y="88" text-anchor="middle" font-size="10" fill="#FED7D7">パリ万博で模型展示</text>
+
+  <!-- 2026: 完成 -->
+  <line x1="1091" y1="218" x2="1091" y2="90" stroke="#B7791F" stroke-width="2" stroke-dasharray="4,2"/>
+  <rect x="1029" y="58" width="124" height="36" rx="6" fill="#B7791F"/>
+  <text x="1091" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="white">2026年完成</text>
+  <text x="1091" y="88" text-anchor="middle" font-size="10" fill="#FEFCBF">没後100周年記念</text>
+
+  <!-- === KEY EVENTS BELOW LINE === -->
+
+  <!-- 1926: ガウディ逝去 -->
+  <line x1="398" y1="252" x2="398" y2="320" stroke="#E53E3E" stroke-width="2" stroke-dasharray="3,2"/>
+  <rect x="335" y="318" width="126" height="50" rx="6" fill="#E53E3E"/>
+  <text x="398" y="334" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1926年</text>
+  <text x="398" y="348" text-anchor="middle" font-size="10" fill="#FED7D7">ガウディ逝去</text>
+  <text x="398" y="362" text-anchor="middle" font-size="9" fill="#FED7D7">スフラジェス・ファサード未完</text>
+
+  <!-- 1936: 内戦・資料焼失 -->
+  <line x1="471" y1="260" x2="471" y2="320" stroke="#E53E3E" stroke-width="2"/>
+  <rect x="418" y="318" width="106" height="50" rx="6" fill="#4A5568"/>
+  <text x="471" y="334" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1936年</text>
+  <text x="471" y="348" text-anchor="middle" font-size="10" fill="#E2E8F0">スペイン内戦</text>
+  <text x="471" y="362" text-anchor="middle" font-size="9" fill="#CBD5E0">資料・模型焼失</text>
+
+  <!-- 2005: ユネスコ世界遺産 -->
+  <line x1="886" y1="252" x2="886" y2="320" stroke="#276749" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="833" y="318" width="106" height="50" rx="6" fill="#276749"/>
+  <text x="886" y="334" text-anchor="middle" font-size="10" font-weight="bold" fill="white">2005年</text>
+  <text x="886" y="348" text-anchor="middle" font-size="10" fill="#C6F6D5">ユネスコ世界遺産</text>
+  <text x="886" y="362" text-anchor="middle" font-size="9" fill="#C6F6D5">追加登録</text>
+
+  <!-- 2010: グロリア聖堂奉献 -->
+  <line x1="908" y1="258" x2="908" y2="390" stroke="#276749" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="855" y="388" width="106" height="50" rx="6" fill="#276749"/>
+  <text x="908" y="404" text-anchor="middle" font-size="10" font-weight="bold" fill="white">2010年</text>
+  <text x="908" y="418" text-anchor="middle" font-size="10" fill="#C6F6D5">教皇がバジリカ</text>
+  <text x="908" y="430" text-anchor="middle" font-size="9" fill="#C6F6D5">として奉献</text>
+
+  <!-- Towers completion notes (below timeline, center) -->
+  <rect x="80" y="450" width="1040" height="110" rx="10" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="472" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A5568">タワー完成スケジュール（18本）</text>
+
+  <!-- Tower schedule columns -->
+  <text x="100" y="492" font-size="11" fill="#C53030" font-weight="bold">■ 生誕ファサード塔群（4本）</text>
+  <text x="100" y="508" font-size="11" fill="#718096">完成済み（1953年〜）　東側ファサード・降誕教会の4使徒（ペテロ・バルナバ・ヤコブ・マタイ）</text>
+
+  <text x="100" y="528" font-size="11" fill="#2B6CB0" font-weight="bold">■ 受難ファサード塔群（4本）</text>
+  <text x="100" y="543" font-size="11" fill="#718096">2006年完成　西側ファサード・スビラックス彫刻　■ グロリア塔群（4本）</text>
+
+  <text x="640" y="492" font-size="11" fill="#276749" font-weight="bold">■ 福音史家・聖母マリア・イエス・キリスト塔（6本）</text>
+  <text x="640" y="508" font-size="11" fill="#718096">2021-2026年完成　中央イエス塔（172.5m） → バルセロナ最高建築物</text>
+  <text x="640" y="528" font-size="11" fill="#B7791F" font-weight="bold">★ 2026年：全18本完成・内部完全開放・没後100周年記念式典</text>
+</svg>

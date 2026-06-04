@@ -1,0 +1,176 @@
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="600" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">ドロミテ　トレッキング高度プロファイル</text>
+  <text x="600" y="60" text-anchor="middle" font-size="13" fill="#718096">トレ・チーメ（EP14・15）　＆　チンクエ・トッリ（EP16・17）</text>
+
+  <!-- === CHART 1: Tre Cime (left side) === -->
+  <!-- Chart area -->
+  <rect x="60" y="85" width="500" height="340" rx="6" fill="white" stroke="#CBD5E0" stroke-width="1"/>
+
+  <!-- Chart title -->
+  <text x="310" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#276749">⛰ トレ・チーメ周回コース</text>
+  <text x="310" y="124" text-anchor="middle" font-size="11" fill="#718096">EP14・EP15　約9.5km　獲得標高+300m</text>
+
+  <!-- Y axis (altitude 2200-2500m) -->
+  <line x1="110" y1="145" x2="110" y2="395" stroke="#E2E8F0" stroke-width="1"/>
+  <!-- Y axis labels -->
+  <text x="105" y="150" text-anchor="end" font-size="10" fill="#718096">2500m</text>
+  <text x="105" y="214" text-anchor="end" font-size="10" fill="#718096">2440m</text>
+  <text x="105" y="278" text-anchor="end" font-size="10" fill="#718096">2380m</text>
+  <text x="105" y="342" text-anchor="end" font-size="10" fill="#718096">2320m</text>
+  <text x="105" y="395" text-anchor="end" font-size="10" fill="#718096">2270m</text>
+  <!-- Grid lines -->
+  <line x1="110" y1="150" x2="535" y2="150" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="110" y1="214" x2="535" y2="214" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="110" y1="278" x2="535" y2="278" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="110" y1="342" x2="535" y2="342" stroke="#EDF2F7" stroke-width="1"/>
+
+  <!-- X axis (0 to 9.5km) -->
+  <line x1="110" y1="395" x2="535" y2="395" stroke="#A0AEC0" stroke-width="1.5"/>
+  <text x="110" y="412" text-anchor="middle" font-size="10" fill="#718096">0</text>
+  <text x="184" y="412" text-anchor="middle" font-size="10" fill="#718096">2km</text>
+  <text x="258" y="412" text-anchor="middle" font-size="10" fill="#718096">4km</text>
+  <text x="322" y="412" text-anchor="middle" font-size="10" fill="#718096">6km</text>
+  <text x="406" y="412" text-anchor="middle" font-size="10" fill="#718096">8km</text>
+  <text x="535" y="412" text-anchor="middle" font-size="10" fill="#718096">9.5km</text>
+
+  <!-- Elevation profile fill (Tre Cime CCW):
+       Start: Auronzo 2333m → gentle climb to Lavaredo 2344m (km2) →
+       descent to valley 2315m (km3) → climb to Locatelli 2405m (km5.5) →
+       descent east side 2370m (km7) → back to Auronzo 2333m (km9.5)
+       Scale: y = 395 - (alt - 2270) * (395-150)/(2500-2270)
+             y = 395 - (alt - 2270) * 245/230 = 395 - (alt-2270)*1.065 -->
+  <!-- 2333m → y = 395 - 63*1.065 = 328 | 2344m → y = 320 | 2315m → y = 351 | 2405m → y = 283 | 2370m → y = 320 | 2333m → y = 328 -->
+  <path d="M110,328 Q150,326 184,320 Q210,315 220,351 Q240,365 258,355 Q290,340 322,283 Q355,275 390,315 Q415,330 450,320 Q490,318 535,328"
+        fill="#C6F6D5" opacity="0.6" stroke="none"/>
+  <path d="M110,395 L110,328 Q150,326 184,320 Q210,315 220,351 Q240,365 258,355 Q290,340 322,283 Q355,275 390,315 Q415,330 450,320 Q490,318 535,328 L535,395 Z"
+        fill="#276749" opacity="0.15"/>
+  <path d="M110,328 Q150,326 184,320 Q210,315 220,351 Q240,365 258,355 Q290,340 322,283 Q355,275 390,315 Q415,330 450,320 Q490,318 535,328"
+        stroke="#276749" stroke-width="2.5" fill="none"/>
+
+  <!-- Key points on Tre Cime profile -->
+  <circle cx="110" cy="328" r="5" fill="#B7791F"/>
+  <text x="110" y="322" text-anchor="middle" font-size="9" fill="#B7791F">START</text>
+  <text x="110" y="313" text-anchor="middle" font-size="8" fill="#718096">Auronzo</text>
+
+  <circle cx="184" cy="320" r="5" fill="#C53030"/>
+  <text x="184" y="314" text-anchor="middle" font-size="9" fill="#C53030">Rif. Lavaredo</text>
+  <text x="184" y="305" text-anchor="middle" font-size="8" fill="#718096">2344m</text>
+
+  <circle cx="322" cy="283" r="6" fill="#276749"/>
+  <text x="322" y="277" text-anchor="middle" font-size="9" font-weight="bold" fill="#276749">最高点</text>
+  <text x="322" y="268" text-anchor="middle" font-size="9" fill="#C53030">Rif. Locatelli</text>
+  <text x="322" y="259" text-anchor="middle" font-size="8" fill="#718096">2405m</text>
+
+  <circle cx="535" cy="328" r="5" fill="#B7791F"/>
+  <text x="535" y="322" text-anchor="middle" font-size="9" fill="#B7791F">GOAL</text>
+
+  <!-- EP14/15 separator on chart -->
+  <line x1="322" y1="145" x2="322" y2="395" stroke="#276749" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <rect x="115" y="426" width="60" height="18" rx="3" fill="#276749"/>
+  <text x="145" y="439" text-anchor="middle" font-size="10" fill="white">EP14</text>
+  <rect x="360" y="426" width="60" height="18" rx="3" fill="#276749" opacity="0.8"/>
+  <text x="390" y="439" text-anchor="middle" font-size="10" fill="white">EP15</text>
+
+  <!-- === CHART 2: Cinque Torri (right side) === -->
+  <rect x="640" y="85" width="500" height="340" rx="6" fill="white" stroke="#CBD5E0" stroke-width="1"/>
+
+  <!-- Chart title -->
+  <text x="890" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#276749">⛰ チンクエ・トッリ ハイキング</text>
+  <text x="890" y="124" text-anchor="middle" font-size="11" fill="#718096">EP16・EP17　約7km　獲得標高+350m</text>
+
+  <!-- Y axis (2000-2400m range) -->
+  <line x1="690" y1="145" x2="690" y2="395" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="685" y="150" text-anchor="end" font-size="10" fill="#718096">2400m</text>
+  <text x="685" y="210" text-anchor="end" font-size="10" fill="#718096">2350m</text>
+  <text x="685" y="270" text-anchor="end" font-size="10" fill="#718096">2300m</text>
+  <text x="685" y="330" text-anchor="end" font-size="10" fill="#718096">2200m</text>
+  <text x="685" y="395" text-anchor="end" font-size="10" fill="#718096">2100m</text>
+  <line x1="690" y1="150" x2="1115" y2="150" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="690" y1="210" x2="1115" y2="210" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="690" y1="270" x2="1115" y2="270" stroke="#EDF2F7" stroke-width="1"/>
+  <line x1="690" y1="330" x2="1115" y2="330" stroke="#EDF2F7" stroke-width="1"/>
+
+  <!-- X axis -->
+  <line x1="690" y1="395" x2="1115" y2="395" stroke="#A0AEC0" stroke-width="1.5"/>
+  <text x="690" y="412" text-anchor="middle" font-size="10" fill="#718096">0</text>
+  <text x="751" y="412" text-anchor="middle" font-size="10" fill="#718096">1km</text>
+  <text x="812" y="412" text-anchor="middle" font-size="10" fill="#718096">2km</text>
+  <text x="873" y="412" text-anchor="middle" font-size="10" fill="#718096">3km</text>
+  <text x="934" y="412" text-anchor="middle" font-size="10" fill="#718096">4km</text>
+  <text x="995" y="412" text-anchor="middle" font-size="10" fill="#718096">5km</text>
+  <text x="1056" y="412" text-anchor="middle" font-size="10" fill="#718096">6km</text>
+  <text x="1115" y="412" text-anchor="middle" font-size="10" fill="#718096">7km</text>
+
+  <!-- Cinque Torri profile:
+       Passo Falzarego (2105m) → climb to Averau refuge 2413m (km3) → Cinque Torri rocks ~2361m (km4.5) → return via WWI trenches → back 2105m
+       Scale: y = 395 - (alt - 2100) * (395-150)/(2400-2100) = 395 - (alt-2100) * 245/300 = 395 - (alt-2100)*0.817 -->
+  <!-- 2105m → y=391 | 2180m → y=329 | 2413m → y=148 | 2361m → y=191 | 2240m → y=278 | 2105m → y=391 -->
+  <path d="M690,391 Q720,380 751,350 Q780,320 812,310 Q840,295 873,148 Q900,148 934,191 Q960,210 995,235 Q1035,260 1056,278 Q1080,320 1115,391"
+        fill="#276749" opacity="0.15"/>
+  <path d="M690,391 Q720,380 751,350 Q780,320 812,310 Q840,295 873,148 Q900,148 934,191 Q960,210 995,235 Q1035,260 1056,278 Q1080,320 1115,391"
+        stroke="#276749" stroke-width="2.5" fill="none"/>
+
+  <!-- Key points Cinque Torri -->
+  <circle cx="690" cy="391" r="5" fill="#B7791F"/>
+  <text x="690" y="386" text-anchor="middle" font-size="9" fill="#B7791F">START</text>
+  <text x="690" y="377" text-anchor="middle" font-size="8" fill="#718096">Falzarego</text>
+  <text x="690" y="368" text-anchor="middle" font-size="8" fill="#718096">2105m</text>
+
+  <circle cx="873" cy="148" r="6" fill="#276749"/>
+  <text x="873" y="142" text-anchor="middle" font-size="9" font-weight="bold" fill="#276749">最高点</text>
+  <text x="873" y="133" text-anchor="middle" font-size="9" fill="#C53030">Rif. Averau</text>
+  <text x="873" y="124" text-anchor="middle" font-size="8" fill="#718096">2413m</text>
+
+  <circle cx="934" cy="191" r="5" fill="#C53030"/>
+  <text x="934" y="185" text-anchor="middle" font-size="9" fill="#C53030">チンクエ・トッリ</text>
+  <text x="934" y="176" text-anchor="middle" font-size="8" fill="#718096">岩峰群 2361m</text>
+
+  <!-- WWI marker -->
+  <circle cx="1056" cy="278" r="5" fill="#6B46C1"/>
+  <rect x="1065" y="265" width="95" height="20" rx="3" fill="white" stroke="#6B46C1" stroke-width="1"/>
+  <text x="1112" y="279" text-anchor="middle" font-size="9" fill="#6B46C1">WWI塹壕跡（EP17）</text>
+
+  <circle cx="1115" cy="391" r="5" fill="#B7791F"/>
+  <text x="1115" y="386" text-anchor="middle" font-size="9" fill="#B7791F">GOAL</text>
+
+  <!-- EP16/17 separator -->
+  <line x1="873" y1="145" x2="873" y2="395" stroke="#276749" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <rect x="695" y="426" width="60" height="18" rx="3" fill="#276749"/>
+  <text x="725" y="439" text-anchor="middle" font-size="10" fill="white">EP16</text>
+  <rect x="920" y="426" width="60" height="18" rx="3" fill="#276749" opacity="0.8"/>
+  <text x="950" y="439" text-anchor="middle" font-size="10" fill="white">EP17</text>
+
+  <!-- === Summary table at bottom === -->
+  <rect x="60" y="520" width="1080" height="68" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="542" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A5568">コース比較</text>
+
+  <!-- Table headers -->
+  <text x="140" y="562" text-anchor="middle" font-size="11" fill="#4A5568" font-weight="bold">コース</text>
+  <text x="320" y="562" text-anchor="middle" font-size="11" fill="#4A5568" font-weight="bold">距離</text>
+  <text x="460" y="562" text-anchor="middle" font-size="11" fill="#4A5568" font-weight="bold">獲得標高</text>
+  <text x="620" y="562" text-anchor="middle" font-size="11" fill="#4A5568" font-weight="bold">最高点</text>
+  <text x="800" y="562" text-anchor="middle" font-size="11" fill="#4A5568" font-weight="bold">所要時間</text>
+  <text x="980" y="562" text-anchor="middle" font-size="11" fill="#4A5568" font-weight="bold">難易度</text>
+
+  <!-- Table row 1 -->
+  <text x="140" y="580" text-anchor="middle" font-size="11" fill="#276749">トレ・チーメ</text>
+  <text x="320" y="580" text-anchor="middle" font-size="11" fill="#718096">9.5km</text>
+  <text x="460" y="580" text-anchor="middle" font-size="11" fill="#718096">+300m</text>
+  <text x="620" y="580" text-anchor="middle" font-size="11" fill="#718096">Rif. Locatelli 2405m</text>
+  <text x="800" y="580" text-anchor="middle" font-size="11" fill="#718096">4〜5時間</text>
+  <text x="980" y="580" text-anchor="middle" font-size="11" fill="#718096">★★☆ 中級</text>
+
+  <!-- Table row 2 -->
+  <text x="140" y="578" text-anchor="middle" font-size="11" fill="#276749"/>
+  <line x1="80" y1="568" x2="1140" y2="568" stroke="#CBD5E0" stroke-width="0.5"/>
+
+  <text x="140" y="584" text-anchor="middle" font-size="11" fill="#276749">チンクエ・トッリ</text>
+  <text x="320" y="584" text-anchor="middle" font-size="11" fill="#718096">7km</text>
+  <text x="460" y="584" text-anchor="middle" font-size="11" fill="#718096">+350m</text>
+  <text x="620" y="584" text-anchor="middle" font-size="11" fill="#718096">Rif. Averau 2413m</text>
+  <text x="800" y="584" text-anchor="middle" font-size="11" fill="#718096">3〜4時間</text>
+  <text x="980" y="584" text-anchor="middle" font-size="11" fill="#718096">★★☆ 中級</text>
+</svg>

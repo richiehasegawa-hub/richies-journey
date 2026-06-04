@@ -1,0 +1,157 @@
+<svg viewBox="0 0 1100 680" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1100" height="680" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">モンセラート　アクセス＆山内移動図</text>
+  <text x="550" y="60" text-anchor="middle" font-size="13" fill="#718096">EP03　バルセロナから約50km・Viatorツアーまたは公共交通</text>
+
+  <!-- === LEFT PANEL: Barcelona to Monserrat access === -->
+  <rect x="60" y="85" width="440" height="520" rx="8" fill="white" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="280" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A5568">バルセロナからのアクセス</text>
+
+  <!-- Route options -->
+  <!-- Option A: Viator tour bus (recommended) -->
+  <rect x="90" y="120" width="380" height="95" rx="6" fill="#C53030" opacity="0.1" stroke="#C53030" stroke-width="1.5"/>
+  <rect x="90" y="120" width="380" height="22" rx="6" fill="#C53030"/>
+  <text x="280" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="white">★ Viatorツアー（推奨・予約済み）</text>
+  <text x="105" y="155" font-size="11" fill="#C53030">バルセロナ市内ホテルピックアップ</text>
+  <text x="105" y="172" font-size="11" fill="#C53030">→ モンセラット → バルセロナ着</text>
+  <text x="105" y="189" font-size="11" fill="#C53030">所要: 終日ツアー（8:00〜17:00頃）　送迎付き</text>
+  <text x="105" y="205" font-size="9" fill="#718096">※スペイン語・英語ガイド付き。昼食含む or 現地払い</text>
+
+  <!-- Option B: FGC + rack railway -->
+  <rect x="90" y="225" width="380" height="130" rx="6" fill="#2B6CB0" opacity="0.08" stroke="#2B6CB0" stroke-width="1"/>
+  <text x="280" y="243" text-anchor="middle" font-size="12" font-weight="bold" fill="#2B6CB0">公共交通ルート（参考）</text>
+
+  <!-- FGC line diagram -->
+  <!-- Barcelona Plaça Espanya -->
+  <circle cx="120" cy="270" r="12" fill="#C53030"/>
+  <text x="120" y="275" text-anchor="middle" font-size="8" font-weight="bold" fill="white">BCN</text>
+  <rect x="133" y="262" width="120" height="18" rx="3" fill="#C53030" opacity="0.8"/>
+  <text x="193" y="274" text-anchor="middle" font-size="9" fill="white">プラサ・デスパーニャ駅</text>
+
+  <!-- FGC R5 line -->
+  <line x1="133" y1="270" x2="253" y2="270" stroke="#C53030" stroke-width="2.5"/>
+  <text x="190" y="265" text-anchor="middle" font-size="10" fill="#C53030">FGC R5系統</text>
+  <text x="190" y="285" text-anchor="middle" font-size="9" fill="#718096">約75分</text>
+
+  <!-- Monistrol de Montserrat station -->
+  <circle cx="265" cy="270" r="10" fill="#2B6CB0"/>
+  <text x="265" y="274" text-anchor="middle" font-size="7" font-weight="bold" fill="white">MON</text>
+  <rect x="278" y="262" width="130" height="18" rx="3" fill="#2B6CB0" opacity="0.8"/>
+  <text x="343" y="274" text-anchor="middle" font-size="9" fill="white">モニストロル・デ・モンセラート</text>
+
+  <!-- Rack railway -->
+  <line x1="265" y1="280" x2="265" y2="320" stroke="#276749" stroke-width="2.5"/>
+  <text x="280" y="302" font-size="10" fill="#276749">ラック式登山鉄道</text>
+  <text x="280" y="315" font-size="9" fill="#718096">約15分（標高差535m）</text>
+
+  <!-- Aerial tramway alternative -->
+  <line x1="265" y1="280" x2="395" y2="320" stroke="#B7791F" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="380" y="302" font-size="10" fill="#B7791F">ロープウェー</text>
+  <text x="370" y="315" font-size="9" fill="#718096">（代替手段）</text>
+
+  <!-- Monserrat summit station -->
+  <circle cx="265" cy="332" r="12" fill="#276749"/>
+  <text x="265" y="336" text-anchor="middle" font-size="8" font-weight="bold" fill="white">頂上</text>
+  <rect x="278" y="324" width="110" height="18" rx="3" fill="#276749" opacity="0.8"/>
+  <text x="333" y="335" text-anchor="middle" font-size="9" fill="white">モンセラート修道院</text>
+
+  <!-- Timing info box -->
+  <rect x="90" y="370" width="380" height="55" rx="5" fill="#FEFCBF" stroke="#B7791F" stroke-width="1"/>
+  <text x="280" y="389" text-anchor="middle" font-size="11" font-weight="bold" fill="#744210">早朝ミサ・スケジュール</text>
+  <text x="105" y="407" font-size="10" fill="#744210">⏰ 06:45 朝課（修道士のグレゴリオ聖歌）</text>
+  <text x="105" y="420" font-size="10" fill="#744210">⏰ 11:00 国際ミサ　⏰ 12:00 エスコラニア合唱（ラ・サルヴェ）</text>
+
+  <!-- Admission info -->
+  <rect x="90" y="437" width="380" height="58" rx="5" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="280" y="455" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A5568">入場・費用（2024年参考）</text>
+  <text x="105" y="472" font-size="10" fill="#718096">修道院・黒いマドンナ礼拝堂：無料</text>
+  <text x="105" y="487" font-size="10" fill="#718096">ラック式鉄道往復：€24.50　展望台ケーブルカー：€12</text>
+
+  <!-- Photography note -->
+  <rect x="90" y="507" width="380" height="46" rx="5" fill="#C6F6D5" stroke="#276749" stroke-width="1"/>
+  <text x="280" y="524" text-anchor="middle" font-size="11" font-weight="bold" fill="#276749">撮影ポイント（EP03）</text>
+  <text x="105" y="541" font-size="10" fill="#276749">🎬 錫の岩山の夜明け　合唱の生演奏　修道院回廊　トレッキング道からのパノラマ</text>
+
+  <!-- === RIGHT PANEL: Mountain site map === -->
+  <rect x="580" y="85" width="460" height="520" rx="8" fill="white" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="810" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A5568">山内マップ（主要スポット）</text>
+
+  <!-- Mountain silhouette -->
+  <path d="M620 530 Q660 450 700 400 Q730 360 750 320 Q770 295 790 280 Q810 265 840 255 Q870 248 900 252 Q930 258 960 275 Q990 295 1010 330 Q1025 360 1030 400 Q1035 440 1020 490 Q1010 520 1000 530 Z"
+        fill="#E2E8F0" opacity="0.5" stroke="#A0AEC0" stroke-width="1"/>
+
+  <!-- Rack railway line on mountain -->
+  <path d="M660 530 Q680 480 710 440 Q740 410 770 390 Q800 375 820 370" stroke="#276749" stroke-width="3" fill="none"/>
+  <text x="700" y="490" font-size="9" fill="#276749" transform="rotate(-50,700,490)">ラック鉄道</text>
+
+  <!-- Saint Joan cable car (upper) -->
+  <path d="M820 370 Q830 345 845 320" stroke="#B7791F" stroke-width="2" stroke-dasharray="4,2" fill="none"/>
+  <text x="860" y="330" font-size="9" fill="#B7791F">サン・ジョアン</text>
+  <text x="860" y="341" font-size="9" fill="#B7791F">ケーブルカー</text>
+
+  <!-- Main monastery area -->
+  <circle cx="820" cy="370" r="22" fill="#C53030" opacity="0.9"/>
+  <text x="820" y="365" text-anchor="middle" font-size="10" font-weight="bold" fill="white">修道院</text>
+  <text x="820" y="378" text-anchor="middle" font-size="8" fill="#FED7D7">720m</text>
+
+  <!-- Santa Cueva (cave below) -->
+  <circle cx="780" cy="415" r="12" fill="#6B46C1" opacity="0.85"/>
+  <text x="780" y="419" text-anchor="middle" font-size="8" fill="white">聖窟</text>
+  <text x="760" y="435" font-size="9" fill="#6B46C1">サンタ・コバ</text>
+
+  <!-- Sant Joan viewpoint (top) -->
+  <circle cx="845" cy="305" r="14" fill="#276749" opacity="0.9"/>
+  <text x="845" y="299" text-anchor="middle" font-size="8" font-weight="bold" fill="white">展望台</text>
+  <text x="845" y="310" text-anchor="middle" font-size="7" fill="#C6F6D5">Sant Joan</text>
+  <text x="872" y="302" font-size="9" fill="#276749">1000m</text>
+
+  <!-- Sant Miquel chapel -->
+  <circle cx="755" cy="360" r="10" fill="#B7791F" opacity="0.85"/>
+  <text x="755" y="364" text-anchor="middle" font-size="8" fill="white">礼拝堂</text>
+  <rect x="680" y="352" width="60" height="16" rx="3" fill="white" stroke="#B7791F" stroke-width="1"/>
+  <text x="710" y="364" text-anchor="middle" font-size="8" fill="#B7791F">Sant Miquel</text>
+
+  <!-- Hiking trail (Camí de Sant Joan) -->
+  <path d="M820 370 Q810 358 790 345 Q768 332 750 320 Q740 310 845 305"
+        stroke="#276749" stroke-width="1.5" fill="none" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="780" y="325" font-size="8" fill="#276749" opacity="0.8">ハイキング道</text>
+
+  <!-- Barcelona direction indicator -->
+  <path d="M660 530 L640 545" stroke="#C53030" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <text x="625" y="560" font-size="10" fill="#C53030">バルセロナ方面</text>
+  <text x="625" y="573" font-size="9" fill="#718096">約50km</text>
+
+  <!-- Altitude marker -->
+  <line x1="960" y1="370" x2="960" y2="530" stroke="#A0AEC0" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="970" y="374" font-size="9" fill="#718096">1236m</text>
+  <text x="970" y="388" font-size="8" fill="#A0AEC0">（最高点）</text>
+  <text x="970" y="530" font-size="9" fill="#718096">540m</text>
+  <text x="970" y="544" font-size="8" fill="#A0AEC0">（駅）</text>
+
+  <!-- Key shooting points -->
+  <circle cx="910" cy="385" r="10" fill="#B7791F" opacity="0.8"/>
+  <text x="910" y="389" text-anchor="middle" font-size="9" fill="white">📷</text>
+  <rect x="920" y="375" width="105" height="20" rx="3" fill="#FEFCBF" stroke="#B7791F" stroke-width="1"/>
+  <text x="972" y="389" text-anchor="middle" font-size="9" fill="#744210">バルセロナ平野を望む</text>
+
+  <!-- Legend box -->
+  <rect x="600" y="485" width="425" height="110" rx="6" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="812" y="503" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A5568">主要スポット</text>
+  <circle cx="620" cy="520" r="6" fill="#C53030"/>
+  <text x="634" y="524" font-size="10" fill="#C53030">修道院・黒いマドンナ（黄金時代：9〜11世紀）</text>
+  <circle cx="620" cy="538" r="6" fill="#276749"/>
+  <text x="634" y="542" font-size="10" fill="#276749">サン・ジョアン展望台（1000m・パノラマ）</text>
+  <circle cx="620" cy="556" r="6" fill="#6B46C1"/>
+  <text x="634" y="560" font-size="10" fill="#6B46C1">サンタ・コバ（聖窟・マドンナ発見の地）</text>
+  <circle cx="620" cy="574" r="6" fill="#B7791F"/>
+  <text x="634" y="578" font-size="10" fill="#B7791F">📷撮影ポイント（岩山シルエット・朝日）</text>
+
+  <!-- Defs -->
+  <defs>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C53030"/>
+    </marker>
+  </defs>
+</svg>

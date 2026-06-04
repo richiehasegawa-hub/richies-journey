@@ -1,0 +1,112 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="520" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="42" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">Richie's Journey 2026　全体ルートマップ</text>
+  <text x="600" y="66" text-anchor="middle" font-size="13" fill="#718096">6月15日〜7月9日　ロンドン発着　バルセロナ7泊 ＋ コルチナ5泊</text>
+
+  <!-- Legend -->
+  <rect x="30" y="20" width="14" height="14" rx="3" fill="#4A5568"/>
+  <text x="50" y="32" font-size="12" fill="#4A5568">ロンドン滞在</text>
+  <rect x="150" y="20" width="14" height="14" rx="3" fill="#C53030"/>
+  <text x="170" y="32" font-size="12" fill="#C53030">バルセロナ編</text>
+  <rect x="280" y="20" width="14" height="14" rx="3" fill="#2B6CB0"/>
+  <text x="300" y="32" font-size="12" fill="#2B6CB0">コルチナ編</text>
+  <rect x="400" y="20" width="14" height="14" rx="3" fill="#B7791F"/>
+  <text x="420" y="32" font-size="12" fill="#B7791F">移動（フライト）</text>
+
+  <!-- Timeline base line -->
+  <line x1="80" y1="280" x2="1120" y2="280" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Phase 1: London pre (6/15-6/17) -->
+  <rect x="80" y="240" width="100" height="80" rx="12" fill="#4A5568"/>
+  <text x="130" y="268" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ロンドン</text>
+  <text x="130" y="286" text-anchor="middle" font-size="11" fill="#E2E8F0">6/15〜17</text>
+  <text x="130" y="302" text-anchor="middle" font-size="11" fill="#E2E8F0">孫たちと</text>
+  <text x="130" y="316" text-anchor="middle" font-size="10" fill="#CBD5E0">3泊</text>
+
+  <!-- Flight arrow 1 -->
+  <path d="M185 280 L245 280" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-gold)"/>
+  <text x="215" y="270" text-anchor="middle" font-size="10" fill="#B7791F">✈ BA478</text>
+  <text x="215" y="258" text-anchor="middle" font-size="10" fill="#B7791F">6/18</text>
+
+  <!-- Phase 2: Barcelona (6/18-6/25) -->
+  <rect x="248" y="200" width="340" height="160" rx="12" fill="#C53030"/>
+  <text x="418" y="230" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🏙 バルセロナ編</text>
+  <text x="418" y="252" text-anchor="middle" font-size="12" fill="#FED7D7">6月18日（木）〜 6月25日（木）</text>
+  <!-- EP list in Barcelona box -->
+  <text x="278" y="276" font-size="11" fill="white">EP01 到着</text>
+  <text x="278" y="293" font-size="11" fill="white">EP02 市場</text>
+  <text x="278" y="310" font-size="11" fill="white">EP03 モンセラート</text>
+  <text x="278" y="327" font-size="11" fill="white">EP04 ダリ美術館</text>
+  <text x="278" y="344" font-size="11" fill="white">EP05 ハイキング</text>
+  <text x="420" y="276" font-size="11" fill="white">EP06 e-bike</text>
+  <text x="420" y="293" font-size="11" fill="white">EP07 ガウディ建築</text>
+  <text x="420" y="310" font-size="11" fill="white">EP08 グエル公園</text>
+  <text x="420" y="327" font-size="11" fill="white">EP09 ピレネー</text>
+  <text x="420" y="344" font-size="11" fill="white">EP10 音楽堂</text>
+  <text x="418" y="358" text-anchor="middle" font-size="12" fill="#FED7D7">7泊</text>
+
+  <!-- Flight arrow 2 (BCN → LHR) -->
+  <path d="M592 280 L652 280" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-gold)"/>
+  <text x="622" y="270" text-anchor="middle" font-size="10" fill="#B7791F">✈ BA473</text>
+  <text x="622" y="258" text-anchor="middle" font-size="10" fill="#B7791F">6/25</text>
+
+  <!-- Phase 3: London mid (6/25-6/29) -->
+  <rect x="655" y="240" width="100" height="80" rx="12" fill="#4A5568"/>
+  <text x="705" y="268" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ロンドン</text>
+  <text x="705" y="286" text-anchor="middle" font-size="11" fill="#E2E8F0">6/25〜29</text>
+  <text x="705" y="302" text-anchor="middle" font-size="11" fill="#E2E8F0">孫たちと</text>
+  <text x="705" y="316" text-anchor="middle" font-size="10" fill="#CBD5E0">4泊</text>
+
+  <!-- Flight arrow 3 (LHR → VCE) -->
+  <path d="M760 280 L820 280" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-gold)"/>
+  <text x="790" y="270" text-anchor="middle" font-size="10" fill="#B7791F">✈ BA598</text>
+  <text x="790" y="258" text-anchor="middle" font-size="10" fill="#B7791F">6/29</text>
+  <text x="790" y="295" text-anchor="middle" font-size="9" fill="#B7791F">ベネチア経由</text>
+
+  <!-- Phase 4: Cortina (6/29-7/4) -->
+  <rect x="823" y="200" width="250" height="160" rx="12" fill="#2B6CB0"/>
+  <text x="948" y="230" text-anchor="middle" font-size="16" font-weight="bold" fill="white">⛰ コルチナ編</text>
+  <text x="948" y="252" text-anchor="middle" font-size="12" fill="#BEE3F8">6月29日（月）〜 7月4日（土）</text>
+  <text x="843" y="276" font-size="11" fill="white">EP11 ベネチア→コルチナ</text>
+  <text x="843" y="293" font-size="11" fill="white">EP12 ファローリア展望台</text>
+  <text x="843" y="310" font-size="11" fill="white">EP13 e-bikeツーリング</text>
+  <text x="843" y="327" font-size="11" fill="white">EP14/15 トレ・チーメ</text>
+  <text x="843" y="344" font-size="11" fill="white">EP16/17 チンクエ・トッリ</text>
+  <text x="843" y="361" font-size="11" fill="white">EP18 ミズリーナ湖 EP19リゾート</text>
+  <text x="948" y="352" text-anchor="middle" font-size="12" fill="#BEE3F8">5泊</text>
+
+  <!-- Flight arrow 4 (VCE → LHR) -->
+  <path d="M1077 280 L1100 280" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-gold)"/>
+  <text x="1088" y="270" text-anchor="middle" font-size="10" fill="#B7791F">✈ BA607</text>
+  <text x="1088" y="258" text-anchor="middle" font-size="10" fill="#B7791F">7/4</text>
+
+  <!-- Phase 5: London post (7/4-7/9) -->
+  <rect x="1103" y="248" width="85" height="64" rx="12" fill="#4A5568"/>
+  <text x="1145" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ロンドン</text>
+  <text x="1145" y="286" text-anchor="middle" font-size="11" fill="#E2E8F0">7/4〜9</text>
+  <text x="1145" y="302" text-anchor="middle" font-size="10" fill="#CBD5E0">5泊</text>
+
+  <!-- Date timeline below -->
+  <line x1="80" y1="410" x2="1120" y2="410" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="80" y="430" font-size="11" fill="#718096">6/15</text>
+  <text x="183" y="430" font-size="11" fill="#718096">6/18</text>
+  <text x="580" y="430" font-size="11" fill="#718096">6/25</text>
+  <text x="658" y="430" font-size="11" fill="#718096">6/25</text>
+  <text x="753" y="430" font-size="11" fill="#718096">6/29</text>
+  <text x="1060" y="430" font-size="11" fill="#718096">7/4</text>
+  <text x="1100" y="430" font-size="11" fill="#718096">7/9</text>
+
+  <!-- Total summary -->
+  <rect x="300" y="455" width="600" height="46" rx="10" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="476" text-anchor="middle" font-size="13" fill="#4A5568">総行程：6月15日〜7月9日（25日間）　バルセロナ7泊　コルチナ5泊　ロンドン3フェーズ</text>
+  <text x="600" y="493" text-anchor="middle" font-size="13" fill="#4A5568">フライト4本（British Airways）　EP01〜EP20　全20エピソード</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#B7791F"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,148 @@
+<svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1100" height="720" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">チンクエ・トッリ　ハイキングルート図</text>
+  <text x="550" y="60" text-anchor="middle" font-size="13" fill="#718096">EP16・EP17　約7km・所要3〜4時間　第一次世界大戦要塞跡をめぐる</text>
+
+  <!-- Sky/terrain background -->
+  <rect x="80" y="80" width="940" height="550" rx="8" fill="#EBF8FF" opacity="0.5"/>
+
+  <!-- Mountain terrain (simplified) -->
+  <!-- Col Gallina ridge NW -->
+  <path d="M80 350 Q120 290 180 270 Q240 255 280 265 Q310 275 330 300" stroke="#A0AEC0" stroke-width="1" fill="#E2E8F0" opacity="0.35"/>
+  <!-- Tofane massif NE -->
+  <path d="M650 300 Q700 240 760 230 Q820 228 870 250 Q930 278 970 330 Q990 360 1000 400" stroke="#A0AEC0" stroke-width="1" fill="#E2E8F0" opacity="0.3"/>
+  <!-- Cinque Torri rock towers (center-east) -->
+  <polygon points="540,260 555,200 570,260" fill="#4A5568" opacity="0.7"/>
+  <polygon points="565,260 578,185 592,260" fill="#718096" opacity="0.8"/>
+  <polygon points="588,260 600,195 614,260" fill="#4A5568" opacity="0.7"/>
+  <polygon points="610,260 620,205 632,260" fill="#718096" opacity="0.75"/>
+  <polygon points="628,260 636,215 646,260" fill="#4A5568" opacity="0.65"/>
+  <!-- Snow on towers -->
+  <polygon points="552,207 555,200 558,207" fill="white" opacity="0.8"/>
+  <polygon points="575,192 578,185 581,192" fill="white" opacity="0.8"/>
+  <polygon points="597,201 600,195 603,201" fill="white" opacity="0.8"/>
+
+  <!-- Tower label -->
+  <text x="594" y="192" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A5568">チンクエ・トッリ</text>
+  <text x="594" y="205" text-anchor="middle" font-size="10" fill="#718096">（5つの塔）2361m</text>
+
+  <!-- Averau peak (higher, west) -->
+  <polygon points="360,260 390,185 420,260" fill="#4A5568" opacity="0.75"/>
+  <polygon points="383,196 390,185 397,196" fill="white" opacity="0.8"/>
+  <text x="390" y="175" text-anchor="middle" font-size="10" fill="#4A5568">アヴェラウ山</text>
+  <text x="390" y="188" text-anchor="middle" font-size="9" fill="#718096">2649m</text>
+
+  <!-- Roads -->
+  <!-- Main road SP638 -->
+  <path d="M80 560 Q200 555 350 548 Q450 544 550 540 Q680 536 830 535 Q920 534 1020 535" stroke="#CBD5E0" stroke-width="5" fill="none"/>
+  <path d="M80 560 Q200 555 350 548 Q450 544 550 540 Q680 536 830 535 Q920 534 1020 535" stroke="#718096" stroke-width="2" fill="none"/>
+  <text x="200" y="572" font-size="10" fill="#718096">SP638（パッソ・ファルツァレーゴ方面）</text>
+
+  <!-- Chairlift line -->
+  <path d="M290 548 Q310 510 330 480 Q345 455 365 435 Q380 418 400 405" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="5,3" fill="none"/>
+  <text x="310" y="510" font-size="9" fill="#B7791F" transform="rotate(-50,310,510)">チェアリフト</text>
+
+  <!-- === HIKING ROUTE === -->
+  <!-- Start: Passo Falzarego (bottom left) -->
+  <!-- Route: Falzarego → chairlift top → Rifugio Averau → Cinque Torri (EP16)
+               → WWI trenches loop (EP17) → back to start -->
+
+  <!-- Route Phase 1 (EP16): chairlift top → Averau → Cinque Torri -->
+  <path d="M400 405 Q410 390 425 375 Q445 355 465 340 Q490 322 510 310 Q530 302 548 295"
+        stroke="#276749" stroke-width="3" fill="none" marker-end="url(#arrow-green)"/>
+
+  <!-- Route Phase 2 (EP16): around Cinque Torri rock area -->
+  <path d="M548 295 Q570 285 592 280 Q610 278 625 285 Q640 295 648 310 Q653 325 645 340"
+        stroke="#276749" stroke-width="3" fill="none"/>
+
+  <!-- Route Phase 3 (EP17): WWI trench circuit -->
+  <path d="M645 340 Q650 365 640 390 Q628 415 610 430 Q590 445 565 452 Q540 458 515 452 Q490 445 470 432 Q450 418 435 400 Q420 380 416 360 Q412 338 420 318 Q430 300 445 290 Q460 282 478 280"
+        stroke="#6B46C1" stroke-width="2.5" fill="none" stroke-dasharray="6,3"/>
+
+  <!-- Return to start -->
+  <path d="M645 340 Q660 390 665 430 Q665 460 660 490 Q650 520 635 540"
+        stroke="#276749" stroke-width="2" fill="none" stroke-dasharray="4,3" opacity="0.6"/>
+
+  <!-- === KEY LOCATIONS === -->
+
+  <!-- Passo Falzarego - START/END -->
+  <circle cx="295" cy="548" r="18" fill="#B7791F" stroke="white" stroke-width="2"/>
+  <text x="295" y="543" text-anchor="middle" font-size="10" font-weight="bold" fill="white">START</text>
+  <text x="295" y="556" text-anchor="middle" font-size="8" fill="#FEFCBF">END</text>
+  <rect x="200" y="562" width="145" height="28" rx="4" fill="white" stroke="#B7791F" stroke-width="1.5"/>
+  <text x="272" y="576" text-anchor="middle" font-size="10" font-weight="bold" fill="#B7791F">パッソ・ファルツァレーゴ</text>
+  <text x="272" y="586" text-anchor="middle" font-size="9" fill="#718096">2105m・駐車場・バス停</text>
+
+  <!-- Chairlift top station -->
+  <circle cx="400" cy="405" r="12" fill="#B7791F" opacity="0.9"/>
+  <text x="400" y="409" text-anchor="middle" font-size="9" fill="white">🚡</text>
+  <rect x="414" y="397" width="120" height="18" rx="3" fill="white" stroke="#B7791F" stroke-width="1"/>
+  <text x="474" y="410" text-anchor="middle" font-size="9" fill="#B7791F">リフト乗り場（片道€12）</text>
+
+  <!-- Rifugio Averau -->
+  <circle cx="450" cy="338" r="14" fill="#C53030" opacity="0.9"/>
+  <text x="450" y="342" text-anchor="middle" font-size="9" font-weight="bold" fill="white">RIF</text>
+  <rect x="316" y="326" width="120" height="28" rx="4" fill="white" stroke="#C53030" stroke-width="1.5"/>
+  <text x="376" y="339" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">Rifugio Averau</text>
+  <text x="376" y="350" text-anchor="middle" font-size="9" fill="#718096">2413m・軽食・展望</text>
+
+  <!-- Cinque Torri base (EP16 center) -->
+  <circle cx="600" cy="295" r="16" fill="#276749" opacity="0.95" stroke="white" stroke-width="2"/>
+  <text x="600" y="290" text-anchor="middle" font-size="11" font-weight="bold" fill="white">EP16</text>
+  <text x="600" y="303" text-anchor="middle" font-size="8" fill="#C6F6D5">岩峰基部</text>
+
+  <!-- WWI trench area (EP17) -->
+  <circle cx="560" cy="430" r="16" fill="#6B46C1" opacity="0.9" stroke="white" stroke-width="2"/>
+  <text x="560" y="425" text-anchor="middle" font-size="11" font-weight="bold" fill="white">EP17</text>
+  <text x="560" y="438" text-anchor="middle" font-size="8" fill="#E9D8FD">塹壕跡</text>
+  <rect x="580" y="422" width="145" height="38" rx="4" fill="white" stroke="#6B46C1" stroke-width="1.5"/>
+  <text x="652" y="437" text-anchor="middle" font-size="10" font-weight="bold" fill="#6B46C1">第一次世界大戦</text>
+  <text x="652" y="451" text-anchor="middle" font-size="9" fill="#718096">オープンエアー博物館（塹壕・砲台）</text>
+
+  <!-- Rifle/cannon marker -->
+  <text x="500" y="382" font-size="14" fill="#6B46C1" opacity="0.6">⚔</text>
+  <text x="640" y="378" font-size="14" fill="#6B46C1" opacity="0.6">⚔</text>
+
+  <!-- Photography viewpoints -->
+  <circle cx="594" cy="330" r="10" fill="#B7791F" opacity="0.85"/>
+  <text x="594" y="334" text-anchor="middle" font-size="9" fill="white">📷</text>
+  <rect x="604" y="322" width="115" height="18" rx="3" fill="#FEFCBF" stroke="#B7791F" stroke-width="1"/>
+  <text x="661" y="335" text-anchor="middle" font-size="9" fill="#744210">岩峰×ドロミテ全景</text>
+
+  <circle cx="470" cy="430" r="10" fill="#B7791F" opacity="0.85"/>
+  <text x="470" y="434" text-anchor="middle" font-size="9" fill="white">📷</text>
+  <rect x="340" y="422" width="115" height="18" rx="3" fill="#FEFCBF" stroke="#B7791F" stroke-width="1"/>
+  <text x="397" y="435" text-anchor="middle" font-size="9" fill="#744210">塹壕跡・歴史的景観</text>
+
+  <!-- Compass -->
+  <circle cx="1030" cy="130" r="24" fill="white" stroke="#CBD5E0" stroke-width="1.5"/>
+  <text x="1030" y="118" text-anchor="middle" font-size="14" fill="#4A5568">N</text>
+  <line x1="1030" y1="123" x2="1030" y2="147" stroke="#E53E3E" stroke-width="2"/>
+  <polygon points="1030,108 1026,122 1034,122" fill="#E53E3E"/>
+
+  <!-- Scale -->
+  <line x1="860" y1="590" x2="960" y2="590" stroke="#4A5568" stroke-width="2"/>
+  <line x1="860" y1="585" x2="860" y2="595" stroke="#4A5568" stroke-width="2"/>
+  <line x1="960" y1="585" x2="960" y2="595" stroke="#4A5568" stroke-width="2"/>
+  <text x="910" y="608" text-anchor="middle" font-size="10" fill="#4A5568">約500m</text>
+
+  <!-- Route legend -->
+  <rect x="80" y="645" width="940" height="64" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <line x1="100" y1="668" x2="150" y2="668" stroke="#276749" stroke-width="3"/>
+  <text x="157" y="672" font-size="11" fill="#276749">EP16メインルート（登り〜岩峰ゾーン）</text>
+  <line x1="310" y1="668" x2="360" y2="668" stroke="#6B46C1" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <text x="367" y="672" font-size="11" fill="#6B46C1">EP17 WWI塹壕ループ</text>
+  <line x1="520" y1="668" x2="570" y2="668" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="577" y="672" font-size="11" fill="#B7791F">チェアリフト</text>
+  <text x="100" y="698" font-size="11" fill="#718096">難易度：★★☆　ファミリー向けコースもあり（岩峰周囲は平坦）　WWI博物館：入場無料</text>
+  <text x="100" y="710" font-size="11" fill="#718096">チェアリフト：夏季限定 7月〜10月　片道€12、往復€18　コルチナから車で約30分</text>
+
+  <!-- Defs -->
+  <defs>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#276749"/>
+    </marker>
+  </defs>
+</svg>

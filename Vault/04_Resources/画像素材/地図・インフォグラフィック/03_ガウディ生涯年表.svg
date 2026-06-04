@@ -1,0 +1,144 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1200" height="560" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">アントニ・ガウディ 生涯年表</text>
+  <text x="600" y="62" text-anchor="middle" font-size="13" fill="#718096">1852–1926　カタルーニャが生んだ建築の聖人</text>
+
+  <!-- Timeline axis -->
+  <line x1="80" y1="200" x2="1120" y2="200" stroke="#CBD5E0" stroke-width="2"/>
+
+  <!-- Year ticks & labels -->
+  <!-- 1852 -->
+  <line x1="80" y1="196" x2="80" y2="210" stroke="#718096" stroke-width="1.5"/>
+  <text x="80" y="224" text-anchor="middle" font-size="11" fill="#718096">1852</text>
+  <!-- 1860 -->
+  <line x1="166" y1="196" x2="166" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="166" y="222" text-anchor="middle" font-size="10" fill="#A0AEC0">1860</text>
+  <!-- 1870 -->
+  <line x1="274" y1="196" x2="274" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="274" y="222" text-anchor="middle" font-size="10" fill="#A0AEC0">1870</text>
+  <!-- 1878 -->
+  <line x1="360" y1="196" x2="360" y2="210" stroke="#718096" stroke-width="1.5"/>
+  <text x="360" y="224" text-anchor="middle" font-size="11" fill="#718096">1878</text>
+  <!-- 1880 -->
+  <line x1="382" y1="196" x2="382" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <!-- 1882 -->
+  <line x1="403" y1="196" x2="403" y2="210" stroke="#C53030" stroke-width="1.5"/>
+  <text x="403" y="224" text-anchor="middle" font-size="11" fill="#C53030">1882</text>
+  <!-- 1890 -->
+  <line x1="490" y1="196" x2="490" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="490" y="222" text-anchor="middle" font-size="10" fill="#A0AEC0">1890</text>
+  <!-- 1900 -->
+  <line x1="598" y1="196" x2="598" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="598" y="222" text-anchor="middle" font-size="10" fill="#A0AEC0">1900</text>
+  <!-- 1910 -->
+  <line x1="706" y1="196" x2="706" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="706" y="222" text-anchor="middle" font-size="10" fill="#A0AEC0">1910</text>
+  <!-- 1914 -->
+  <line x1="749" y1="196" x2="749" y2="210" stroke="#718096" stroke-width="1.5"/>
+  <text x="749" y="224" text-anchor="middle" font-size="11" fill="#718096">1914</text>
+  <!-- 1920 -->
+  <line x1="814" y1="196" x2="814" y2="206" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="814" y="222" text-anchor="middle" font-size="10" fill="#A0AEC0">1920</text>
+  <!-- 1926 -->
+  <line x1="879" y1="196" x2="879" y2="210" stroke="#4A5568" stroke-width="1.5"/>
+  <text x="879" y="224" text-anchor="middle" font-size="11" fill="#4A5568">1926</text>
+  <!-- 2026 -->
+  <line x1="1120" y1="196" x2="1120" y2="210" stroke="#B7791F" stroke-width="2"/>
+  <text x="1120" y="224" text-anchor="middle" font-size="11" fill="#B7791F">2026</text>
+
+  <!-- Life bar -->
+  <rect x="80" y="190" width="799" height="20" rx="4" fill="#4A5568" opacity="0.15"/>
+  <!-- Active period of major works (1882-1926) -->
+  <rect x="403" y="190" width="476" height="20" rx="4" fill="#C53030" opacity="0.2"/>
+
+  <!-- === EVENTS ABOVE LINE === -->
+
+  <!-- 1852: 誕生 -->
+  <line x1="80" y1="200" x2="80" y2="130" stroke="#4A5568" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="30" y="95" width="100" height="38" rx="6" fill="#4A5568"/>
+  <text x="80" y="113" text-anchor="middle" font-size="11" font-weight="bold" fill="white">1852年</text>
+  <text x="80" y="127" text-anchor="middle" font-size="10" fill="#E2E8F0">レウスに誕生</text>
+
+  <!-- 1878: 建築家免許 -->
+  <line x1="360" y1="200" x2="360" y2="130" stroke="#2B6CB0" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="305" y="95" width="110" height="38" rx="6" fill="#2B6CB0"/>
+  <text x="360" y="113" text-anchor="middle" font-size="11" font-weight="bold" fill="white">1878年</text>
+  <text x="360" y="127" text-anchor="middle" font-size="10" fill="#BEE3F8">建築家免許取得</text>
+
+  <!-- 1883: サグラダ ファミリア引継ぎ -->
+  <line x1="414" y1="200" x2="414" y2="75" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="362" y="42" width="104" height="38" rx="6" fill="#C53030"/>
+  <text x="414" y="58" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1883年</text>
+  <text x="414" y="72" text-anchor="middle" font-size="10" fill="#FED7D7">サグラダ・ファミリア</text>
+  <text x="414" y="84" text-anchor="middle" font-size="10" fill="#FED7D7">設計引継ぎ</text>
+
+  <!-- 1886: グエル邸 -->
+  <line x1="457" y1="200" x2="457" y2="130" stroke="#6B46C1" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="407" y="95" width="100" height="38" rx="6" fill="#6B46C1"/>
+  <text x="457" y="113" text-anchor="middle" font-size="11" font-weight="bold" fill="white">1886年</text>
+  <text x="457" y="127" text-anchor="middle" font-size="10" fill="#E9D8FD">グエル邸 完成</text>
+
+  <!-- 1910: カサ・ミラ完成 -->
+  <line x1="706" y1="200" x2="706" y2="75" stroke="#276749" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="650" y="42" width="112" height="50" rx="6" fill="#276749"/>
+  <text x="706" y="60" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1906-10年</text>
+  <text x="706" y="74" text-anchor="middle" font-size="10" fill="#C6F6D5">カサ・ミラ</text>
+  <text x="706" y="86" text-anchor="middle" font-size="10" fill="#C6F6D5">（ラ・ペドレラ）</text>
+
+  <!-- === EVENTS BELOW LINE === -->
+
+  <!-- 1884: グエル公園 着工 -->
+  <line x1="446" y1="200" x2="446" y2="280" stroke="#276749" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="393" y="278" width="106" height="50" rx="6" fill="#276749"/>
+  <text x="446" y="295" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1900-14年</text>
+  <text x="446" y="308" text-anchor="middle" font-size="10" fill="#C6F6D5">グエル公園</text>
+  <text x="446" y="320" text-anchor="middle" font-size="10" fill="#C6F6D5">設計・建設</text>
+
+  <!-- 1900: カサ・バトリョ改修 -->
+  <line x1="570" y1="200" x2="570" y2="280" stroke="#B7791F" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="516" y="278" width="108" height="50" rx="6" fill="#B7791F"/>
+  <text x="570" y="295" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1904-06年</text>
+  <text x="570" y="308" text-anchor="middle" font-size="10" fill="#FEFCBF">カサ・バトリョ</text>
+  <text x="570" y="320" text-anchor="middle" font-size="10" fill="#FEFCBF">改修完成</text>
+
+  <!-- 1914: サグラダ専念 -->
+  <line x1="749" y1="200" x2="749" y2="280" stroke="#C53030" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="694" y="278" width="110" height="50" rx="6" fill="#C53030"/>
+  <text x="749" y="295" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1914年〜</text>
+  <text x="749" y="308" text-anchor="middle" font-size="10" fill="#FED7D7">サグラダ・ファミリア</text>
+  <text x="749" y="320" text-anchor="middle" font-size="10" fill="#FED7D7">に専念・工房で生活</text>
+
+  <!-- 1926: 逝去 -->
+  <line x1="879" y1="200" x2="879" y2="280" stroke="#4A5568" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="829" y="278" width="100" height="50" rx="6" fill="#4A5568"/>
+  <text x="879" y="295" text-anchor="middle" font-size="10" font-weight="bold" fill="white">1926年</text>
+  <text x="879" y="308" text-anchor="middle" font-size="10" fill="#E2E8F0">路面電車に</text>
+  <text x="879" y="320" text-anchor="middle" font-size="10" fill="#E2E8F0">はねられ逝去</text>
+
+  <!-- 2026: 生誕100周年 / 完成予定 -->
+  <line x1="1120" y1="200" x2="1120" y2="280" stroke="#B7791F" stroke-width="2" stroke-dasharray="4,2"/>
+  <rect x="1055" y="278" width="130" height="62" rx="6" fill="#B7791F"/>
+  <text x="1120" y="296" text-anchor="middle" font-size="11" font-weight="bold" fill="white">2026年</text>
+  <text x="1120" y="311" text-anchor="middle" font-size="10" fill="#FEFCBF">没後100周年</text>
+  <text x="1120" y="325" text-anchor="middle" font-size="10" fill="#FEFCBF">サグラダ・</text>
+  <text x="1120" y="337" text-anchor="middle" font-size="10" fill="#FEFCBF">ファミリア完成</text>
+
+  <!-- Dotted line from 1926 to 2026 (posthumous construction) -->
+  <line x1="879" y1="200" x2="1120" y2="200" stroke="#C53030" stroke-width="3" stroke-dasharray="8,4" opacity="0.5"/>
+  <text x="1000" y="188" text-anchor="middle" font-size="10" fill="#C53030">没後100年の建設継続</text>
+
+  <!-- === Legend / Category Colors === -->
+  <rect x="80" y="410" width="1040" height="110" rx="10" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="432" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A5568">主要作品と生涯の概要</text>
+
+  <!-- Work timeline bar (compact) -->
+  <text x="100" y="455" font-size="11" fill="#4A5568" font-weight="bold">生涯：</text>
+  <text x="100" y="472" font-size="11" fill="#718096">1852年生まれ（レウス）→ バルセロナ建築学校（1873-78）→ グエル伯爵と出会い（1878）→ 建築家として活躍</text>
+  <text x="100" y="489" font-size="11" fill="#718096">→ 晩年はサグラダ・ファミリアに専念・工房で禁欲的生活 → 1926年6月7日 路面電車事故で逝去（73歳）</text>
+
+  <text x="100" y="508" font-size="11" fill="#4A5568" font-weight="bold">主要作品：</text>
+  <text x="100" y="508" font-size="11" fill="#718096">                  グエル邸（1886）｜グエル公園（1900-14）｜カサ・バトリョ（1904-06）｜カサ・ミラ（1906-10）</text>
+  <text x="100" y="524" font-size="11" fill="#718096">                  サグラダ・ファミリア（1883〜）2026年完成予定　世界遺産7件</text>
+</svg>

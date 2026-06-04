@@ -1,0 +1,149 @@
+<svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic','Meiryo','Arial',sans-serif">
+  <rect width="1100" height="720" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1A202C">トレ・チーメ・ディ・ラヴァレード　周回ルート図</text>
+  <text x="550" y="60" text-anchor="middle" font-size="13" fill="#718096">EP14・EP15　反時計回り周回コース（約9.5km・所要4〜5時間）</text>
+
+  <!-- Sky background -->
+  <rect x="80" y="80" width="940" height="550" rx="10" fill="#EBF8FF" opacity="0.5"/>
+
+  <!-- Terrain (simplified) -->
+  <!-- Rocky ridgeline background -->
+  <path d="M80 480 Q150 380 250 360 Q320 345 380 380 Q440 420 500 410 Q560 400 620 390 Q700 375 780 360 Q860 340 940 380 Q980 400 1020 450" stroke="#A0AEC0" stroke-width="1" fill="#E2E8F0" opacity="0.3"/>
+  <!-- Ground plain -->
+  <rect x="80" y="480" width="940" height="150" rx="0" fill="#C6F6D5" opacity="0.25"/>
+
+  <!-- === TRE CIME PEAKS (iconic silhouette) === -->
+  <!-- Cima Piccola (right/east) -->
+  <polygon points="660,240 690,170 720,240" fill="#718096" opacity="0.85"/>
+  <text x="690" y="160" text-anchor="middle" font-size="10" fill="#4A5568">チーマ・ピッコラ</text>
+  <text x="690" y="172" text-anchor="middle" font-size="9" fill="#718096">2857m</text>
+
+  <!-- Cima Grande (center - tallest) -->
+  <polygon points="700,240 740,140 780,240" fill="#4A5568" opacity="0.9"/>
+  <text x="740" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#2D3748">チーマ・グランデ</text>
+  <text x="740" y="142" text-anchor="middle" font-size="9" fill="#718096">2999m</text>
+
+  <!-- Cima Ovest (left/west) -->
+  <polygon points="760,240 800,160 840,240" fill="#718096" opacity="0.85"/>
+  <text x="800" y="148" text-anchor="middle" font-size="10" fill="#4A5568">チーマ・オベスト</text>
+  <text x="800" y="160" text-anchor="middle" font-size="9" fill="#718096">2973m</text>
+
+  <!-- Snow caps on peaks -->
+  <polygon points="680,180 690,170 700,180" fill="white" opacity="0.8"/>
+  <polygon points="730,150 740,140 750,150" fill="white" opacity="0.8"/>
+  <polygon points="790,168 800,160 810,168" fill="white" opacity="0.8"/>
+
+  <!-- === HIKING ROUTE (counterclockwise) === -->
+  <!-- Route path (CCW: start south, go west first, then north, then east, back south) -->
+  <path d="M550 500
+           Q500 490 460 480
+           Q400 465 360 445
+           Q310 420 290 390
+           Q275 365 290 340
+           Q310 310 350 295
+           Q400 280 450 285
+           Q490 290 520 300
+           Q550 310 570 330
+           Q590 350 600 375
+           Q630 360 660 355
+           Q700 350 740 355
+           Q780 360 810 370
+           Q850 385 870 410
+           Q885 435 875 465
+           Q860 490 820 500
+           Q760 510 700 510
+           Q630 512 580 510 Q565 508 550 500"
+        stroke="#276749" stroke-width="3.5" fill="none"
+        marker-end="url(#arrow-green)" stroke-dasharray="none"/>
+
+  <!-- North arc (above peaks - behind them) -->
+  <path d="M520 300 Q600 270 680 275 Q720 278 760 285 Q800 293 840 310 Q860 325 870 345 Q880 365 875 395"
+        stroke="#276749" stroke-width="2.5" fill="none" stroke-dasharray="5,3" opacity="0.6"/>
+
+  <!-- === RIFUGIOS === -->
+
+  <!-- Rifugio Auronzo (trailhead, south) - START/END -->
+  <circle cx="550" cy="500" r="18" fill="#B7791F" stroke="white" stroke-width="2.5"/>
+  <text x="550" y="496" text-anchor="middle" font-size="10" font-weight="bold" fill="white">START</text>
+  <text x="550" y="508" text-anchor="middle" font-size="8" fill="#FEFCBF">END</text>
+  <rect x="568" y="486" width="140" height="32" rx="4" fill="white" stroke="#B7791F" stroke-width="1.5"/>
+  <text x="638" y="500" text-anchor="middle" font-size="10" font-weight="bold" fill="#B7791F">Rifugio Auronzo</text>
+  <text x="638" y="512" text-anchor="middle" font-size="9" fill="#718096">2333m・駐車場あり（有料）</text>
+
+  <!-- Rifugio Lavaredo (south face of peaks) -->
+  <rect x="455" y="368" width="14" height="14" rx="2" fill="#C53030"/>
+  <text x="462" y="352" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">▲</text>
+  <rect x="330" y="355" width="120" height="30" rx="4" fill="white" stroke="#C53030" stroke-width="1.2"/>
+  <text x="390" y="368" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">Rif. Lavaredo</text>
+  <text x="390" y="380" text-anchor="middle" font-size="9" fill="#718096">2344m</text>
+
+  <!-- Rifugio Locatelli (north face - key viewpoint) -->
+  <rect x="640" y="300" width="14" height="14" rx="2" fill="#C53030"/>
+  <text x="647" y="290" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">▲</text>
+  <rect x="660" y="280" width="130" height="30" rx="4" fill="white" stroke="#C53030" stroke-width="1.5"/>
+  <text x="725" y="293" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">Rif. Locatelli</text>
+  <text x="725" y="305" text-anchor="middle" font-size="9" fill="#718096">2405m・北壁最高の眺め</text>
+
+  <!-- === KEY VIEWPOINTS === -->
+
+  <!-- North face viewpoint annotation -->
+  <circle cx="740" cy="355" r="10" fill="#B7791F" opacity="0.9"/>
+  <text x="740" y="359" text-anchor="middle" font-size="9" fill="white">📷</text>
+  <rect x="758" y="343" width="110" height="26" rx="3" fill="#FEFCBF" stroke="#B7791F" stroke-width="1"/>
+  <text x="813" y="360" text-anchor="middle" font-size="9" fill="#744210">北壁ビューポイント</text>
+
+  <!-- Sunrise spot (EP14) -->
+  <circle cx="400" cy="440" r="10" fill="#B7791F" opacity="0.9"/>
+  <text x="400" y="444" text-anchor="middle" font-size="9" fill="white">☀</text>
+  <rect x="250" y="427" width="130" height="26" rx="3" fill="#FEFCBF" stroke="#B7791F" stroke-width="1"/>
+  <text x="315" y="444" text-anchor="middle" font-size="9" fill="#744210">早朝撮影ポイント（EP14）</text>
+
+  <!-- Westernmost point -->
+  <circle cx="290" cy="360" r="10" fill="#6B46C1" opacity="0.8"/>
+  <rect x="175" y="348" width="100" height="26" rx="3" fill="white" stroke="#6B46C1" stroke-width="1"/>
+  <text x="225" y="365" text-anchor="middle" font-size="9" fill="#6B46C1">西端ビュー</text>
+
+  <!-- === ROUTE INFO MARKERS === -->
+
+  <!-- EP14 badge (front half) -->
+  <rect x="250" y="480" width="80" height="30" rx="6" fill="#276749"/>
+  <text x="290" y="500" text-anchor="middle" font-size="11" font-weight="bold" fill="white">EP14</text>
+  <rect x="250" y="512" width="80" height="20" rx="4" fill="#276749" opacity="0.7"/>
+  <text x="290" y="526" text-anchor="middle" font-size="9" fill="#C6F6D5">南側〜西側</text>
+
+  <!-- EP15 badge (back half) -->
+  <rect x="780" y="480" width="80" height="30" rx="6" fill="#276749"/>
+  <text x="820" y="500" text-anchor="middle" font-size="11" font-weight="bold" fill="white">EP15</text>
+  <rect x="780" y="512" width="80" height="20" rx="4" fill="#276749" opacity="0.7"/>
+  <text x="820" y="526" text-anchor="middle" font-size="9" fill="#C6F6D5">北側〜東側</text>
+
+  <!-- Direction arrow annotation -->
+  <text x="430" y="555" text-anchor="middle" font-size="11" fill="#276749">← 反時計回り（CCW）で周回</text>
+
+  <!-- Compass -->
+  <circle cx="1030" cy="130" r="24" fill="white" stroke="#CBD5E0" stroke-width="1.5"/>
+  <text x="1030" y="118" text-anchor="middle" font-size="14" fill="#4A5568">N</text>
+  <line x1="1030" y1="123" x2="1030" y2="147" stroke="#E53E3E" stroke-width="2"/>
+  <polygon points="1030,108 1026,122 1034,122" fill="#E53E3E"/>
+
+  <!-- Scale -->
+  <line x1="860" y1="570" x2="960" y2="570" stroke="#4A5568" stroke-width="2"/>
+  <line x1="860" y1="565" x2="860" y2="575" stroke="#4A5568" stroke-width="2"/>
+  <line x1="960" y1="565" x2="960" y2="575" stroke="#4A5568" stroke-width="2"/>
+  <text x="910" y="585" text-anchor="middle" font-size="10" fill="#4A5568">約1km</text>
+
+  <!-- Legend -->
+  <rect x="80" y="645" width="940" height="64" rx="8" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="600" y="666" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A5568">ルート情報</text>
+  <text x="100" y="686" font-size="11" fill="#718096">総距離：約9.5km　獲得標高：約300m　難易度：★★☆（中級）　推奨出発：早朝6:00〜（混雑回避）</text>
+  <text x="100" y="700" font-size="11" fill="#718096">Rifugio Auronzo駐車場：有料（6月〜10月開放）　入場料：1人€5（2024現在）　要防寒着・トレッキングポール推奨</text>
+
+  <!-- Arrow marker defs -->
+  <defs>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#276749"/>
+    </marker>
+  </defs>
+</svg>
